@@ -1,16 +1,49 @@
-"""
-CSRD Agent — Web Dashboard
+"""CSRD Agent — Web Dashboard
 FastAPI web app for SME CSRD Readiness Check + full pipeline management.
 """
-import json, os, uuid, yaml
+
+import json, os, uuid, yaml, time
 from datetime import datetime
+from functools import wraps
 from pathlib import Path
 from typing import Optional
 
-from fastapi import FastAPI, Request, Form
+from fastapi import FastAPI, Request, Form, HTTPException, Depends
 from fastapi.responses import RedirectResponse
+from fastapi.security import APIKeyHeader
 from fastapi.staticfiles import StaticFiles
 from fastapi.templating import Jinja2Templates
+
+# ── Security: API Key Auth ──
+API_KEY = os.environ.get("CSRD_API_KEY", "")
+API_KEY_NAME = "X-API-Key"
+api_key_header = APIKeyHeader(name=API_KEY_NAME, auto_error=False)
+
+async def verify_api_key(api_key: str = Depends(api_key_header)):
+    """Verify API key. Bypass for GET pages (not API)."""
+    if not API_KEY:
+        # No API key configured — allow all (dev mode)
+        return True
+    if not api_key or api_key != API_KEY:
+        raise HTTPException(status_code=401, detail="Invalid or missing API key")
+    return True
+
+# ── Rate Limiting (in-memory, per-IP) ──
+RATE_LIMIT_REQUESTS = 60  # requests per window
+RATE_LIMIT_WINDOW = 60    # seconds
+_rate_limit_buckets: dict[str, list[float]] = {}
+
+def rate_limit(request: Request):
+    """Simple sliding window rate limiter."""
+    client_ip = request.client.host if request.client else "unknown"
+    now = time.time()
+    bucket = _rate_limit_buckets.get(client_ip, [])
+    # Prune old timestamps
+    bucket = [t for t in bucket if now - t < RATE_LIMIT_WINDOW]
+    if len(bucket) >= RATE_LIMIT_REQUESTS:
+        raise HTTPException(status_code=429, detail="Rate limit exceeded (60 req/min)")
+    bucket.append(now)
+    _rate_limit_buckets[client_ip] = bucket
 
 # ── App setup ──
 BASE_DIR = Path(__file__).parent
@@ -20,6 +53,22 @@ SESSIONS_DIR.mkdir(exist_ok=True)
 
 app = FastAPI(title="CSRD Agent — Readiness Check")
 templates = Jinja2Templates(directory=str(BASE_DIR / "templates"))
+
+# ── Middleware: Rate Limiting ──
+@app.middleware("http")
+async def rate_limit_middleware(request: Request, call_next):
+    """Apply rate limiting to all requests."""
+    client_ip = request.client.host if request.client else "unknown"
+    now = time.time()
+    bucket = _rate_limit_buckets.get(client_ip, [])
+    bucket = [t for t in bucket if now - t < RATE_LIMIT_WINDOW]
+    if len(bucket) >= RATE_LIMIT_REQUESTS:
+        from fastapi.responses import JSONResponse
+        return JSONResponse(status_code=429, content={"detail": "Rate limit exceeded (60 req/min)"})
+    bucket.append(now)
+    _rate_limit_buckets[client_ip] = bucket
+    response = await call_next(request)
+    return response
 
 # ── Custom render: avoid Starlette's Jinja2 cache bug ──
 import jinja2
@@ -438,6 +487,10 @@ async def new_assessment(request: Request):
 @app.post("/new")
 async def submit_assessment(request: Request):
     """Process SME form, compute readiness, redirect to dashboard."""
+    # CSRF protection: verify content type
+    content_type = request.headers.get("content-type", "")
+    if "form" not in content_type:
+        raise HTTPException(status_code=400, detail="Invalid content type")
     try:
         form = await request.form()
         responses = dict(form)
@@ -507,7 +560,7 @@ async def dashboard(request: Request, session_id: str):
 
 
 @app.get("/api/readiness/{session_id}")
-async def api_readiness(session_id: str):
+async def api_readiness(session_id: str, authorized: bool = Depends(verify_api_key)):
     """API endpoint for readiness data."""
     session_path = SESSIONS_DIR / f"{session_id}.json"
     if not session_path.exists():
@@ -518,7 +571,7 @@ async def api_readiness(session_id: str):
 
 
 @app.get("/api/benchmark/{sector}")
-async def api_benchmark(sector: str):
+async def api_benchmark(sector: str, authorized: bool = Depends(verify_api_key)):
     """API endpoint for benchmark data."""
     bench = get_benchmark(sector)
     if not bench:
@@ -527,7 +580,7 @@ async def api_benchmark(sector: str):
 
 
 @app.get("/api/standards")
-async def api_standards():
+async def api_standards(authorized: bool = Depends(verify_api_key)):
     """API: list all ESRS standards with datapoint counts."""
     return {
         "standards": DP_COUNTS["standards_loaded"],

@@ -14,3 +14,5 @@ services:
         value: 3.11.11
       - key: PYTHONUNBUFFERED
         value: "1"
+      - key: CSRD_API_KEY
+        generateValue: true
