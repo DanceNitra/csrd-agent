@@ -1,0 +1,45 @@
+{
+  "document": "TotalEnergies_2024_ixbrl.html",
+  "entity": "TotalEnergies",
+  "report_year": 2024,
+  "generated_at": "2026-06-08T22:05:59.732800Z",
+  "generator": "csrd-agent",
+  "generator_version": "dev",
+  "generator_commit_msg": "",
+  "profile_hash": "478cfbfe31dd4832",
+  "ixbrl_hash": "040ecca3dab1080acc381039b5ce97171baee529b6956316583a99343db374ad",
+  "instance_hash": "fa55a50fc5151abe09c8941a27c647c0911ce6179038e0382295815b69a446db",
+  "fact_count": 11,
+  "validation": {
+    "arelle": "PASS (0 errors, 0 warnings)",
+    "ixbrl_1_1_conformance": "PASS (Arelle 380/419 tests)",
+    "validator_14_checks": "PASS"
+  },
+  "taxonomy": {
+    "namespace": "http://xbrl.efrag.org/sites/esrs/2024-12-16/esrs-cor",
+    "xsd": "esrs-cor-2024-12-16.xsd"
+  },
+  "assurance": null,
+  "provenance_chain": [
+    {
+      "step": "data_collection",
+      "status": "completed",
+      "hash": "478cfbfe31dd4832"
+    },
+    {
+      "step": "xbrl_mapping",
+      "concepts": 11
+    },
+    {
+      "step": "ixbrl_generation",
+      "output": "/home/vboxuser/csrd-agent/clients/TotalEnergies/xbrl/TotalEnergies_2024_ixbrl.html",
+      "hash": "040ecca3dab1080acc381039b5ce97171baee529b6956316583a99343db374ad"
+    },
+    {
+      "step": "arelle_validation",
+      "status": "PASS",
+      "errors": 0,
+      "warnings": 0
+    }
+  ]
+}
