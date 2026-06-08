@@ -44,205 +44,168 @@ class iXBRLEngine:
         return f"lei:{name_slug}-csrd-{self.report_year}"
 
     def _map_profile_to_facts(self) -> list[dict]:
-        """Map company profile data to XBRL facts."""
+        """Map company profile data to XBRL facts.
+
+        Supports two profile formats:
+        1. Legacy flat format (greenhouse_gas, energy, workforce, ...)
+        2. New hierarchical format (esg_data.{scope1_emissions, ...})
+        """
         facts = []
         p = self.profile
 
+        # Helper: extract value from either flat or esg_data format
+        def _val(flat_key: str, esg_key: str) -> float | None:
+            """Try flat format first, then esg_data hierarchical format."""
+            # Flat format - could be a number OR a dict {value: N, ...}
+            val = p.get(flat_key, None)
+            if val is not None:
+                if isinstance(val, (int, float)):
+                    return val
+                if isinstance(val, dict):
+                    return val.get("value", None)
+            # esg_data format
+            esg = p.get("esg_data", {})
+            if esg_key in esg:
+                item = esg[esg_key]
+                if isinstance(item, dict):
+                    return item.get("value", None)
+                return item
+            return None
+
+        def _g(prefix: str, key: str) -> dict | None:
+            """Get a sub-dict from either flat or esg_data format."""
+            val = p.get(prefix, None)
+            if isinstance(val, dict):
+                return val
+            esg = p.get("esg_data", {})
+            if key in esg:
+                item = esg[key]
+                if isinstance(item, dict):
+                    return {"value": item.get("value", 0)}
+            return None
+
         # ── E1: Climate ──
+        v = _val("scope1_emissions", "scope1_emissions")
+        if v:
+            facts.append({"concept": "GHGScope1Emissions", "value": v, "unit": "esrs:tCo2e", "decimals": 0})
+        v = _val("scope2_emissions", "scope2_emissions")
+        if v:
+            facts.append({"concept": "GHGScope2LocationBasedEmissions", "value": v, "unit": "esrs:tCo2e", "decimals": 0})
+        v = _val("scope3_emissions", "scope3_emissions")
+        if v:
+            facts.append({"concept": "GHGScope3Emissions", "value": v, "unit": "esrs:tCo2e", "decimals": 0})
+        v = _val("greenhouse_gas_emissions", "greenhouse_gas_emissions")
+        if v:
+            facts.append({"concept": "GHGTotalEmissions", "value": v, "unit": "esrs:tCo2e", "decimals": 0})
+        v = _val("energy_consumption", "energy_consumption")
+        if v:
+            facts.append({"concept": "EnergyConsumptionTotal", "value": v, "unit": "esrs:MWh", "decimals": 0})
+        v = _val("ghg_intensity", "ghg_intensity")
+        if v:
+            facts.append({"concept": "GHGIntensity", "value": v, "unit": "esrs:tCo2ePerEur", "decimals": 4})
+
+        # Legacy flat format fallback for E1
         ghg = p.get("greenhouse_gas", {})
-        if ghg.get("scope1_total"):
-            facts.append({
-                "concept": "GHGScope1Emissions",
-                "value": ghg["scope1_total"],
-                "unit": "esrs:tCo2e",
-                "decimals": 0,
-            })
-        if ghg.get("scope2_location_based"):
-            facts.append({
-                "concept": "GHGScope2LocationBasedEmissions",
-                "value": ghg["scope2_location_based"],
-                "unit": "esrs:tCo2e",
-                "decimals": 0,
-            })
-        if ghg.get("scope2_market_based"):
-            facts.append({
-                "concept": "GHGScope2MarketBasedEmissions",
-                "value": ghg["scope2_market_based"],
-                "unit": "esrs:tCo2e",
-                "decimals": 0,
-            })
-        if ghg.get("scope3_total_estimated"):
-            facts.append({
-                "concept": "GHGScope3Emissions",
-                "value": ghg["scope3_total_estimated"],
-                "unit": "esrs:tCo2e",
-                "decimals": 0,
-            })
-        if ghg.get("reduction_target_2030"):
-            facts.append({
-                "concept": "GHGReductionTarget2030",
-                "value": ghg["reduction_target_2030"] / 100.0,
-                "unit": "xbrli:pure",
-                "decimals": 4,
-            })
-        if ghg.get("carbon_price_internal"):
-            facts.append({
-                "concept": "InternalCarbonPrice",
-                "value": ghg["carbon_price_internal"],
-                "unit": "iso4217:EUR",
-                "decimals": 2,
-            })
+        if isinstance(ghg, dict):
+            if ghg.get("scope1_total"):
+                facts.append({"concept": "GHGScope1Emissions", "value": ghg["scope1_total"], "unit": "esrs:tCo2e", "decimals": 0})
+            if ghg.get("scope2_location_based"):
+                facts.append({"concept": "GHGScope2LocationBasedEmissions", "value": ghg["scope2_location_based"], "unit": "esrs:tCo2e", "decimals": 0})
+            if ghg.get("scope2_market_based"):
+                facts.append({"concept": "GHGScope2MarketBasedEmissions", "value": ghg["scope2_market_based"], "unit": "esrs:tCo2e", "decimals": 0})
+            if ghg.get("scope3_total_estimated"):
+                facts.append({"concept": "GHGScope3Emissions", "value": ghg["scope3_total_estimated"], "unit": "esrs:tCo2e", "decimals": 0})
+            if ghg.get("reduction_target_2030"):
+                facts.append({"concept": "GHGReductionTarget2030", "value": ghg["reduction_target_2030"] / 100.0, "unit": "xbrli:pure", "decimals": 4})
+            if ghg.get("carbon_price_internal"):
+                facts.append({"concept": "InternalCarbonPrice", "value": ghg["carbon_price_internal"], "unit": "iso4217:EUR", "decimals": 2})
 
         energy = p.get("energy", {})
-        if energy.get("total_generation_mwh"):
-            facts.append({
-                "concept": "EnergyConsumptionTotal",
-                "value": energy["total_generation_mwh"],
-                "unit": "esrs:MWh",
-                "decimals": 0,
-            })
+        if isinstance(energy, dict) and energy.get("total_generation_mwh"):
+            facts.append({"concept": "EnergyConsumptionTotal", "value": energy["total_generation_mwh"], "unit": "esrs:MWh", "decimals": 0})
 
         # ── E2: Pollution ──
+        v = _val("waste_total", "waste_total")
+        if v:
+            facts.append({"concept": "WasteGeneratedTotal", "value": v, "unit": "esrs:t", "decimals": 0})
+
         poll = p.get("pollution", {})
-        if poll.get("nox_emissions"):
-            facts.append({
-                "concept": "NOxEmissions",
-                "value": poll["nox_emissions"],
-                "unit": "esrs:t",
-                "decimals": 0,
-            })
-        if poll.get("sox_emissions"):
-            facts.append({
-                "concept": "SOxEmissions",
-                "value": poll["sox_emissions"],
-                "unit": "esrs:t",
-                "decimals": 0,
-            })
-        if poll.get("pm10_emissions"):
-            pm_total = (poll.get("pm10_emissions", 0) + poll.get("pm2_5_emissions", 0))
-            facts.append({
-                "concept": "ParticulateMatterEmissionsTotal",
-                "value": pm_total,
-                "unit": "esrs:t",
-                "decimals": 0,
-            })
-        if poll.get("hazardous_waste_generated"):
-            facts.append({
-                "concept": "HazardousWasteGenerated",
-                "value": poll["hazardous_waste_generated"],
-                "unit": "esrs:t",
-                "decimals": 0,
-            })
+        if isinstance(poll, dict):
+            if poll.get("nox_emissions"):
+                facts.append({"concept": "NOxEmissions", "value": poll["nox_emissions"], "unit": "esrs:t", "decimals": 0})
+            if poll.get("sox_emissions"):
+                facts.append({"concept": "SOxEmissions", "value": poll["sox_emissions"], "unit": "esrs:t", "decimals": 0})
+            if poll.get("pm10_emissions"):
+                pm_total = (poll.get("pm10_emissions", 0) + poll.get("pm2_5_emissions", 0))
+                facts.append({"concept": "ParticulateMatterEmissionsTotal", "value": pm_total, "unit": "esrs:t", "decimals": 0})
+            if poll.get("hazardous_waste_generated"):
+                facts.append({"concept": "HazardousWasteGenerated", "value": poll["hazardous_waste_generated"], "unit": "esrs:t", "decimals": 0})
 
         # ── E3: Water ──
+        v = _val("water_withdrawal", "water_withdrawal")
+        if v:
+            facts.append({"concept": "WaterWithdrawalTotal", "value": v, "unit": "esrs:m3", "decimals": 0})
+
         water = p.get("water", {})
-        if water.get("total_withdrawal_m3"):
-            facts.append({
-                "concept": "WaterWithdrawalTotal",
-                "value": water["total_withdrawal_m3"],
-                "unit": "esrs:m3",
-                "decimals": 0,
-            })
-        if water.get("total_consumption_m3"):
-            facts.append({
-                "concept": "WaterConsumptionTotal",
-                "value": water["total_consumption_m3"],
-                "unit": "esrs:m3",
-                "decimals": 0,
-            })
-        if water.get("total_discharge_m3"):
-            facts.append({
-                "concept": "WaterDischargeTotal",
-                "value": water["total_discharge_m3"],
-                "unit": "esrs:m3",
-                "decimals": 0,
-            })
+        if isinstance(water, dict):
+            if water.get("total_withdrawal_m3"):
+                facts.append({"concept": "WaterWithdrawalTotal", "value": water["total_withdrawal_m3"], "unit": "esrs:m3", "decimals": 0})
+            if water.get("total_consumption_m3"):
+                facts.append({"concept": "WaterConsumptionTotal", "value": water["total_consumption_m3"], "unit": "esrs:m3", "decimals": 0})
+            if water.get("total_discharge_m3"):
+                facts.append({"concept": "WaterDischargeTotal", "value": water["total_discharge_m3"], "unit": "esrs:m3", "decimals": 0})
 
         # ── E5: Circular Economy ──
         ce = p.get("circular_economy", {})
-        if ce.get("waste_total_tonnes"):
-            facts.append({
-                "concept": "WasteGeneratedTotal",
-                "value": ce["waste_total_tonnes"],
-                "unit": "esrs:t",
-                "decimals": 0,
-            })
-        if ce.get("waste_diversion_rate_pct"):
-            facts.append({
-                "concept": "WasteDiversionRate",
-                "value": ce["waste_diversion_rate_pct"] / 100.0,
-                "unit": "xbrli:pure",
-                "decimals": 4,
-            })
+        if isinstance(ce, dict):
+            if ce.get("waste_total_tonnes"):
+                facts.append({"concept": "WasteGeneratedTotal", "value": ce["waste_total_tonnes"], "unit": "esrs:t", "decimals": 0})
+            if ce.get("waste_diversion_rate_pct"):
+                facts.append({"concept": "WasteDiversionRate", "value": ce["waste_diversion_rate_pct"] / 100.0, "unit": "xbrli:pure", "decimals": 4})
 
         # ── S1: Workforce ──
+        emp = p.get("employees", 0)
+        if emp:
+            facts.append({"concept": "TotalEmployees", "value": emp, "unit": "xbrli:pure", "decimals": 0})
+
+        v = _val("workforce_female_pct", "workforce_female_pct")
+        if v:
+            facts.append({"concept": "GenderDiversityManagement", "value": v / 100.0, "unit": "xbrli:pure", "decimals": 4})
+        v = _val("workforce_injury_rate", "workforce_injury_rate")
+        if v:
+            facts.append({"concept": "InjuryRateRecordable", "value": v, "unit": "xbrli:pure", "decimals": 2})
+        v = _val("workforce_fatalities", "workforce_fatalities")
+        if v is not None:
+            facts.append({"concept": "FatalitiesWorkRelated", "value": v, "unit": "xbrli:pure", "decimals": 0})
+
         wf = p.get("workforce", {})
-        if wf.get("total_employees"):
-            facts.append({
-                "concept": "TotalEmployees",
-                "value": wf["total_employees"],
-                "unit": "xbrli:pure",
-                "decimals": 0,
-            })
-        if wf.get("injury_rate_per_100k_hours"):
-            facts.append({
-                "concept": "InjuryRateRecordable",
-                "value": wf["injury_rate_per_100k_hours"],
-                "unit": "xbrli:pure",
-                "decimals": 2,
-            })
-        if wf.get("fatalities") is not None:
-            facts.append({
-                "concept": "FatalitiesWorkRelated",
-                "value": wf["fatalities"],
-                "unit": "xbrli:pure",
-                "decimals": 0,
-            })
-        if wf.get("employee_turnover_pct"):
-            facts.append({
-                "concept": "EmployeeTurnoverRate",
-                "value": wf["employee_turnover_pct"] / 100.0,
-                "unit": "xbrli:pure",
-                "decimals": 4,
-            })
-        if wf.get("female_management_pct"):
-            facts.append({
-                "concept": "GenderDiversityManagement",
-                "value": wf["female_management_pct"] / 100.0,
-                "unit": "xbrli:pure",
-                "decimals": 4,
-            })
-        if wf.get("gender_pay_gap_mean_pct"):
-            facts.append({
-                "concept": "GenderPayGapMean",
-                "value": wf["gender_pay_gap_mean_pct"] / 100.0,
-                "unit": "xbrli:pure",
-                "decimals": 4,
-            })
+        if isinstance(wf, dict):
+            if wf.get("total_employees"):
+                facts.append({"concept": "TotalEmployees", "value": wf["total_employees"], "unit": "xbrli:pure", "decimals": 0})
+            if wf.get("injury_rate_per_100k_hours"):
+                facts.append({"concept": "InjuryRateRecordable", "value": wf["injury_rate_per_100k_hours"], "unit": "xbrli:pure", "decimals": 2})
+            if wf.get("fatalities") is not None:
+                facts.append({"concept": "FatalitiesWorkRelated", "value": wf["fatalities"], "unit": "xbrli:pure", "decimals": 0})
+            if wf.get("employee_turnover_pct"):
+                facts.append({"concept": "EmployeeTurnoverRate", "value": wf["employee_turnover_pct"] / 100.0, "unit": "xbrli:pure", "decimals": 4})
+            if wf.get("female_management_pct"):
+                facts.append({"concept": "GenderDiversityManagement", "value": wf["female_management_pct"] / 100.0, "unit": "xbrli:pure", "decimals": 4})
+            if wf.get("gender_pay_gap_mean_pct"):
+                facts.append({"concept": "GenderPayGapMean", "value": wf["gender_pay_gap_mean_pct"] / 100.0, "unit": "xbrli:pure", "decimals": 4})
 
         # ── G1: Business Conduct ──
+        rev = p.get("revenue", 0)
+        if rev:
+            facts.append({"concept": "RevenueTotal", "value": rev, "unit": "iso4217:EUR", "decimals": 0})
+
         bc = p.get("business_conduct", {})
-        if bc.get("corruption_convictions") is not None:
-            facts.append({
-                "concept": "CorruptionConvictions",
-                "value": bc["corruption_convictions"],
-                "unit": "xbrli:pure",
-                "decimals": 0,
-            })
-        if bc.get("corruption_fines_eur"):
-            facts.append({
-                "concept": "CorruptionFines",
-                "value": bc["corruption_fines_eur"],
-                "unit": "iso4217:EUR",
-                "decimals": 2,
-            })
-        if bc.get("lobbying_expenditure_eur"):
-            facts.append({
-                "concept": "LobbyingExpenditure",
-                "value": bc["lobbying_expenditure_eur"],
-                "unit": "iso4217:EUR",
-                "decimals": 2,
-            })
+        if isinstance(bc, dict):
+            if bc.get("corruption_convictions") is not None:
+                facts.append({"concept": "CorruptionConvictions", "value": bc["corruption_convictions"], "unit": "xbrli:pure", "decimals": 0})
+            if bc.get("corruption_fines_eur"):
+                facts.append({"concept": "CorruptionFines", "value": bc["corruption_fines_eur"], "unit": "iso4217:EUR", "decimals": 2})
+            if bc.get("lobbying_expenditure_eur"):
+                facts.append({"concept": "LobbyingExpenditure", "value": bc["lobbying_expenditure_eur"], "unit": "iso4217:EUR", "decimals": 2})
         if bc.get("average_payment_days"):
             facts.append({
                 "concept": "AveragePaymentDays",

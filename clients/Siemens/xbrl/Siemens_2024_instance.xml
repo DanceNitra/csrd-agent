@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xbrl
+    xmlns="http://www.xbrl.org/2003/instance"
+    xmlns:esrs="http://xbrl.efrag.org/sites/esrs/2024-12-16/esrs-cor"
+    xmlns:iso4217="http://www.xbrl.org/2003/iso4217"
+    xmlns:link="http://www.xbrl.org/2003/linkbase"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xbrli="http://www.xbrl.org/2003/instance">
+  <link:schemaRef
+    xlink:type="simple"
+    xlink:href="https://xbrl.efrag.org/sites/esrs/2024-12-16/esrs-cor/esrs-cor-2024-12-16.xsd"/>
+  <context id="FY2024"><entity><identifier scheme="http://www.lei.org">lei:siemens-csrd-2024</identifier></entity><period><startDate>2023-01-01</startDate><endDate>2024-12-31</endDate></period></context>
+  <context id="FY2024_Instant"><entity><identifier scheme="http://www.lei.org">lei:siemens-csrd-2024</identifier></entity><period><instant>2024-12-31</instant></period></context>
+  
+  <unit id="u_esrs:tCo2e"><measure>esrs:tCo2e</measure></unit><unit id="u_esrs:MWh"><measure>esrs:MWh</measure></unit><unit id="u_esrs:tCo2ePerEur"><measure>esrs:tCo2ePerEur</measure></unit><unit id="u_esrs:t"><measure>esrs:t</measure></unit><unit id="u_esrs:m3"><measure>esrs:m3</measure></unit><unit id="u_xbrli:pure"><measure>xbrli:pure</measure></unit><unit id="u_iso4217:EUR"><measure>iso4217:EUR</measure></unit>
+  <esrs:GHGScope1Emissions contextRef="FY2024" unitRef="u_esrs:tCo2e" decimals="0">200000</esrs:GHGScope1Emissions>
+  <esrs:GHGScope2LocationBasedEmissions contextRef="FY2024" unitRef="u_esrs:tCo2e" decimals="0">400000</esrs:GHGScope2LocationBasedEmissions>
+  <esrs:GHGScope3Emissions contextRef="FY2024" unitRef="u_esrs:tCo2e" decimals="0">27000000</esrs:GHGScope3Emissions>
+  <esrs:GHGTotalEmissions contextRef="FY2024" unitRef="u_esrs:tCo2e" decimals="0">27600000</esrs:GHGTotalEmissions>
+  <esrs:EnergyConsumptionTotal contextRef="FY2024" unitRef="u_esrs:MWh" decimals="0">5000000</esrs:EnergyConsumptionTotal>
+  <esrs:GHGIntensity contextRef="FY2024" unitRef="u_esrs:tCo2ePerEur" decimals="4">0.0077</esrs:GHGIntensity>
+  <esrs:WasteGeneratedTotal contextRef="FY2024" unitRef="u_esrs:t" decimals="0">180000</esrs:WasteGeneratedTotal>
+  <esrs:WaterWithdrawalTotal contextRef="FY2024" unitRef="u_esrs:m3" decimals="0">3500000</esrs:WaterWithdrawalTotal>
+  <esrs:TotalEmployees contextRef="FY2024" unitRef="u_xbrli:pure" decimals="0">320000</esrs:TotalEmployees>
+  <esrs:GenderDiversityManagement contextRef="FY2024" unitRef="u_xbrli:pure" decimals="4">0.27</esrs:GenderDiversityManagement>
+  <esrs:InjuryRateRecordable contextRef="FY2024" unitRef="u_xbrli:pure" decimals="2">0.8</esrs:InjuryRateRecordable>
+  <esrs:RevenueTotal contextRef="FY2024" unitRef="u_iso4217:EUR" decimals="0">77769000000</esrs:RevenueTotal>
+
+</xbrl>

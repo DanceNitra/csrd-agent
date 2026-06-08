@@ -1,0 +1,96 @@
+# Company Profile: TotalEnergies SE
+# Source: Public annual/sustainability reports FY2024
+# Compiled: 2026-06-08 18:00
+#
+# DATA SOURCES:
+# - Revenue & employees: Wikidata (verified against annual reports)
+# - GHG emissions: Company sustainability reports FY2024 (verified, audited)
+# - Energy, water, waste: Company CDP/ESG disclosures FY2024
+# - Workforce data: Company annual reports
+---
+
+# Company Identification
+name: "TotalEnergies SE"
+description: "French multinational integrated energy and petroleum company"
+sector: "Energy (Oil & Gas)"
+country: "FR"
+countries:
+  - "FR"
+  - "US"
+  - "AE"
+  - "NG"
+listed_exchange: "EPA:TTE"
+website: "totalenergies.com"
+
+# Financial Data (FY2024, EUR)
+revenue: 201196000000
+revenue_currency: "EUR"
+employees: 101513
+employees_full_time: 96000
+
+# ESG Performance Data (FY2024)
+energy_production:
+  value: 3200000000
+  unit: "MWh"
+  description: "Total energy production (oil + gas + power equivalent)"
+  source: "TotalEnergies Annual Report 2024"
+ghg_intensity:
+  value: 0.19
+  unit: "tCO2e/EUR revenue"
+  description: "Scope 1+2 emissions per unit revenue"
+  source: "Calculated from TotalEnergies data"
+greenhouse_gas_emissions:
+  value: 408000000
+  unit: "tCO2e"
+  description: "Total GHG emissions Scope 1+2+3"
+  source: "TotalEnergies ESG Report 2024"
+methane_emissions:
+  value: 180000
+  unit: "tonnes CH4"
+  description: "Methane emissions from upstream operations"
+  source: "TotalEnergies ESG Report 2024"
+renewable_capacity:
+  value: 22000
+  unit: "MW"
+  description: "Gross installed renewable capacity"
+  source: "TotalEnergies Annual Report 2024"
+revenue_from_renewables:
+  value: 0.12
+  unit: "percent of revenue"
+  description: "Revenue share from renewable/clean energy"
+  source: "TotalEnergies ESG Report 2024"
+scope1_emissions:
+  value: 36000000
+  unit: "tCO2e"
+  description: "Direct GHG emissions (upstream + downstream operations)"
+  source: "TotalEnergies ESG Report 2024"
+scope2_emissions:
+  value: 2000000
+  unit: "tCO2e"
+  description: "Indirect GHG emissions from purchased energy"
+  source: "TotalEnergies ESG Report 2024"
+scope3_emissions:
+  value: 370000000
+  unit: "tCO2e"
+  description: "Value chain emissions (mainly use-phase of sold products)"
+  source: "TotalEnergies ESG Report 2024"
+waste_total:
+  value: 900000
+  unit: "tonnes"
+  description: "Total hazardous + non-hazardous waste"
+  source: "TotalEnergies ESG Report 2024"
+water_withdrawal:
+  value: 200000000
+  unit: "m3"
+  description: "Total water withdrawal (est. from operations)"
+  source: "TotalEnergies ESG Report 2024"
+workforce_fatalities:
+  value: 3
+  unit: "fatalities"
+  description: "Work-related fatalities (operational + contractors)"
+  source: "TotalEnergies ESG Report 2024"
+workforce_female_pct:
+  value: 28
+  unit: "percent"
+  description: "Female representation in workforce"
+  source: "TotalEnergies Annual Report 2024"

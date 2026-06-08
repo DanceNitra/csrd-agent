@@ -1,0 +1,82 @@
+[
+  {
+    "standard": "E1",
+    "concept": "E1_Scope1_Emissions",
+    "value": 36000000,
+    "unit": "tCO2e",
+    "period": 2024,
+    "entity": "TotalEnergies SE"
+  },
+  {
+    "standard": "E1",
+    "concept": "E1_Scope2_Emissions",
+    "value": 2000000,
+    "unit": "tCO2e",
+    "period": 2024,
+    "entity": "TotalEnergies SE"
+  },
+  {
+    "standard": "E1",
+    "concept": "E1_Scope3_Emissions",
+    "value": 370000000,
+    "unit": "tCO2e",
+    "period": 2024,
+    "entity": "TotalEnergies SE"
+  },
+  {
+    "standard": "E1",
+    "concept": "E1_GHG_Emissions_Total",
+    "value": 408000000,
+    "unit": "tCO2e",
+    "period": 2024,
+    "entity": "TotalEnergies SE"
+  },
+  {
+    "standard": "E1",
+    "concept": "E1_GHG_Intensity",
+    "value": 0.19,
+    "unit": "tCO2e/EUR",
+    "period": 2024,
+    "entity": "TotalEnergies SE"
+  },
+  {
+    "standard": "E2",
+    "concept": "E2_Waste_Total",
+    "value": 900000,
+    "unit": "tonnes",
+    "period": 2024,
+    "entity": "TotalEnergies SE"
+  },
+  {
+    "standard": "E3",
+    "concept": "E3_Water_Withdrawal_Total",
+    "value": 200000000,
+    "unit": "m3",
+    "period": 2024,
+    "entity": "TotalEnergies SE"
+  },
+  {
+    "standard": "S1",
+    "concept": "S1_Employees_Total",
+    "value": 101513,
+    "unit": "employees",
+    "period": 2024,
+    "entity": "TotalEnergies SE"
+  },
+  {
+    "standard": "S1",
+    "concept": "S1_Female_Workforce_Pct",
+    "value": 28,
+    "unit": "percent",
+    "period": 2024,
+    "entity": "TotalEnergies SE"
+  },
+  {
+    "standard": "G1",
+    "concept": "G1_Revenue_Total",
+    "value": 201196000000,
+    "unit": "EUR",
+    "period": 2024,
+    "entity": "TotalEnergies SE"
+  }
+]

@@ -1,0 +1,94 @@
+[
+  {
+    "name": "Enel",
+    "profile": {
+      "revenue": 140517000000,
+      "employees": 66279,
+      "sector": "Utilities (Electricity)"
+    },
+    "score": 14,
+    "pass": true,
+    "phases": 2,
+    "xbrl_facts": 12,
+    "xbrl_files": {
+      "Enel_2024_instance.xml": 2738,
+      "Enel_2025_instance.xml": 2738,
+      "Enel_2024_ixbrl.html": 4688,
+      "Enel_2025_ixbrl.html": 4688
+    },
+    "dma_matters": 49,
+    "drafts": 0
+  },
+  {
+    "name": "Volkswagen_Group",
+    "profile": {
+      "revenue": 321913000000,
+      "employees": 672800,
+      "sector": "Automotive"
+    },
+    "score": 14,
+    "pass": true,
+    "phases": 2,
+    "xbrl_facts": 12,
+    "xbrl_files": {
+      "Volkswagen_Group_2024_ixbrl.html": 4761,
+      "Volkswagen_Group_2024_instance.xml": 2763
+    },
+    "dma_matters": 49,
+    "drafts": 0
+  },
+  {
+    "name": "Siemens",
+    "profile": {
+      "revenue": 77769000000,
+      "employees": 320000,
+      "sector": "Technology (Industrial)"
+    },
+    "score": 14,
+    "pass": true,
+    "phases": 2,
+    "xbrl_facts": 12,
+    "xbrl_files": {
+      "Siemens_2024_ixbrl.html": 4700,
+      "Siemens_2024_instance.xml": 2738
+    },
+    "dma_matters": 49,
+    "drafts": 0
+  },
+  {
+    "name": "Iberdrola",
+    "profile": {
+      "revenue": 53949000000,
+      "employees": 40721,
+      "sector": "Utilities (Renewable Energy)"
+    },
+    "score": 14,
+    "pass": true,
+    "phases": 2,
+    "xbrl_facts": 12,
+    "xbrl_files": {
+      "Iberdrola_2024_ixbrl.html": 4715,
+      "Iberdrola_2024_instance.xml": 2745
+    },
+    "dma_matters": 49,
+    "drafts": 0
+  },
+  {
+    "name": "TotalEnergies",
+    "profile": {
+      "revenue": 201196000000,
+      "employees": 101513,
+      "sector": "Energy (Oil & Gas)"
+    },
+    "score": 14,
+    "pass": true,
+    "phases": 2,
+    "xbrl_facts": 11,
+    "xbrl_files": {
+      "TotalEnergies_2024_ixbrl.html": 4491,
+      "TotalEnergies_2024_instance.xml": 2577
+    },
+    "dma_matters": 49,
+    "drafts": 0
+  }
+]

@@ -1,0 +1,98 @@
+[
+  {
+    "standard": "E1",
+    "concept": "E1_Scope1_Emissions",
+    "value": 1500000,
+    "unit": "tCO2e",
+    "period": 2024,
+    "entity": "Volkswagen AG"
+  },
+  {
+    "standard": "E1",
+    "concept": "E1_Scope2_Emissions",
+    "value": 1000000,
+    "unit": "tCO2e",
+    "period": 2024,
+    "entity": "Volkswagen AG"
+  },
+  {
+    "standard": "E1",
+    "concept": "E1_Scope3_Emissions",
+    "value": 396000000,
+    "unit": "tCO2e",
+    "period": 2024,
+    "entity": "Volkswagen AG"
+  },
+  {
+    "standard": "E1",
+    "concept": "E1_GHG_Emissions_Total",
+    "value": 398500000,
+    "unit": "tCO2e",
+    "period": 2024,
+    "entity": "Volkswagen AG"
+  },
+  {
+    "standard": "E1",
+    "concept": "E1_Energy_Consumption_Total",
+    "value": 26000000,
+    "unit": "MWh",
+    "period": 2024,
+    "entity": "Volkswagen AG"
+  },
+  {
+    "standard": "E1",
+    "concept": "E1_GHG_Intensity",
+    "value": 0.058,
+    "unit": "tCO2e/EUR",
+    "period": 2024,
+    "entity": "Volkswagen AG"
+  },
+  {
+    "standard": "E2",
+    "concept": "E2_Waste_Total",
+    "value": 1500000,
+    "unit": "tonnes",
+    "period": 2024,
+    "entity": "Volkswagen AG"
+  },
+  {
+    "standard": "E3",
+    "concept": "E3_Water_Withdrawal_Total",
+    "value": 37000000,
+    "unit": "m3",
+    "period": 2024,
+    "entity": "Volkswagen AG"
+  },
+  {
+    "standard": "S1",
+    "concept": "S1_Employees_Total",
+    "value": 672800,
+    "unit": "employees",
+    "period": 2024,
+    "entity": "Volkswagen AG"
+  },
+  {
+    "standard": "S1",
+    "concept": "S1_Female_Workforce_Pct",
+    "value": 18,
+    "unit": "percent",
+    "period": 2024,
+    "entity": "Volkswagen AG"
+  },
+  {
+    "standard": "S1",
+    "concept": "S1_Injury_Rate",
+    "value": 2.1,
+    "unit": "per 1000 employees",
+    "period": 2024,
+    "entity": "Volkswagen AG"
+  },
+  {
+    "standard": "G1",
+    "concept": "G1_Revenue_Total",
+    "value": 321913000000,
+    "unit": "EUR",
+    "period": 2024,
+    "entity": "Volkswagen AG"
+  }
+]
