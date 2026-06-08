@@ -10,8 +10,7 @@ import os
 import yaml
 from typing import Optional
 
-KNOWLEDGE_BASE_DIR = os.path.join(os.path.dirname(__file__), os.pardir, "esrs_knowledge_base")
-KNOWLEDGE_BASE_DIR = os.path.abspath(KNOWLEDGE_BASE_DIR)
+KNOWLEDGE_BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 # Cache loaded standards
 _loaded_standards = {}
@@ -26,6 +25,33 @@ def _load_yaml(filename: str) -> Optional[dict]:
         return yaml.safe_load(f)
 
 
+def _get_sections(std_data: dict) -> list:
+    """Get sections whether they use sections (list) or disclosure_requirements (dict) key."""
+    sections = std_data.get("sections")
+    if sections is not None:
+        return sections
+    dr = std_data.get("disclosure_requirements")
+    if dr is not None:
+        return [{**v, "id": k} for k, v in dr.items()]
+    return []
+
+
+def _standard_id(std_data: dict) -> str:
+    """Extract standard ID regardless of format (dict or string)."""
+    raw = std_data.get("standard", "")
+    if isinstance(raw, dict):
+        return raw.get("id", "")
+    return raw
+
+
+def _standard_category(std_data: dict) -> str:
+    """Extract standard category regardless of format."""
+    raw = std_data.get("standard", "")
+    if isinstance(raw, dict):
+        return raw.get("category", "")
+    return std_data.get("category", "")
+
+
 def load_all_standards() -> dict[str, dict]:
     """Load all ESRS standards from the knowledge base directory."""
     if _loaded_standards:
@@ -36,7 +62,11 @@ def load_all_standards() -> dict[str, dict]:
         if filename.endswith(".yaml") or filename.endswith(".yml"):
             data = _load_yaml(filename)
             if data:
-                std_id = data.get("standard", filename.replace(".yaml", ""))
+                std_raw = data.get("standard", {})
+                if isinstance(std_raw, dict):
+                    std_id = std_raw.get("id", filename.replace(".yaml", ""))
+                else:
+                    std_id = std_raw
                 standards[std_id] = data
     
     _loaded_standards.update(standards)
@@ -61,12 +91,12 @@ def get_all_datapoints() -> list[dict]:
     standards = load_all_standards()
     datapoints = []
     for std_id, std_data in standards.items():
-        for section in std_data.get("sections", []):
+        for section in _get_sections(std_data):
             for dp in section.get("datapoints", []):
                 datapoints.append({
                     "standard": std_id,
                     "section": section["id"],
-                    "section_title": section.get("title", ""),
+                    "section_title": section.get("name", section.get("title", "")),
                     "name": dp["name"],
                     "description": dp.get("description", ""),
                     "type": dp.get("type", "narrative"),
@@ -95,11 +125,12 @@ def get_datapoints_by_standard(standard_id: str) -> list[dict]:
     if not std:
         return []
     datapoints = []
-    for section in std.get("sections", []):
+    for section in _get_sections(std):
         for dp in section.get("datapoints", []):
             datapoints.append({
                 "standard": standard_id,
                 "section": section["id"],
+                "section_title": section.get("name", section.get("title", "")),
                 "name": dp["name"],
                 "description": dp.get("description", ""),
                 "type": dp.get("type", "narrative"),
@@ -119,7 +150,7 @@ def count_datapoints() -> dict:
     for std_id, std_data in standards.items():
         std_total = 0
         std_mandatory = 0
-        for section in std_data.get("sections", []):
+        for section in _get_sections(std_data):
             for dp in section.get("datapoints", []):
                 std_total += 1
                 total += 1
@@ -141,11 +172,11 @@ def get_standards_summary() -> list[dict]:
     standards = load_all_standards()
     return [
         {
-            "id": std.get("standard", k),
-            "title": std.get("title", ""),
-            "category": std.get("category", ""),
+            "id": _standard_id(std),
+            "title": std.get("title", std.get("name", "")),
+            "category": _standard_category(std),
             "always_material": std.get("always_material", False),
-            "total_datapoints": len(get_datapoints_by_standard(std.get("standard", k))),
+            "total_datapoints": len(get_datapoints_by_standard(_standard_id(std))),
         }
         for k, std in standards.items()
     ]

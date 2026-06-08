@@ -18,8 +18,8 @@ from datetime import datetime
 from typing import Optional
 
 from esrs_knowledge_base import (
-    load_all_standards, get_all_datapoints, get_mandatory_datapoints,
-    count_datapoints, validate_report_completeness, get_standards_summary,
+    load_all_standards, get_standard, get_standards_summary, get_all_datapoints,
+    count_datapoints, _get_sections, _standard_id,
 )
 from double_materiality import DoubleMaterialityEngine, SUSTAINABILITY_MATTERS
 from agent_definitions import CSRD_AGENTS, get_agent_prompt
@@ -227,15 +227,17 @@ class CSRDReportEngine:
             if std == "ESRS 2":
                 continue  # Handled separately
             
-            from esrs_knowledge_base import get_standard
+            from esrs_knowledge_base import get_standard, _get_sections, _standard_id
             std_data = get_standard(std)
             if not std_data:
                 continue
             
             # Generate draft section
             draft = self._generate_section_draft(std, std_data, iro)
-            section_id = std_data.get("standard", std)
-            
+
+            std_raw = std_data.get("standard", std)
+            section_id = std_raw if isinstance(std_raw, str) else std_raw.get("id", std)
+
             draft_path = f"{drafts_dir}/{section_id}_draft_v1.md"
             with open(draft_path, "w") as f:
                 f.write(draft)
@@ -261,8 +263,11 @@ class CSRDReportEngine:
     def _generate_section_draft(self, std_id: str, std_data: dict,
                                 iro: Optional[dict]) -> str:
         """Generate a markdown draft for one ESRS standard section."""
+        std_raw = std_data.get("standard", std_id)
+        std_label = std_raw if isinstance(std_raw, str) else std_raw.get("id", std_id)
+        std_name = std_data.get("title", std_data.get("name", ""))
         lines = [
-            f"# {std_data.get('standard', std_id)} — {std_data.get('title', '')}",
+            f"# {std_label} — {std_name}",
             "",
             f"**Client:** {self.client_name}",
             f"**Report Year:** {self.report_year}",
@@ -280,8 +285,9 @@ class CSRDReportEngine:
             lines.append(f"Impact score: {iro.get('impact_score', 'N/A')}, Financial score: {iro.get('financial_score', 'N/A')}")
             lines.append("")
         
-        for section in std_data.get("sections", []):
-            lines.append(f"## {section.get('id', '')} — {section.get('title', '')}")
+        for section in _get_sections(std_data):
+            section_title = section.get("name", section.get("title", ""))
+            lines.append(f"## {section.get('id', '')} — {section_title}")
             lines.append("")
             
             for dp in section.get("datapoints", []):

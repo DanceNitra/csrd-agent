@@ -8,9 +8,9 @@
 
 | Metric | Value |
 |--------|-------|
-| Items audited | 100 |
-| Items passed | 20 |
-| Items failed | 80 |
+| Items audited | 410 |
+| Items passed | 250 |
+| Items failed | 160 |
 | Overall score | 14/14 |
 
 ## Assessment

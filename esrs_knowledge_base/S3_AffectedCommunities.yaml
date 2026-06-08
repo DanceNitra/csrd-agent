@@ -1,0 +1,166 @@
+standard:
+  id: S3
+  name: Affected Communities
+  category: Social
+  effective_date: "2024-01-01"
+  description: "Impacts on affected communities in the value chain"
+
+disclosure_requirements:
+  S3-1:
+    name: Policies related to affected communities
+    description: "Policies for community engagement and human rights"
+    type: qualitative
+    datapoints:
+      - id: S3-1_01
+        name: community_policies
+        question: "Does the undertaking have policies for affected communities?"
+        type: boolean
+      - id: S3-1_02
+        name: indigenous_peoples_policy
+        question: "Specific policies on indigenous peoples rights and FPIC"
+        type: boolean
+      - id: S3-1_03
+        name: community_engagement_commitment
+        question: "Commitment to community engagement and benefit-sharing"
+        type: text
+      - id: S3-1_04
+        name: due_diligence_communities
+        question: "Human rights due diligence covering affected communities"
+        type: boolean
+      - id: S3-1_05
+        name: policy_alignment_international
+        question: "Alignment with UN Declaration on Rights of Indigenous Peoples"
+        type: text
+
+  S3-2:
+    name: Processes for engaging with affected communities
+    description: "Engagement processes with communities"
+    type: qualitative
+    datapoints:
+      - id: S3-2_01
+        name: community_consultation
+        question: "Regular consultation with affected communities"
+        type: text
+      - id: S3-2_02
+        name: free_prior_informed_consent
+        question: "FPIC processes for indigenous peoples"
+        type: boolean
+      - id: S3-2_03
+        name: grievance_mechanisms_communities
+        question: "Grievance mechanisms accessible to affected communities"
+        type: boolean
+      - id: S3-2_04
+        name: community_liaison
+        question: "Community liaison officers or structures in place"
+        type: text
+
+  S3-3:
+    name: Remediation of negative impacts
+    description: "Remediation for community impacts"
+    type: qualitative
+    datapoints:
+      - id: S3-3_01
+        name: community_remediation
+        question: "Remediation mechanisms for community impacts"
+        type: boolean
+      - id: S3-3_02
+        name: community_grievances_received
+        question: "Number of community grievances received and resolved"
+        type: text
+      - id: S3-3_03
+        name: community_benefit_programs
+        question: "Community benefit-sharing and development programs"
+        type: text
+      - id: S3-3_04
+        name: land_rights_issues
+        question: "Land rights issues and resolution status"
+        type: text
+
+  S3-4:
+    name: Targets related to affected communities
+    description: "Quantitative targets for community impacts"
+    type: quantitative
+    datapoints:
+      - id: S3-4_01
+        name: community_investment_targets
+        question: "Targets for community investment and development spending"
+        type: text
+      - id: S3-4_02
+        name: community_grievance_resolution_time
+        question: "Targets for community grievance resolution time"
+        type: text
+      - id: S3-4_03
+        name: community_engagement_targets
+        question: "Targets for community engagement scope and frequency"
+        type: text
+      - id: S3-4_04
+        name: target_base_year
+        question: "Base year for community targets"
+        type: year
+
+  S3-5:
+    name: Metrics for affected communities
+    description: "Metrics for community impact assessment"
+    type: quantitative
+    datapoints:
+      - id: S3-5_01
+        name: sites_near_communities
+        question: "Number of operations sites near marginalized/vulnerable communities"
+        unit: count
+        type: integer
+      - id: S3-5_02
+        name: sites_near_indigenous
+        question: "Sites on or near indigenous peoples' lands"
+        unit: count
+        type: integer
+      - id: S3-5_03
+        name: community_engagement_sessions
+        question: "Community engagement sessions held per year"
+        unit: count
+        type: integer
+      - id: S3-5_04
+        name: community_investment_total
+        question: "Total community investment and philanthropic contributions"
+        unit: EUR
+        type: monetary
+      - id: S3-5_05
+        name: community_impact_assessments
+        question: "Community impact assessments conducted"
+        unit: count
+        type: integer
+      - id: S3-5_06
+        name: community_related_incidents
+        question: "Community-related incidents (protests, conflicts)"
+        unit: count
+        type: integer
+      - id: S3-5_07
+        name: local_employment_rate
+        question: "Local community employment rate in operations"
+        unit: percentage
+        type: float
+      - id: S3-5_08
+        name: local_procurement_spend
+        question: "Local procurement spend as percentage of total"
+        unit: percentage
+        type: float
+
+application_requirements:
+  scope: "Communities affected by own operations and value chain"
+  community_types:
+    - Local communities near operations
+    - Indigenous peoples
+    - Land-dependent communities
+    - Vulnerable and marginalized groups
+  high_risk_factors:
+    - Operations in conflict-affected areas
+    - Large land or water use
+    - Indigenous presence
+    - Resettlement risks
+
+references:
+  - "UN Declaration on the Rights of Indigenous Peoples (UNDRIP)"
+  - "ILO Convention 169 on Indigenous and Tribal Peoples"
+  - "UN Guiding Principles on Business and Human Rights"
+  - "Voluntary Principles on Security and Human Rights"
+  - "ICMM Community Engagement Standards"
+  - "FPIC protocols (FAO, UN-REDD)"

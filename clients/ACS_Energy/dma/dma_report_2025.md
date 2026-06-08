@@ -76,5 +76,5 @@ Non-material matters: 0
 - **IRO-049** (Business conduct): Impact 3.0, Financial 1.5 → G1
 
 ## Gap Analysis
-Relevant standards: E4, S4, S2, G1, E1, E2, E3, S3, S1, E5
+Relevant standards: G1, S4, S2, S3, E5, S1, E2, E3, E1, E4
 Data readiness: low

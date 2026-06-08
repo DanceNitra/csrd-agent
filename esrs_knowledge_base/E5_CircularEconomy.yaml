@@ -1,0 +1,227 @@
+standard:
+  id: E5
+  name: Resource Use and Circular Economy
+  category: Environmental
+  effective_date: "2024-01-01"
+  description: "Resource use, waste management and circular economy practices"
+
+disclosure_requirements:
+  E5-1:
+    name: Policies related to resource use and circular economy
+    description: "Policies for resource efficiency and circular economy"
+    type: qualitative
+    datapoints:
+      - id: E5-1_01
+        name: circular_economy_policies
+        question: "Does the undertaking have policies for circular economy?"
+        type: boolean
+      - id: E5-1_02
+        name: resource_efficiency_scope
+        question: "Do policies cover resource efficiency, waste hierarchy, and circular design?"
+        type: boolean
+      - id: E5-1_03
+        name: ecodesign_principles
+        question: "Ecodesign and circular design principles applied to products"
+        type: boolean
+      - id: E5-1_04
+        name: policy_alignment
+        question: "Alignment with EU Circular Economy Action Plan and taxonomy"
+        type: text
+      - id: E5-1_05
+        name: product_lifecycle_policy
+        question: "Products/services designed for durability, repairability, recyclability"
+        type: text
+
+  E5-2:
+    name: Actions and resources related to circular economy
+    description: "Actions and resources for circular economy"
+    type: qualitative
+    datapoints:
+      - id: E5-2_01
+        name: circular_action_plans
+        question: "Action plans for circular economy implementation"
+        type: text
+      - id: E5-2_02
+        name: circular_capex
+        question: "CAPEX/OPEX allocated to circular economy initiatives"
+        type: monetary
+      - id: E5-2_03
+        name: material_substitution
+        question: "Material substitution programs to reduce virgin material use"
+        type: text
+      - id: E5-2_04
+        name: takeback_programs
+        question: "Take-back, refurbishment, remanufacturing programs"
+        type: text
+      - id: E5-2_05
+        name: supplier_engagement_circular
+        question: "Supplier engagement for circular material sourcing"
+        type: text
+
+  E5-3:
+    name: Targets related to resource use and circular economy
+    description: "Quantitative targets for resource use and circularity"
+    type: quantitative
+    datapoints:
+      - id: E5-3_01
+        name: circularity_targets
+        question: "Targets for circular material use rate"
+        unit: percentage
+        type: float
+      - id: E5-3_02
+        name: waste_reduction_targets
+        question: "Targets for waste reduction (total and hazardous)"
+        type: text
+      - id: E5-3_03
+        name: recycled_content_targets
+        question: "Targets for recycled content in products"
+        unit: percentage
+        type: float
+      - id: E5-3_04
+        name: virgin_material_reduction
+        question: "Targets for virgin material reduction"
+        type: text
+      - id: E5-3_05
+        name: waste_diversion_targets
+        question: "Targets for waste diversion from landfill"
+        unit: percentage
+        type: float
+      - id: E5-3_06
+        name: target_base_year
+        question: "Base year for circular economy targets"
+        type: year
+
+  E5-4:
+    name: Resource inflows and outflows
+    description: "Resource flows including material inputs and products"
+    type: quantitative
+    datapoints:
+      - id: E5-4_01
+        name: total_material_input
+        question: "Total material inputs (tonnes) by type (renewable/non-renewable)"
+        unit: tonnes
+        type: float
+      - id: E5-4_02
+        name: renewable_material_share
+        question: "Renewable material share of total input"
+        unit: percentage
+        type: float
+      - id: E5-4_03
+        name: recycled_input_material
+        question: "Recycled/secondary material input"
+        unit: tonnes
+        type: float
+      - id: E5-4_04
+        name: circular_material_use_rate
+        question: "Circular material use rate (recycled input / total input)"
+        unit: percentage
+        type: float
+      - id: E5-4_05
+        name: product_outputs_weight
+        question: "Weight of products and commercial materials produced"
+        unit: tonnes
+        type: float
+      - id: E5-4_06
+        name: product_durability_lifetime
+        question: "Product durability and average lifetime"
+        type: text
+      - id: E5-4_07
+        name: packaging_material
+        question: "Packaging material weight by type"
+        unit: tonnes
+        type: float
+      - id: E5-4_08
+        name: packaging_recycled_content
+        question: "Recycled content in packaging"
+        unit: percentage
+        type: float
+
+  E5-5:
+    name: Waste metrics
+    description: "Waste generation and management metrics"
+    type: quantitative
+    datapoints:
+      - id: E5-5_01
+        name: total_waste_generated
+        question: "Total waste generated (tonnes) by type"
+        unit: tonnes
+        type: float
+      - id: E5-5_02
+        name: hazardous_waste_total
+        question: "Hazardous waste generated"
+        unit: tonnes
+        type: float
+      - id: E5-5_03
+        name: non_hazardous_waste_total
+        question: "Non-hazardous waste generated"
+        unit: tonnes
+        type: float
+      - id: E5-5_04
+        name: waste_diversion_rate
+        question: "Waste diverted from disposal (reuse, recycling, recovery)"
+        unit: percentage
+        type: float
+      - id: E5-5_05
+        name: waste_to_landfill
+        question: "Waste sent to landfill"
+        unit: tonnes
+        type: float
+      - id: E5-5_06
+        name: waste_incineration
+        question: "Waste sent to incineration (with/without energy recovery)"
+        unit: tonnes
+        type: float
+      - id: E5-5_07
+        name: waste_intensity
+        question: "Waste intensity per unit of revenue"
+        unit: tonnes/revenue
+        type: float
+      - id: E5-5_08
+        name: waste_recovery_methods
+        question: "Description of waste recovery methods and destinations"
+        type: text
+
+  E5-6:
+    name: Financial effects of resource use and circular economy
+    description: "Financial effects from resource use and circular economy"
+    type: monetary
+    datapoints:
+      - id: E5-6_01
+        name: waste_management_costs
+        question: "Waste management and treatment costs"
+        unit: EUR
+        type: monetary
+      - id: E5-6_02
+        name: material_cost_savings
+        question: "Cost savings from circular economy (material efficiency, recycled content)"
+        unit: EUR
+        type: monetary
+      - id: E5-6_03
+        name: regulatory_compliance_costs
+        question: "Costs of regulatory compliance for waste and resources"
+        unit: EUR
+        type: monetary
+      - id: E5-6_04
+        name: revenue_circular_products
+        question: "Revenue from circular/sustainable products"
+        unit: EUR
+        type: monetary
+
+application_requirements:
+  scope: "Own operations + value chain (upstream material sourcing, downstream product end-of-life)"
+  value_chain_boundary:
+    upstream:
+      - Raw material extraction and processing
+      - Supplier waste generation
+    downstream:
+      - Product use phase resource consumption
+      - End-of-life waste management
+  waste_hierarchy: "Prevention, reuse, recycling, recovery, disposal (EU Waste Framework Directive)"
+  use_estimates: true
+
+references:
+  - "EU Circular Economy Action Plan (CEAP)"
+  - "EU Waste Framework Directive 2008/98/EC"
+  - "EU Taxonomy Regulation - Circular Economy objective"
+  - "Ecodesign for Sustainable Products Regulation (ESPR)"
+  - "Packaging and Packaging Waste Regulation (PPWR)"
