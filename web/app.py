@@ -132,6 +132,25 @@ SECTOR_STANDARD_MAP = {
 }
 
 
+def safe_int(val, default=0):
+    """Safely convert form string to int."""
+    if not val or val == "":
+        return default
+    try:
+        return int(float(val))
+    except (ValueError, TypeError):
+        return default
+
+def safe_float(val, default=0.0):
+    """Safely convert form string to float."""
+    if not val or val == "":
+        return default
+    try:
+        return float(val)
+    except (ValueError, TypeError):
+        return default
+
+
 def compute_readiness_score(responses: dict) -> dict:
     """Compute CSRD Readiness Score from SME questionnaire responses.
     
@@ -143,8 +162,8 @@ def compute_readiness_score(responses: dict) -> dict:
     """
     sector = responses.get("sector", "Other")
     relevant_standards = SECTOR_STANDARD_MAP.get(sector, ["E1", "S1", "G1"])
-    employees = int(responses.get("employees", 0))
-    revenue_m = float(responses.get("revenue", 0))
+    employees = safe_int(responses.get("employees"), 0)
+    revenue_m = safe_float(responses.get("revenue"), 0.0)
     
     # ── Scoring per standard ──
     by_standard = {}
@@ -419,31 +438,37 @@ async def new_assessment(request: Request):
 @app.post("/new")
 async def submit_assessment(request: Request):
     """Process SME form, compute readiness, redirect to dashboard."""
-    form = await request.form()
-    responses = dict(form)
-    
-    # Validate required fields
-    company_name = responses.get("company_name", "").strip()
-    if not company_name:
-        company_name = "Unnamed Company"
-    
-    # Run readiness assessment
-    result = compute_readiness_score(responses)
-    
-    # Create session
-    session_id = str(uuid.uuid4())[:8]
-    session = {
-        "id": session_id,
-        "company": company_name,
-        "created": datetime.now().isoformat(),
-        "responses": responses,
-        "readiness": result,
-    }
-    
-    with open(SESSIONS_DIR / f"{session_id}.json", "w") as f:
-        json.dump(session, f, indent=2, default=str)
-    
-    return RedirectResponse(url=f"/dashboard/{session_id}", status_code=303)
+    try:
+        form = await request.form()
+        responses = dict(form)
+        
+        # Validate required fields
+        company_name = responses.get("company_name", "").strip()
+        if not company_name:
+            company_name = "Unnamed Company"
+        
+        # Run readiness assessment
+        result = compute_readiness_score(responses)
+        
+        # Create session
+        session_id = str(uuid.uuid4())[:8]
+        session = {
+            "id": session_id,
+            "company": company_name,
+            "created": datetime.now().isoformat(),
+            "responses": responses,
+            "readiness": result,
+        }
+        
+        os.makedirs(SESSIONS_DIR, exist_ok=True)
+        with open(SESSIONS_DIR / f"{session_id}.json", "w") as f:
+            json.dump(session, f, indent=2, default=str)
+        
+        return RedirectResponse(url=f"/dashboard/{session_id}", status_code=303)
+    except Exception as e:
+        import traceback
+        error_detail = traceback.format_exc()
+        return render_html("error.html", message=f"Assessment failed: {e}")
 
 
 @app.get("/dashboard/{session_id}")
