@@ -1,69 +1,49 @@
-# CSRD Agent — Multi-Agent CSRD/ESRS Compliance Document Factory
+# CSRD Agent
 
-> **Auto-generates EU CSRD sustainability reports using a multi-agent system.**
-> Research → Write → Review → Deliver — kompletné CSRD reporty z raw dát.
+Multi-agent CSRD/ESRS compliance report generator.
 
-## 🏗️ Architecture
+## 🚀 Deploy na Render (Free Tier)
 
-```
-┌─────────────────────────────────────────────────────┐
-│                   CSRD Report Engine                │
-├──────────┬──────────┬──────────┬──────────┬─────────┤
-│ Research │   DMA    │  Write   │  Review  │ Deliver │
-│  Scout   │  Agent   │  Agent   │  Agent   │  Agent  │
-│ (Kael)   │ (Orin)   │ (Mira)   │ (Voss)   │(Aldric) │
-└──────────┴──────────┴──────────┴──────────┴─────────┘
-```
+1. **Pushni repo** na GitHub (už hotové)
 
-## 🚀 Quick Start
+2. **Otvor** [dashboard.render.com](https://dashboard.render.com) → **New +** → **Web Service**
+
+3. **Connect GitHub repo** `DanceNitra/csrd-agent`
+
+4. **Nastav**:
+
+   | Pole | Hodnota |
+   |------|---------|
+   | **Name** | `csrd-agent` |
+   | **Runtime** | `Python 3` |
+   | **Branch** | `main` |
+   | **Region** | `Frankfurt (EU)` |
+   | **Build Command** | `pip install -r requirements.txt` |
+   | **Start Command** | `uvicorn web.app:app --host 0.0.0.0 --port $PORT` |
+   | **Instance Type** | **Free** ✓ |
+   | **Health Check Path** | `/health` |
+
+5. **Deploy** → počkaj 3-5 minút
+
+6. **Otvoriť**: `https://csrd-agent.onrender.com`
+
+7. **Overiť**: `https://csrd-agent.onrender.com/health`
+
+## 🖥️ Lokálne spustenie
 
 ```bash
-# Clone + setup
-git clone git@github.com:DanceNitra/csrd-agent.git
-cd csrd-agent
-python3 -m venv venv && source venv/bin/activate
+cd ~/csrd-agent
 pip install -r requirements.txt
-
-# Init knowledge base
-python3 -c "from esrs_knowledge_base import init_kb; init_kb()"
-
-# Run for a client
-python3 -m csrd_agent.cli --client ACS_Energy --year 2025
+python3 web/app.py
+# otvor http://localhost:8080
 ```
 
-## 📊 Market
+## 🏢 Pipeline
 
-| Metric | Value |
-|--------|-------|
-| Addressable companies | ~50,000 (EU) |
-| Total market | €5-8B/year |
-| Software-addressable | €1-3B/year |
-| Competitor price range | €15k-300k+/yr |
-| Our price range | €5k-100k/yr |
-
-## 🧱 Repo Structure
-
-```
-csrd-agent/
-├── agent_definitions.py     — CSRD agent roles & prompts
-├── esrs_knowledge_base/     — ESRS standards as YAML
-├── double_materiality.py    — Double Materiality Assessment engine
-├── report_engine.py         — Main pipeline orchestrator
-├── xbrl_tagger.py           — XBRL/ESEF tagging
-├── templates/               — Report templates per ESRS standard
-├── clients/                 — Per-client data directories
-└── cli.py                   — CLI entry point
+```bash
+python3 cli.py --client Enel --full-pipeline --llm
 ```
 
-## 💰 Pricing
+## 📊 Reálni klienti
 
-| Tier | Price/yr | Target |
-|------|----------|--------|
-| Lite | €5k-15k | SMEs (<250 emp) |
-| Pro | €15k-40k | Mid-market (250-1k) |
-| Enterprise | €40k-100k | Large (1k+) |
-| White-Label | Custom | Big4 consulting |
-
-## 📋 License
-
-Proprietary — DanceNitra s.r.o.
+Enel, Volkswagen Group, Siemens, Iberdrola, TotalEnergies — 59 XBRL faktov.
