@@ -391,6 +391,11 @@ def get_benchmark(sector: str) -> dict:
 
 # ── Routes ──
 
+@app.get("/health")
+async def health():
+    """Health check for Render deployment."""
+    return {"status": "ok", "standards": DP_COUNTS["standards_loaded"], "clients": len(BENCHMARK_DATA)}
+
 @app.get("/")
 async def index(request: Request):
     """Landing page."""
