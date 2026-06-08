@@ -24,7 +24,6 @@ from esrs_knowledge_base import (
 from double_materiality import DoubleMaterialityEngine, SUSTAINABILITY_MATTERS
 from agent_definitions import CSRD_AGENTS, get_agent_prompt
 
-
 class CSRDReportEngine:
     """
     Orchestrates the complete CSRD reporting lifecycle.
@@ -47,12 +46,23 @@ class CSRDReportEngine:
         
         # State
         self.dma_engine = DoubleMaterialityEngine(self.company_profile)
+        self.llm_engine = None
         self.report_state = {
             "client": self.client_name,
             "report_year": self.report_year,
             "status": "initialized",
             "phases": [],
         }
+    
+    def _reinit_llm(self):
+        """Re-init LLM engine after DMA results become available."""
+        if self.llm_enabled:
+            from llm_drafting import LLMDraftEngine
+            self.llm_engine = LLMDraftEngine(
+                client_name=self.client_name,
+                profile=self.company_profile,
+                dma_results=self.dma_engine.results,
+            )
     
     def _ensure_dirs(self):
         """Create client directory structure."""
@@ -219,20 +229,28 @@ class CSRDReportEngine:
         drafts_dir = f"{self.client_dir}/drafts/{self.report_year}"
         os.makedirs(drafts_dir, exist_ok=True)
         
-        from esrs_knowledge_base import get_standard
+        from esrs_knowledge_base import get_standard, _get_sections
         
-        # Draft each material standard
+        # ── Deduplicate standards from IRO register ──
+        material_standards = set()
+        iro_map = {}
         for iro in self.dma_engine.results.get("iro_register", []):
             std = iro.get("standard", "")
-            if std == "ESRS 2":
-                continue  # Handled separately
-            
-            from esrs_knowledge_base import get_standard, _get_sections, _standard_id
+            if std and std != "ESRS 2":
+                material_standards.add(std)
+                if std not in iro_map:
+                    iro_map[std] = iro  # Use first IRO entry per standard
+        
+        # Draft each material standard ONCE
+        for std in sorted(material_standards):
             std_data = get_standard(std)
             if not std_data:
                 continue
+            iro = iro_map.get(std)
             
-            # Generate draft section
+            if self.llm_enabled:
+                print(f"   📝 LLM drafting {std}...", flush=True)
+            
             draft = self._generate_section_draft(std, std_data, iro)
 
             std_raw = std_data.get("standard", std)
@@ -244,16 +262,23 @@ class CSRDReportEngine:
             
             result["output"]["sections_drafted"].append(section_id)
             result["output"]["draft_paths"].append(draft_path)
+            
+            if self.llm_enabled:
+                print(f"   ✅ {section_id} — {len(draft.splitlines())} lines", flush=True)
         
         # Draft ESRS 2 (always mandatory)
         esrs2_data = get_standard("ESRS 2")
         if esrs2_data:
+            if self.llm_enabled:
+                print(f"   📝 LLM drafting ESRS 2...", flush=True)
             draft = self._generate_section_draft("ESRS 2", esrs2_data, None)
             draft_path = f"{drafts_dir}/ESRS_2_draft_v1.md"
             with open(draft_path, "w") as f:
                 f.write(draft)
             result["output"]["sections_drafted"].append("ESRS 2")
             result["output"]["draft_paths"].append(draft_path)
+            if self.llm_enabled:
+                print(f"   ✅ ESRS 2 — {len(draft.splitlines())} lines", flush=True)
         
         result["output"]["summary"] = f"Drafted {len(result['output']['sections_drafted'])} ESRS sections"
         
@@ -266,6 +291,46 @@ class CSRDReportEngine:
         std_raw = std_data.get("standard", std_id)
         std_label = std_raw if isinstance(std_raw, str) else std_raw.get("id", std_id)
         std_name = std_data.get("title", std_data.get("name", ""))
+        
+        # ── LLM-powered drafting ──
+        if self.llm_enabled and self.llm_engine:
+            lines = [
+                f"# {std_label} — {std_name}",
+                "",
+                f"**Client:** {self.client_name}",
+                f"**Report Year:** {self.report_year}",
+                f"**Date:** {datetime.now().strftime('%Y-%m-%d')}",
+                f"**Draft Version:** v1 (LLM-generated)",
+                "",
+                "---",
+                "",
+            ]
+            sections = _get_sections(std_data)
+            try:
+                narrative = self.llm_engine.generate_standard_report(std_data, sections)
+                lines.append(narrative)
+            except Exception as e:
+                lines.append(f"*[LLM generation failed: {e}]*")
+                lines.append("")
+                for section in sections:
+                    section_title = section.get("name", section.get("title", ""))
+                    lines.append(f"## {section.get('id', '')} — {section_title}")
+                    lines.append("")
+                    for dp in section.get("datapoints", []):
+                        mandatory_tag = "**(Mandatory)**" if dp.get("mandatory") else ""
+                        lines.append(f"### {dp['name']} {mandatory_tag}")
+                        lines.append("")
+                        lines.append(f"*{dp.get('description', '')}*")
+                        lines.append("")
+                        lines.append("[DATA PENDING — LLM unavailable]")
+                        lines.append("")
+            
+            lines.append("")
+            lines.append("---")
+            lines.append(f"*Auto-generated by CSRD LLM Draft Engine | {datetime.now().strftime('%Y-%m-%d %H:%M')}*")
+            return "\n".join(lines)
+        
+        # ── Template-based fallback ──
         lines = [
             f"# {std_label} — {std_name}",
             "",
@@ -452,6 +517,7 @@ class CSRDReportEngine:
         # Phase 2: DMA
         print("🧪 Phase 2: Double Materiality Assessment...")
         await self.phase_dma()
+        self._reinit_llm()  # Now LLM engine has DMA results
         print(f"   ✅ Done\n")
         
         # Phase 3: Data Collection
