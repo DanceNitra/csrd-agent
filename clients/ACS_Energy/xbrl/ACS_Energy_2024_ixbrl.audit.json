@@ -1,0 +1,278 @@
+{
+  "validator": "CSRD Agent XBRL/ESEF Validator v1",
+  "file": "clients/ACS_Energy/xbrl/ACS_Energy_2024_ixbrl.html",
+  "validated_at": "2026-06-08T19:50:36.056987",
+  "passed": true,
+  "facts_with_audit": [
+    {
+      "concept": "esrs-e1:Scope1GreenhouseGasEmissions",
+      "value": "2450000",
+      "unit": "ref:u_esrs:tCo2e",
+      "context": "FY2024",
+      "standard": "E1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e1:Scope2LocationBasedGreenhouseGasEmissions",
+      "value": "85000",
+      "unit": "ref:u_esrs:tCo2e",
+      "context": "FY2024",
+      "standard": "E1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e1:Scope2MarketBasedGreenhouseGasEmissions",
+      "value": "32000",
+      "unit": "ref:u_esrs:tCo2e",
+      "context": "FY2024",
+      "standard": "E1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e1:Scope3GreenhouseGasEmissions",
+      "value": "890000",
+      "unit": "ref:u_esrs:tCo2e",
+      "context": "FY2024",
+      "standard": "E1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e1:GHGReductionTarget",
+      "value": "0.55",
+      "unit": "ref:u_xbrli:pure",
+      "context": "FY2024",
+      "standard": "E1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e1:InternalCarbonPrice",
+      "value": "85",
+      "unit": "ref:u_iso4217:EUR",
+      "context": "FY2024",
+      "standard": "E1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e1:TotalEnergyConsumption",
+      "value": "8200000",
+      "unit": "ref:u_esrs:MWh",
+      "context": "FY2024",
+      "standard": "E1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e2:NitrogenOxidesEmissions",
+      "value": "4200",
+      "unit": "ref:u_esrs:t",
+      "context": "FY2024",
+      "standard": "E2",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e2:SulphurDioxideEmissions",
+      "value": "1800",
+      "unit": "ref:u_esrs:t",
+      "context": "FY2024",
+      "standard": "E2",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e2:ParticulateMatterEmissions",
+      "value": "415",
+      "unit": "ref:u_esrs:t",
+      "context": "FY2024",
+      "standard": "E2",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e2:HazardousWasteGenerated",
+      "value": "4200",
+      "unit": "ref:u_esrs:t",
+      "context": "FY2024",
+      "standard": "E2",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e3:WaterWithdrawalTotal",
+      "value": "42500000",
+      "unit": "ref:u_esrs:m3",
+      "context": "FY2024",
+      "standard": "E3",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e3:WaterConsumptionTotal",
+      "value": "8750000",
+      "unit": "ref:u_esrs:m3",
+      "context": "FY2024",
+      "standard": "E3",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e3:WaterDischargeTotal",
+      "value": "33750000",
+      "unit": "ref:u_esrs:m3",
+      "context": "FY2024",
+      "standard": "E3",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e5:WasteGeneratedTotal",
+      "value": "28500",
+      "unit": "ref:u_esrs:t",
+      "context": "FY2024",
+      "standard": "E5",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e5:WasteDiversionRate",
+      "value": "0.54",
+      "unit": "ref:u_xbrli:pure",
+      "context": "FY2024",
+      "standard": "E5",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-g1:NumberOfConvictionsForCorruptionAndBribery",
+      "value": "0",
+      "unit": "ref:u_xbrli:pure",
+      "context": "FY2024",
+      "standard": "G1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-g1:LobbyingExpenditure",
+      "value": "45000",
+      "unit": "ref:u_iso4217:EUR",
+      "context": "FY2024",
+      "standard": "G1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-g1:AveragePaymentDays",
+      "value": "28",
+      "unit": "ref:u_xbrli:pure",
+      "context": "FY2024",
+      "standard": "G1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-g1:TotalRevenue",
+      "value": "1200000000",
+      "unit": "ref:u_iso4217:EUR",
+      "context": "FY2024",
+      "standard": "G1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-s1:TotalNumberOfEmployees",
+      "value": "5000",
+      "unit": "ref:u_xbrli:pure",
+      "context": "FY2024",
+      "standard": "S1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-s1:TotalNumberOfEmployees",
+      "value": "5000",
+      "unit": "ref:u_xbrli:pure",
+      "context": "FY2024",
+      "standard": "S1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-s1:RateOfRecordableWorkRelatedInjuries",
+      "value": "1.8",
+      "unit": "ref:u_xbrli:pure",
+      "context": "FY2024",
+      "standard": "S1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-s1:NumberOfFatalitiesWorkRelated",
+      "value": "0",
+      "unit": "ref:u_xbrli:pure",
+      "context": "FY2024",
+      "standard": "S1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-s1:EmployeeTurnoverRate",
+      "value": "0.085",
+      "unit": "ref:u_xbrli:pure",
+      "context": "FY2024",
+      "standard": "S1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-s1:GenderDiversityAtManagementLevel",
+      "value": "0.18",
+      "unit": "ref:u_xbrli:pure",
+      "context": "FY2024",
+      "standard": "S1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-s1:MeanGenderPayGap",
+      "value": "0.125",
+      "unit": "ref:u_xbrli:pure",
+      "context": "FY2024",
+      "standard": "S1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    }
+  ]
+}

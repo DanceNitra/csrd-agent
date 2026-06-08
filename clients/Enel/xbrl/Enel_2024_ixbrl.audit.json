@@ -1,0 +1,128 @@
+{
+  "validator": "CSRD Agent XBRL/ESEF Validator v1",
+  "file": "clients/Enel/xbrl/Enel_2024_ixbrl.html",
+  "validated_at": "2026-06-08T19:50:36.060790",
+  "passed": true,
+  "facts_with_audit": [
+    {
+      "concept": "esrs-e1:Scope1GreenhouseGasEmissions",
+      "value": "35000000",
+      "unit": "ref:u_esrs:tCo2e",
+      "context": "FY2024",
+      "standard": "E1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e1:Scope2LocationBasedGreenhouseGasEmissions",
+      "value": "3000000",
+      "unit": "ref:u_esrs:tCo2e",
+      "context": "FY2024",
+      "standard": "E1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e1:Scope3GreenhouseGasEmissions",
+      "value": "90000000",
+      "unit": "ref:u_esrs:tCo2e",
+      "context": "FY2024",
+      "standard": "E1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e1:TotalGreenhouseGasEmissions",
+      "value": "128000000",
+      "unit": "ref:u_esrs:tCo2e",
+      "context": "FY2024",
+      "standard": "E1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e1:TotalEnergyConsumption",
+      "value": "210000000",
+      "unit": "ref:u_esrs:MWh",
+      "context": "FY2024",
+      "standard": "E1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e1:GreenhouseGasEmissionsIntensity",
+      "value": "0.91",
+      "unit": "ref:u_esrs:tCo2ePerEur",
+      "context": "FY2024",
+      "standard": "E1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e3:WaterWithdrawalTotal",
+      "value": "500000000",
+      "unit": "ref:u_esrs:m3",
+      "context": "FY2024",
+      "standard": "E3",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-e5:WasteGeneratedTotal",
+      "value": "150000",
+      "unit": "ref:u_esrs:t",
+      "context": "FY2024",
+      "standard": "E5",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-g1:TotalRevenue",
+      "value": "140517000000",
+      "unit": "ref:u_iso4217:EUR",
+      "context": "FY2024",
+      "standard": "G1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-s1:TotalNumberOfEmployees",
+      "value": "66279",
+      "unit": "ref:u_xbrli:pure",
+      "context": "FY2024",
+      "standard": "S1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-s1:GenderDiversityAtManagementLevel",
+      "value": "0.22",
+      "unit": "ref:u_xbrli:pure",
+      "context": "FY2024",
+      "standard": "S1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    },
+    {
+      "concept": "esrs-s1:RateOfRecordableWorkRelatedInjuries",
+      "value": "0.6",
+      "unit": "ref:u_xbrli:pure",
+      "context": "FY2024",
+      "standard": "S1",
+      "tag_type": "nonFraction",
+      "efrag_mapped": true,
+      "confidence": "high"
+    }
+  ]
+}

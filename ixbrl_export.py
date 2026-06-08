@@ -242,8 +242,8 @@ class iXBRLEngine:
             "SOx": "E2 — Pollution",
             "Particulate": "E2 — Pollution",
             "Hazardous": "E2 — Pollution",
-            "Water": "E3 — Water & Marine Resources",
-            "Waste": "E5 — Resource Use & Circular Economy",
+            "Water": "E3 — Water &amp; Marine Resources",
+            "Waste": "E5 — Resource Use &amp; Circular Economy",
             "TotalEmployees": "S1 — Own Workforce",
             "Injury": "S1 — Own Workforce",
             "Fatalities": "S1 — Own Workforce",
@@ -290,15 +290,9 @@ class iXBRLEngine:
                 value_str = str(fact["value"])
                 unit_str = fact["unit"].split(":")[-1] if ":" in fact["unit"] else fact["unit"]
 
-                # iXBRL tag
-                ix_tag = (
-                    f'<ix:nonNumeric name="esrs:{concept_name}" '
-                    f'contextRef="FY{self.report_year}">'
-                    f'{value_str}'
-                    f'</ix:nonNumeric>'
-                )
-                if fact.get("unit") in ("iso4217:EUR",):
-                    # Monetary: use nonFraction
+                # iXBRL tag — use nonFraction for numeric facts, nonNumeric for text
+                is_numeric = fact.get("unit") in ("iso4217:EUR",) or unit_str != "pure"
+                if is_numeric:
                     ix_tag = (
                         f'<ix:nonFraction name="esrs:{concept_name}" '
                         f'contextRef="FY{self.report_year}" '
@@ -308,11 +302,13 @@ class iXBRLEngine:
                         f'{value_str}'
                         f'</ix:nonFraction>'
                     )
-                elif unit_str not in ("pure",):
+                else:
+                    # xbrli:pure or no unit — still use nonFraction with unitRef
+                    unit_ref = f'u_{fact["unit"]}' if fact.get("unit") else "u_xbrli:pure"
                     ix_tag = (
                         f'<ix:nonFraction name="esrs:{concept_name}" '
                         f'contextRef="FY{self.report_year}" '
-                        f'unitRef="u_{fact["unit"]}" '
+                        f'unitRef="{unit_ref}" '
                         f'decimals="{fact.get("decimals", 0)}">'
                         f'{value_str}'
                         f'</ix:nonFraction>'
@@ -342,21 +338,21 @@ class iXBRLEngine:
                 continue
             if u == "iso4217:EUR":
                 units[u] = (
-                    f'<unit id="u_{u}">'
-                    f'<measure>iso4217:EUR</measure>'
-                    f'</unit>'
+                    f'<xbrli:unit id="u_{u}">'
+                    f'<xbrli:measure>iso4217:EUR</xbrli:measure>'
+                    f'</xbrli:unit>'
                 )
             elif u.startswith("esrs:"):
                 units[u] = (
-                    f'<unit id="u_{u}">'
-                    f'<measure>{u}</measure>'
-                    f'</unit>'
+                    f'<xbrli:unit id="u_{u}">'
+                    f'<xbrli:measure>{u}</xbrli:measure>'
+                    f'</xbrli:unit>'
                 )
             else:
                 units[u] = (
-                    f'<unit id="u_{u}">'
-                    f'<measure>xbrli:pure</measure>'
-                    f'</unit>'
+                    f'<xbrli:unit id="u_{u}">'
+                    f'<xbrli:measure>xbrli:pure</xbrli:measure>'
+                    f'</xbrli:unit>'
                 )
         return units
 
