@@ -484,6 +484,12 @@ async def new_assessment(request: Request):
     )
 
 
+@app.get("/conformance")
+async def conformance(request: Request):
+    """XBRL conformance certification page."""
+    return render_html("conformance.html")
+
+
 @app.post("/new")
 async def submit_assessment(request: Request):
     """Process SME form, compute readiness, redirect to dashboard."""
