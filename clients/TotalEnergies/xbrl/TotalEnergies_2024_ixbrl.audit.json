@@ -1,13 +1,13 @@
 {
   "validator": "CSRD Agent XBRL/ESEF Validator v1",
   "file": "clients/TotalEnergies/xbrl/TotalEnergies_2024_ixbrl.html",
-  "validated_at": "2026-06-08T19:50:36.068891",
+  "validated_at": "2026-06-08T20:48:00.552823",
   "passed": true,
   "facts_with_audit": [
     {
       "concept": "esrs-e1:Scope1GreenhouseGasEmissions",
       "value": "36000000",
-      "unit": "ref:u_esrs:tCo2e",
+      "unit": "ref:u_esrs_tCo2e",
       "context": "FY2024",
       "standard": "E1",
       "tag_type": "nonFraction",
@@ -17,7 +17,7 @@
     {
       "concept": "esrs-e1:Scope2LocationBasedGreenhouseGasEmissions",
       "value": "2000000",
-      "unit": "ref:u_esrs:tCo2e",
+      "unit": "ref:u_esrs_tCo2e",
       "context": "FY2024",
       "standard": "E1",
       "tag_type": "nonFraction",
@@ -27,7 +27,7 @@
     {
       "concept": "esrs-e1:Scope3GreenhouseGasEmissions",
       "value": "370000000",
-      "unit": "ref:u_esrs:tCo2e",
+      "unit": "ref:u_esrs_tCo2e",
       "context": "FY2024",
       "standard": "E1",
       "tag_type": "nonFraction",
@@ -37,7 +37,7 @@
     {
       "concept": "esrs-e1:TotalGreenhouseGasEmissions",
       "value": "408000000",
-      "unit": "ref:u_esrs:tCo2e",
+      "unit": "ref:u_esrs_tCo2e",
       "context": "FY2024",
       "standard": "E1",
       "tag_type": "nonFraction",
@@ -47,7 +47,7 @@
     {
       "concept": "esrs-e1:GreenhouseGasEmissionsIntensity",
       "value": "0.19",
-      "unit": "ref:u_esrs:tCo2ePerEur",
+      "unit": "ref:u_esrs_tCo2ePerEur",
       "context": "FY2024",
       "standard": "E1",
       "tag_type": "nonFraction",
@@ -57,7 +57,7 @@
     {
       "concept": "esrs-e3:WaterWithdrawalTotal",
       "value": "200000000",
-      "unit": "ref:u_esrs:m3",
+      "unit": "ref:u_esrs_m3",
       "context": "FY2024",
       "standard": "E3",
       "tag_type": "nonFraction",
@@ -67,7 +67,7 @@
     {
       "concept": "esrs-e5:WasteGeneratedTotal",
       "value": "900000",
-      "unit": "ref:u_esrs:t",
+      "unit": "ref:u_esrs_t",
       "context": "FY2024",
       "standard": "E5",
       "tag_type": "nonFraction",
@@ -77,7 +77,7 @@
     {
       "concept": "esrs-g1:TotalRevenue",
       "value": "201196000000",
-      "unit": "ref:u_iso4217:EUR",
+      "unit": "ref:u_iso4217_EUR",
       "context": "FY2024",
       "standard": "G1",
       "tag_type": "nonFraction",
@@ -87,7 +87,7 @@
     {
       "concept": "esrs-s1:TotalNumberOfEmployees",
       "value": "101513",
-      "unit": "ref:u_xbrli:pure",
+      "unit": "ref:u_xbrli_pure",
       "context": "FY2024",
       "standard": "S1",
       "tag_type": "nonFraction",
@@ -97,7 +97,7 @@
     {
       "concept": "esrs-s1:GenderDiversityAtManagementLevel",
       "value": "0.28",
-      "unit": "ref:u_xbrli:pure",
+      "unit": "ref:u_xbrli_pure",
       "context": "FY2024",
       "standard": "S1",
       "tag_type": "nonFraction",
@@ -107,7 +107,7 @@
     {
       "concept": "esrs-s1:NumberOfFatalitiesWorkRelated",
       "value": "3",
-      "unit": "ref:u_xbrli:pure",
+      "unit": "ref:u_xbrli_pure",
       "context": "FY2024",
       "standard": "S1",
       "tag_type": "nonFraction",

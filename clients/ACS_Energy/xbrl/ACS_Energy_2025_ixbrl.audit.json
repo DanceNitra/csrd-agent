@@ -1,7 +1,7 @@
 {
   "validator": "CSRD Agent XBRL/ESEF Validator v1",
   "file": "clients/ACS_Energy/xbrl/ACS_Energy_2025_ixbrl.html",
-  "validated_at": "2026-06-08T19:50:36.058712",
+  "validated_at": "2026-06-08T20:48:00.547711",
   "passed": false,
   "facts_with_audit": []
 }

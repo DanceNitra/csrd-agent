@@ -9,16 +9,23 @@
   <head>
     <title>CSRD Sustainability Report — ACS_Energy (FY2024)</title>
   </head>
-  <ix:hidden>
-    <xbrli:xbrl>
-      <xbrli:context id="FY2024"><xbrli:entity><xbrli:identifier scheme="http://www.lei.org">lei:acs-energy-csrd-2024</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:startDate>2023-01-01</xbrli:startDate><xbrli:endDate>2024-12-31</xbrli:endDate></xbrli:period></xbrli:context>
+  <body>
+  <div style="display:none">
+    <ix:header>
+      <ix:references>
+        <link:schemaRef xmlns:link="http://www.xbrl.org/2003/linkbase"
+                        xlink:type="simple"
+                        xlink:href="esrs-cor-2024-12-16.xsd"/>
+      </ix:references>
+      <ix:resources>
+        <xbrli:context id="FY2024"><xbrli:entity><xbrli:identifier scheme="http://www.lei.org">lei:acs-energy-csrd-2024</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:startDate>2023-01-01</xbrli:startDate><xbrli:endDate>2024-12-31</xbrli:endDate></xbrli:period></xbrli:context>
     <xbrli:context id="FY2024_Instant"><xbrli:entity><xbrli:identifier scheme="http://www.lei.org">lei:acs-energy-csrd-2024</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:instant>2024-12-31</xbrli:instant></xbrli:period></xbrli:context>
     
-      <xbrli:unit id="u_esrs:tCo2e"><xbrli:measure>esrs:tCo2e</xbrli:measure></xbrli:unit><xbrli:unit id="u_xbrli:pure"><xbrli:measure>xbrli:pure</xbrli:measure></xbrli:unit><xbrli:unit id="u_iso4217:EUR"><xbrli:measure>iso4217:EUR</xbrli:measure></xbrli:unit><xbrli:unit id="u_esrs:MWh"><xbrli:measure>esrs:MWh</xbrli:measure></xbrli:unit><xbrli:unit id="u_esrs:t"><xbrli:measure>esrs:t</xbrli:measure></xbrli:unit><xbrli:unit id="u_esrs:m3"><xbrli:measure>esrs:m3</xbrli:measure></xbrli:unit>
-    </xbrli:xbrl>
-  </ix:hidden>
-<body>
-  <h1>CSRD Sustainability Report — ACS_Energy (FY2024)</h1>
+        <xbrli:unit id="u_esrs_tCo2e"><xbrli:measure>esrs:tCo2e</xbrli:measure></xbrli:unit><xbrli:unit id="u_xbrli_pure"><xbrli:measure>xbrli:pure</xbrli:measure></xbrli:unit><xbrli:unit id="u_iso4217_EUR"><xbrli:measure>iso4217:EUR</xbrli:measure></xbrli:unit><xbrli:unit id="u_esrs_MWh"><xbrli:measure>esrs:MWh</xbrli:measure></xbrli:unit><xbrli:unit id="u_esrs_t"><xbrli:measure>esrs:t</xbrli:measure></xbrli:unit><xbrli:unit id="u_esrs_m3"><xbrli:measure>esrs:m3</xbrli:measure></xbrli:unit>
+      </ix:resources>
+    </ix:header>
+  </div>
+    <h1>CSRD Sustainability Report — ACS_Energy (FY2024)</h1>
 
   <h2>Entity Information</h2>
   <table>
@@ -30,63 +37,63 @@
   <h2>E1 — Climate Change</h2>
   <table border='1'>
     <tr><th>Concept</th><th>Value</th><th>Unit</th></tr>
-    <tr><td>GHGScope1Emissions</td><td><ix:nonFraction name="esrs:GHGScope1Emissions" contextRef="FY2024" unitRef="u_esrs:tCo2e" decimals="0" format="ixt:numdotdecimal">2450000</ix:nonFraction></td><td>tCo2e</td></tr>
-    <tr><td>GHGScope2LocationBasedEmissions</td><td><ix:nonFraction name="esrs:GHGScope2LocationBasedEmissions" contextRef="FY2024" unitRef="u_esrs:tCo2e" decimals="0" format="ixt:numdotdecimal">85000</ix:nonFraction></td><td>tCo2e</td></tr>
-    <tr><td>GHGScope2MarketBasedEmissions</td><td><ix:nonFraction name="esrs:GHGScope2MarketBasedEmissions" contextRef="FY2024" unitRef="u_esrs:tCo2e" decimals="0" format="ixt:numdotdecimal">32000</ix:nonFraction></td><td>tCo2e</td></tr>
-    <tr><td>GHGScope3Emissions</td><td><ix:nonFraction name="esrs:GHGScope3Emissions" contextRef="FY2024" unitRef="u_esrs:tCo2e" decimals="0" format="ixt:numdotdecimal">890000</ix:nonFraction></td><td>tCo2e</td></tr>
-    <tr><td>GHGReductionTarget2030</td><td><ix:nonFraction name="esrs:GHGReductionTarget2030" contextRef="FY2024" unitRef="u_xbrli:pure" decimals="4">0.55</ix:nonFraction></td><td>pure</td></tr>
-    <tr><td>InternalCarbonPrice</td><td><ix:nonFraction name="esrs:InternalCarbonPrice" contextRef="FY2024" unitRef="u_iso4217:EUR" decimals="2" format="ixt:numdotdecimal">85</ix:nonFraction></td><td>EUR</td></tr>
-    <tr><td>EnergyConsumptionTotal</td><td><ix:nonFraction name="esrs:EnergyConsumptionTotal" contextRef="FY2024" unitRef="u_esrs:MWh" decimals="0" format="ixt:numdotdecimal">8200000</ix:nonFraction></td><td>MWh</td></tr>
+    <tr><td>GHGScope1Emissions</td><td><ix:nonFraction name="esrs:GHGScope1Emissions" contextRef="FY2024" unitRef="u_esrs_tCo2e" decimals="0" format="ixt:num-dot-decimal">2450000</ix:nonFraction></td><td>tCo2e</td></tr>
+    <tr><td>GHGScope2LocationBasedEmissions</td><td><ix:nonFraction name="esrs:GHGScope2LocationBasedEmissions" contextRef="FY2024" unitRef="u_esrs_tCo2e" decimals="0" format="ixt:num-dot-decimal">85000</ix:nonFraction></td><td>tCo2e</td></tr>
+    <tr><td>GHGScope2MarketBasedEmissions</td><td><ix:nonFraction name="esrs:GHGScope2MarketBasedEmissions" contextRef="FY2024" unitRef="u_esrs_tCo2e" decimals="0" format="ixt:num-dot-decimal">32000</ix:nonFraction></td><td>tCo2e</td></tr>
+    <tr><td>GHGScope3Emissions</td><td><ix:nonFraction name="esrs:GHGScope3Emissions" contextRef="FY2024" unitRef="u_esrs_tCo2e" decimals="0" format="ixt:num-dot-decimal">890000</ix:nonFraction></td><td>tCo2e</td></tr>
+    <tr><td>GHGReductionTarget2030</td><td><ix:nonFraction name="esrs:GHGReductionTarget2030" contextRef="FY2024" unitRef="u_xbrli_pure" decimals="4">0.55</ix:nonFraction></td><td>pure</td></tr>
+    <tr><td>InternalCarbonPrice</td><td><ix:nonFraction name="esrs:InternalCarbonPrice" contextRef="FY2024" unitRef="u_iso4217_EUR" decimals="2" format="ixt:num-dot-decimal">85</ix:nonFraction></td><td>EUR</td></tr>
+    <tr><td>EnergyConsumptionTotal</td><td><ix:nonFraction name="esrs:EnergyConsumptionTotal" contextRef="FY2024" unitRef="u_esrs_MWh" decimals="0" format="ixt:num-dot-decimal">8200000</ix:nonFraction></td><td>MWh</td></tr>
   </table>
 
   <h2>E2 — Pollution</h2>
   <table border='1'>
     <tr><th>Concept</th><th>Value</th><th>Unit</th></tr>
-    <tr><td>NOxEmissions</td><td><ix:nonFraction name="esrs:NOxEmissions" contextRef="FY2024" unitRef="u_esrs:t" decimals="0" format="ixt:numdotdecimal">4200</ix:nonFraction></td><td>t</td></tr>
-    <tr><td>SOxEmissions</td><td><ix:nonFraction name="esrs:SOxEmissions" contextRef="FY2024" unitRef="u_esrs:t" decimals="0" format="ixt:numdotdecimal">1800</ix:nonFraction></td><td>t</td></tr>
-    <tr><td>ParticulateMatterEmissionsTotal</td><td><ix:nonFraction name="esrs:ParticulateMatterEmissionsTotal" contextRef="FY2024" unitRef="u_esrs:t" decimals="0" format="ixt:numdotdecimal">415</ix:nonFraction></td><td>t</td></tr>
-    <tr><td>HazardousWasteGenerated</td><td><ix:nonFraction name="esrs:HazardousWasteGenerated" contextRef="FY2024" unitRef="u_esrs:t" decimals="0" format="ixt:numdotdecimal">4200</ix:nonFraction></td><td>t</td></tr>
+    <tr><td>NOxEmissions</td><td><ix:nonFraction name="esrs:NOxEmissions" contextRef="FY2024" unitRef="u_esrs_t" decimals="0" format="ixt:num-dot-decimal">4200</ix:nonFraction></td><td>t</td></tr>
+    <tr><td>SOxEmissions</td><td><ix:nonFraction name="esrs:SOxEmissions" contextRef="FY2024" unitRef="u_esrs_t" decimals="0" format="ixt:num-dot-decimal">1800</ix:nonFraction></td><td>t</td></tr>
+    <tr><td>ParticulateMatterEmissionsTotal</td><td><ix:nonFraction name="esrs:ParticulateMatterEmissionsTotal" contextRef="FY2024" unitRef="u_esrs_t" decimals="0" format="ixt:num-dot-decimal">415</ix:nonFraction></td><td>t</td></tr>
+    <tr><td>HazardousWasteGenerated</td><td><ix:nonFraction name="esrs:HazardousWasteGenerated" contextRef="FY2024" unitRef="u_esrs_t" decimals="0" format="ixt:num-dot-decimal">4200</ix:nonFraction></td><td>t</td></tr>
   </table>
 
   <h2>E3 — Water &amp; Marine Resources</h2>
   <table border='1'>
     <tr><th>Concept</th><th>Value</th><th>Unit</th></tr>
-    <tr><td>WaterWithdrawalTotal</td><td><ix:nonFraction name="esrs:WaterWithdrawalTotal" contextRef="FY2024" unitRef="u_esrs:m3" decimals="0" format="ixt:numdotdecimal">42500000</ix:nonFraction></td><td>m3</td></tr>
-    <tr><td>WaterConsumptionTotal</td><td><ix:nonFraction name="esrs:WaterConsumptionTotal" contextRef="FY2024" unitRef="u_esrs:m3" decimals="0" format="ixt:numdotdecimal">8750000</ix:nonFraction></td><td>m3</td></tr>
-    <tr><td>WaterDischargeTotal</td><td><ix:nonFraction name="esrs:WaterDischargeTotal" contextRef="FY2024" unitRef="u_esrs:m3" decimals="0" format="ixt:numdotdecimal">33750000</ix:nonFraction></td><td>m3</td></tr>
+    <tr><td>WaterWithdrawalTotal</td><td><ix:nonFraction name="esrs:WaterWithdrawalTotal" contextRef="FY2024" unitRef="u_esrs_m3" decimals="0" format="ixt:num-dot-decimal">42500000</ix:nonFraction></td><td>m3</td></tr>
+    <tr><td>WaterConsumptionTotal</td><td><ix:nonFraction name="esrs:WaterConsumptionTotal" contextRef="FY2024" unitRef="u_esrs_m3" decimals="0" format="ixt:num-dot-decimal">8750000</ix:nonFraction></td><td>m3</td></tr>
+    <tr><td>WaterDischargeTotal</td><td><ix:nonFraction name="esrs:WaterDischargeTotal" contextRef="FY2024" unitRef="u_esrs_m3" decimals="0" format="ixt:num-dot-decimal">33750000</ix:nonFraction></td><td>m3</td></tr>
   </table>
 
   <h2>E5 — Resource Use &amp; Circular Economy</h2>
   <table border='1'>
     <tr><th>Concept</th><th>Value</th><th>Unit</th></tr>
-    <tr><td>WasteGeneratedTotal</td><td><ix:nonFraction name="esrs:WasteGeneratedTotal" contextRef="FY2024" unitRef="u_esrs:t" decimals="0" format="ixt:numdotdecimal">28500</ix:nonFraction></td><td>t</td></tr>
-    <tr><td>WasteDiversionRate</td><td><ix:nonFraction name="esrs:WasteDiversionRate" contextRef="FY2024" unitRef="u_xbrli:pure" decimals="4">0.54</ix:nonFraction></td><td>pure</td></tr>
+    <tr><td>WasteGeneratedTotal</td><td><ix:nonFraction name="esrs:WasteGeneratedTotal" contextRef="FY2024" unitRef="u_esrs_t" decimals="0" format="ixt:num-dot-decimal">28500</ix:nonFraction></td><td>t</td></tr>
+    <tr><td>WasteDiversionRate</td><td><ix:nonFraction name="esrs:WasteDiversionRate" contextRef="FY2024" unitRef="u_xbrli_pure" decimals="4">0.54</ix:nonFraction></td><td>pure</td></tr>
   </table>
 
   <h2>G1 — Business Conduct</h2>
   <table border='1'>
     <tr><th>Concept</th><th>Value</th><th>Unit</th></tr>
-    <tr><td>CorruptionConvictions</td><td><ix:nonFraction name="esrs:CorruptionConvictions" contextRef="FY2024" unitRef="u_xbrli:pure" decimals="0">0</ix:nonFraction></td><td>pure</td></tr>
-    <tr><td>LobbyingExpenditure</td><td><ix:nonFraction name="esrs:LobbyingExpenditure" contextRef="FY2024" unitRef="u_iso4217:EUR" decimals="2" format="ixt:numdotdecimal">45000</ix:nonFraction></td><td>EUR</td></tr>
-    <tr><td>AveragePaymentDays</td><td><ix:nonFraction name="esrs:AveragePaymentDays" contextRef="FY2024" unitRef="u_xbrli:pure" decimals="0">28</ix:nonFraction></td><td>pure</td></tr>
+    <tr><td>CorruptionConvictions</td><td><ix:nonFraction name="esrs:CorruptionConvictions" contextRef="FY2024" unitRef="u_xbrli_pure" decimals="0">0</ix:nonFraction></td><td>pure</td></tr>
+    <tr><td>LobbyingExpenditure</td><td><ix:nonFraction name="esrs:LobbyingExpenditure" contextRef="FY2024" unitRef="u_iso4217_EUR" decimals="2" format="ixt:num-dot-decimal">45000</ix:nonFraction></td><td>EUR</td></tr>
+    <tr><td>AveragePaymentDays</td><td><ix:nonFraction name="esrs:AveragePaymentDays" contextRef="FY2024" unitRef="u_xbrli_pure" decimals="0">28</ix:nonFraction></td><td>pure</td></tr>
   </table>
 
   <h2>Other</h2>
   <table border='1'>
     <tr><th>Concept</th><th>Value</th><th>Unit</th></tr>
-    <tr><td>RevenueTotal</td><td><ix:nonFraction name="esrs:RevenueTotal" contextRef="FY2024" unitRef="u_iso4217:EUR" decimals="0" format="ixt:numdotdecimal">1200000000</ix:nonFraction></td><td>EUR</td></tr>
+    <tr><td>RevenueTotal</td><td><ix:nonFraction name="esrs:RevenueTotal" contextRef="FY2024" unitRef="u_iso4217_EUR" decimals="0" format="ixt:num-dot-decimal">1200000000</ix:nonFraction></td><td>EUR</td></tr>
   </table>
 
   <h2>S1 — Own Workforce</h2>
   <table border='1'>
     <tr><th>Concept</th><th>Value</th><th>Unit</th></tr>
-    <tr><td>TotalEmployees</td><td><ix:nonFraction name="esrs:TotalEmployees" contextRef="FY2024" unitRef="u_xbrli:pure" decimals="0">5000</ix:nonFraction></td><td>pure</td></tr>
-    <tr><td>TotalEmployees</td><td><ix:nonFraction name="esrs:TotalEmployees" contextRef="FY2024" unitRef="u_xbrli:pure" decimals="0">5000</ix:nonFraction></td><td>pure</td></tr>
-    <tr><td>InjuryRateRecordable</td><td><ix:nonFraction name="esrs:InjuryRateRecordable" contextRef="FY2024" unitRef="u_xbrli:pure" decimals="2">1.8</ix:nonFraction></td><td>pure</td></tr>
-    <tr><td>FatalitiesWorkRelated</td><td><ix:nonFraction name="esrs:FatalitiesWorkRelated" contextRef="FY2024" unitRef="u_xbrli:pure" decimals="0">0</ix:nonFraction></td><td>pure</td></tr>
-    <tr><td>EmployeeTurnoverRate</td><td><ix:nonFraction name="esrs:EmployeeTurnoverRate" contextRef="FY2024" unitRef="u_xbrli:pure" decimals="4">0.085</ix:nonFraction></td><td>pure</td></tr>
-    <tr><td>GenderDiversityManagement</td><td><ix:nonFraction name="esrs:GenderDiversityManagement" contextRef="FY2024" unitRef="u_xbrli:pure" decimals="4">0.18</ix:nonFraction></td><td>pure</td></tr>
-    <tr><td>GenderPayGapMean</td><td><ix:nonFraction name="esrs:GenderPayGapMean" contextRef="FY2024" unitRef="u_xbrli:pure" decimals="4">0.125</ix:nonFraction></td><td>pure</td></tr>
+    <tr><td>TotalEmployees</td><td><ix:nonFraction name="esrs:TotalEmployees" contextRef="FY2024_Instant" unitRef="u_xbrli_pure" decimals="0">5000</ix:nonFraction></td><td>pure</td></tr>
+    <tr><td>TotalEmployees</td><td><ix:nonFraction name="esrs:TotalEmployees" contextRef="FY2024_Instant" unitRef="u_xbrli_pure" decimals="0">5000</ix:nonFraction></td><td>pure</td></tr>
+    <tr><td>InjuryRateRecordable</td><td><ix:nonFraction name="esrs:InjuryRateRecordable" contextRef="FY2024" unitRef="u_xbrli_pure" decimals="2">1.8</ix:nonFraction></td><td>pure</td></tr>
+    <tr><td>FatalitiesWorkRelated</td><td><ix:nonFraction name="esrs:FatalitiesWorkRelated" contextRef="FY2024" unitRef="u_xbrli_pure" decimals="0">0</ix:nonFraction></td><td>pure</td></tr>
+    <tr><td>EmployeeTurnoverRate</td><td><ix:nonFraction name="esrs:EmployeeTurnoverRate" contextRef="FY2024" unitRef="u_xbrli_pure" decimals="4">0.085</ix:nonFraction></td><td>pure</td></tr>
+    <tr><td>GenderDiversityManagement</td><td><ix:nonFraction name="esrs:GenderDiversityManagement" contextRef="FY2024_Instant" unitRef="u_xbrli_pure" decimals="4">0.18</ix:nonFraction></td><td>pure</td></tr>
+    <tr><td>GenderPayGapMean</td><td><ix:nonFraction name="esrs:GenderPayGapMean" contextRef="FY2024" unitRef="u_xbrli_pure" decimals="4">0.125</ix:nonFraction></td><td>pure</td></tr>
   </table>
 
 </body>

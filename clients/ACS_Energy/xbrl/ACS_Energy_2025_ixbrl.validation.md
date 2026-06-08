@@ -2,7 +2,7 @@
 
 **File:** `clients/ACS_Energy/xbrl/ACS_Energy_2025_ixbrl.html`
 **Status:** ❌ FAIL
-**Validated:** 2026-06-08T19:50:36.058712
+**Validated:** 2026-06-08T20:48:00.547711
 
 ## Checks (1)
 

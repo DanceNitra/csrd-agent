@@ -1,7 +1,7 @@
 {
   "validator": "CSRD Agent XBRL/ESEF Validator v1",
   "file": "clients/Enel/xbrl/Enel_2025_ixbrl.html",
-  "validated_at": "2026-06-08T19:50:36.062802",
+  "validated_at": "2026-06-08T20:48:00.549358",
   "passed": false,
   "facts_with_audit": []
 }

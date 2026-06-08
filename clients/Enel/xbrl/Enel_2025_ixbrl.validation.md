@@ -2,7 +2,7 @@
 
 **File:** `clients/Enel/xbrl/Enel_2025_ixbrl.html`
 **Status:** ❌ FAIL
-**Validated:** 2026-06-08T19:50:36.062802
+**Validated:** 2026-06-08T20:48:00.549358
 
 ## Checks (1)
 

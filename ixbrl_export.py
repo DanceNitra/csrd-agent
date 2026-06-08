@@ -38,6 +38,11 @@ class iXBRLEngine:
         self.period_end = f"{report_year}-12-31"
         self.period_start = f"{report_year - 1}-01-01"
 
+    @staticmethod
+    def _safe_id(raw: str) -> str:
+        """Replace colon with underscore for XML ID/IDREF validity."""
+        return raw.replace(":", "_")
+
     def _create_entity_id(self) -> str:
         """Create a stable entity identifier."""
         name_slug = self.client_name.lower().replace(" ", "-").replace("_", "-")
@@ -166,11 +171,11 @@ class iXBRLEngine:
         # ── S1: Workforce ──
         emp = p.get("employees", 0)
         if emp:
-            facts.append({"concept": "TotalEmployees", "value": emp, "unit": "xbrli:pure", "decimals": 0})
+            facts.append({"concept": "TotalEmployees", "value": emp, "unit": "xbrli:pure", "decimals": 0, "context": "instant"})
 
         v = _val("workforce_female_pct", "workforce_female_pct")
         if v:
-            facts.append({"concept": "GenderDiversityManagement", "value": v / 100.0, "unit": "xbrli:pure", "decimals": 4})
+            facts.append({"concept": "GenderDiversityManagement", "value": v / 100.0, "unit": "xbrli:pure", "decimals": 4, "context": "instant"})
         v = _val("workforce_injury_rate", "workforce_injury_rate")
         if v:
             facts.append({"concept": "InjuryRateRecordable", "value": v, "unit": "xbrli:pure", "decimals": 2})
@@ -181,7 +186,7 @@ class iXBRLEngine:
         wf = p.get("workforce", {})
         if isinstance(wf, dict):
             if wf.get("total_employees"):
-                facts.append({"concept": "TotalEmployees", "value": wf["total_employees"], "unit": "xbrli:pure", "decimals": 0})
+                facts.append({"concept": "TotalEmployees", "value": wf["total_employees"], "unit": "xbrli:pure", "decimals": 0, "context": "instant"})
             if wf.get("injury_rate_per_100k_hours"):
                 facts.append({"concept": "InjuryRateRecordable", "value": wf["injury_rate_per_100k_hours"], "unit": "xbrli:pure", "decimals": 2})
             if wf.get("fatalities") is not None:
@@ -189,7 +194,7 @@ class iXBRLEngine:
             if wf.get("employee_turnover_pct"):
                 facts.append({"concept": "EmployeeTurnoverRate", "value": wf["employee_turnover_pct"] / 100.0, "unit": "xbrli:pure", "decimals": 4})
             if wf.get("female_management_pct"):
-                facts.append({"concept": "GenderDiversityManagement", "value": wf["female_management_pct"] / 100.0, "unit": "xbrli:pure", "decimals": 4})
+                facts.append({"concept": "GenderDiversityManagement", "value": wf["female_management_pct"] / 100.0, "unit": "xbrli:pure", "decimals": 4, "context": "instant"})
             if wf.get("gender_pay_gap_mean_pct"):
                 facts.append({"concept": "GenderPayGapMean", "value": wf["gender_pay_gap_mean_pct"] / 100.0, "unit": "xbrli:pure", "decimals": 4})
 
@@ -219,7 +224,6 @@ class iXBRLEngine:
     def _build_html_body(self, facts: list[dict]) -> str:
         """Build the iXBRL HTML body with tagged facts."""
         lines = [
-            "<body>",
             f"  <h1>CSRD Sustainability Report — {self.client_name} (FY{self.report_year})</h1>",
             "",
         ]
@@ -292,22 +296,24 @@ class iXBRLEngine:
 
                 # iXBRL tag — use nonFraction for numeric facts, nonNumeric for text
                 is_numeric = fact.get("unit") in ("iso4217:EUR",) or unit_str != "pure"
+                ctx = fact.get("context", "duration")
+                context_ref = f"FY{self.report_year}_Instant" if ctx == "instant" else f"FY{self.report_year}"
                 if is_numeric:
                     ix_tag = (
                         f'<ix:nonFraction name="esrs:{concept_name}" '
-                        f'contextRef="FY{self.report_year}" '
-                        f'unitRef="u_{fact["unit"]}" '
+                        f'contextRef="{context_ref}" '
+                        f'unitRef="u_{self._safe_id(fact["unit"])}" '
                         f'decimals="{fact.get("decimals", 2)}" '
-                        f'format="ixt:numdotdecimal">'
+                        f'format="ixt:num-dot-decimal">'
                         f'{value_str}'
                         f'</ix:nonFraction>'
                     )
                 else:
                     # xbrli:pure or no unit — still use nonFraction with unitRef
-                    unit_ref = f'u_{fact["unit"]}' if fact.get("unit") else "u_xbrli:pure"
+                    unit_ref = f'u_{self._safe_id(fact["unit"])}' if fact.get("unit") else "u_xbrli:pure"
                     ix_tag = (
                         f'<ix:nonFraction name="esrs:{concept_name}" '
-                        f'contextRef="FY{self.report_year}" '
+                        f'contextRef="{context_ref}" '
                         f'unitRef="{unit_ref}" '
                         f'decimals="{fact.get("decimals", 0)}">'
                         f'{value_str}'
@@ -319,7 +325,6 @@ class iXBRLEngine:
             lines.append("  </table>")
             lines.append("")
 
-        lines.append("</body>")
         return "\n".join(lines)
 
     def _build_contexts(self) -> list[tuple[str, str, str]]:
@@ -338,19 +343,19 @@ class iXBRLEngine:
                 continue
             if u == "iso4217:EUR":
                 units[u] = (
-                    f'<xbrli:unit id="u_{u}">'
+                    f'<xbrli:unit id="u_{self._safe_id(u)}">'
                     f'<xbrli:measure>iso4217:EUR</xbrli:measure>'
                     f'</xbrli:unit>'
                 )
             elif u.startswith("esrs:"):
                 units[u] = (
-                    f'<xbrli:unit id="u_{u}">'
+                    f'<xbrli:unit id="u_{self._safe_id(u)}">'
                     f'<xbrli:measure>{u}</xbrli:measure>'
                     f'</xbrli:unit>'
                 )
             else:
                 units[u] = (
-                    f'<xbrli:unit id="u_{u}">'
+                    f'<xbrli:unit id="u_{self._safe_id(u)}">'
                     f'<xbrli:measure>xbrli:pure</xbrli:measure>'
                     f'</xbrli:unit>'
                 )
@@ -384,6 +389,7 @@ class iXBRLEngine:
 
         # Build body
         body_html = self._build_html_body(facts)
+        visible_body = body_html
 
         # Assemble full iXBRL document
         ixbrl = f'''<?xml version="1.0" encoding="UTF-8"?>
@@ -397,13 +403,22 @@ class iXBRLEngine:
   <head>
     <title>CSRD Sustainability Report — {self.client_name} (FY{self.report_year})</title>
   </head>
-  <ix:hidden>
-    <xbrli:xbrl>
-      {contexts_xml}
-      {units_xml}
-    </xbrli:xbrl>
-  </ix:hidden>
-{body_html}
+  <body>
+  <div style="display:none">
+    <ix:header>
+      <ix:references>
+        <link:schemaRef xmlns:link="http://www.xbrl.org/2003/linkbase"
+                        xlink:type="simple"
+                        xlink:href="esrs-cor-2024-12-16.xsd"/>
+      </ix:references>
+      <ix:resources>
+        {contexts_xml}
+        {units_xml}
+      </ix:resources>
+    </ix:header>
+  </div>
+  {visible_body}
+</body>
 </html>
 '''
         return ixbrl
@@ -441,13 +456,13 @@ class iXBRLEngine:
             if fact.get("unit") in ("iso4217:EUR", "xbrli:pure"):
                 facts_xml += (
                     f'  <esrs:{name} contextRef="FY{self.report_year}" '
-                    f'unitRef="u_{fact["unit"]}" decimals="{decimals}">'
+                    f'unitRef="u_{self._safe_id(fact["unit"])}" decimals="{decimals}">'
                     f'{fact["value"]}</esrs:{name}>\n'
                 )
             else:
                 facts_xml += (
                     f'  <esrs:{name} contextRef="FY{self.report_year}" '
-                    f'unitRef="u_{fact["unit"]}" decimals="{decimals}">'
+                    f'unitRef="u_{self._safe_id(fact["unit"])}" decimals="{decimals}">'
                     f'{fact["value"]}</esrs:{name}>\n'
                 )
 
@@ -472,6 +487,13 @@ class iXBRLEngine:
     def export_to_dir(self, output_dir: str) -> dict[str, Any]:
         """Generate all iXBRL export files and save to directory."""
         os.makedirs(output_dir, exist_ok=True)
+
+        # Copy taxonomy XSD alongside the output
+        import shutil
+        xsd_src = os.path.join(os.path.dirname(__file__), "taxonomy", "official", "esrs-cor-2024-12-16.xsd")
+        xsd_dst = os.path.join(output_dir, "esrs-cor-2024-12-16.xsd")
+        if os.path.exists(xsd_src):
+            shutil.copy2(xsd_src, xsd_dst)
 
         ixbrl_content = self.generate_ixbrl()
         instance_content = self.generate_instance()
