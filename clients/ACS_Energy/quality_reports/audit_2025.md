@@ -1,11 +1,10 @@
-# CSRD Quality Audit Report — ACS_Energy (2025)
+# CSRD Quality Audit Report -- ACS_Energy (2025)
 
 **Agent:** Sergeant Voss
 **Date:** 2026-06-08
-**Status:** ✅ PASS
+**Status:** PASS
 
 ## Scores
-
 | Metric | Value |
 |--------|-------|
 | Items audited | 410 |
@@ -14,11 +13,9 @@
 | Overall score | 14/14 |
 
 ## Assessment
-
 Report meets minimum ESRS compliance requirements
 
 ## Recommendations
-
 - Complete data collection for non-material standards
 - Review XBRL tagging accuracy before final delivery
 - Consider third-party limited assurance readiness check

@@ -1,0 +1,539 @@
+"""
+CSRD iXBRL/ESEF Export Engine — generates Inline XBRL filings.
+
+Produces iXBRL (Inline XBRL) HTML documents with embedded XBRL tags,
+plus taxonomy schema and instance documents for ESMA ESEF compliance.
+
+Architecture:
+  iXBRLEngine
+    ├── generate_ixbrl()       → Inline XBRL HTML document
+    ├── generate_instance()     → XBRL instance XML
+    └── generate_taxonomy_ref() → Reference to EFRAG ESRS taxonomy
+"""
+
+import json
+import os
+from datetime import datetime
+from typing import Any, Optional
+
+from xbrl_taxonomy import (
+    ESRS_NS, ESRS_SCHEMA_LOCATION, ESRS_CONCEPTS, get_concept,
+)
+
+# ── Namespace strings used in XML/HTML ──
+IX_NS = "http://www.xbrl.org/2013/inlineXBRL"
+IX_NS_H = "http://www.w3.org/1999/xhtml"
+XHTML_NS = "http://www.w3.org/1999/xhtml"
+LINK_NS = "http://www.xbrl.org/2003/linkbase"
+
+
+class iXBRLEngine:
+    """Generate Inline XBRL (iXBRL) documents for ESEF-compliant CSRD filings."""
+
+    def __init__(self, client_name: str, report_year: int, profile: dict[str, Any]):
+        self.client_name = client_name
+        self.report_year = report_year
+        self.profile = profile
+        self.entity_identifier = self._create_entity_id()
+        self.period_end = f"{report_year}-12-31"
+        self.period_start = f"{report_year - 1}-01-01"
+
+    def _create_entity_id(self) -> str:
+        """Create a stable entity identifier."""
+        name_slug = self.client_name.lower().replace(" ", "-").replace("_", "-")
+        return f"lei:{name_slug}-csrd-{self.report_year}"
+
+    def _map_profile_to_facts(self) -> list[dict]:
+        """Map company profile data to XBRL facts."""
+        facts = []
+        p = self.profile
+
+        # ── E1: Climate ──
+        ghg = p.get("greenhouse_gas", {})
+        if ghg.get("scope1_total"):
+            facts.append({
+                "concept": "GHGScope1Emissions",
+                "value": ghg["scope1_total"],
+                "unit": "esrs:tCo2e",
+                "decimals": 0,
+            })
+        if ghg.get("scope2_location_based"):
+            facts.append({
+                "concept": "GHGScope2LocationBasedEmissions",
+                "value": ghg["scope2_location_based"],
+                "unit": "esrs:tCo2e",
+                "decimals": 0,
+            })
+        if ghg.get("scope2_market_based"):
+            facts.append({
+                "concept": "GHGScope2MarketBasedEmissions",
+                "value": ghg["scope2_market_based"],
+                "unit": "esrs:tCo2e",
+                "decimals": 0,
+            })
+        if ghg.get("scope3_total_estimated"):
+            facts.append({
+                "concept": "GHGScope3Emissions",
+                "value": ghg["scope3_total_estimated"],
+                "unit": "esrs:tCo2e",
+                "decimals": 0,
+            })
+        if ghg.get("reduction_target_2030"):
+            facts.append({
+                "concept": "GHGReductionTarget2030",
+                "value": ghg["reduction_target_2030"] / 100.0,
+                "unit": "xbrli:pure",
+                "decimals": 4,
+            })
+        if ghg.get("carbon_price_internal"):
+            facts.append({
+                "concept": "InternalCarbonPrice",
+                "value": ghg["carbon_price_internal"],
+                "unit": "iso4217:EUR",
+                "decimals": 2,
+            })
+
+        energy = p.get("energy", {})
+        if energy.get("total_generation_mwh"):
+            facts.append({
+                "concept": "EnergyConsumptionTotal",
+                "value": energy["total_generation_mwh"],
+                "unit": "esrs:MWh",
+                "decimals": 0,
+            })
+
+        # ── E2: Pollution ──
+        poll = p.get("pollution", {})
+        if poll.get("nox_emissions"):
+            facts.append({
+                "concept": "NOxEmissions",
+                "value": poll["nox_emissions"],
+                "unit": "esrs:t",
+                "decimals": 0,
+            })
+        if poll.get("sox_emissions"):
+            facts.append({
+                "concept": "SOxEmissions",
+                "value": poll["sox_emissions"],
+                "unit": "esrs:t",
+                "decimals": 0,
+            })
+        if poll.get("pm10_emissions"):
+            pm_total = (poll.get("pm10_emissions", 0) + poll.get("pm2_5_emissions", 0))
+            facts.append({
+                "concept": "ParticulateMatterEmissionsTotal",
+                "value": pm_total,
+                "unit": "esrs:t",
+                "decimals": 0,
+            })
+        if poll.get("hazardous_waste_generated"):
+            facts.append({
+                "concept": "HazardousWasteGenerated",
+                "value": poll["hazardous_waste_generated"],
+                "unit": "esrs:t",
+                "decimals": 0,
+            })
+
+        # ── E3: Water ──
+        water = p.get("water", {})
+        if water.get("total_withdrawal_m3"):
+            facts.append({
+                "concept": "WaterWithdrawalTotal",
+                "value": water["total_withdrawal_m3"],
+                "unit": "esrs:m3",
+                "decimals": 0,
+            })
+        if water.get("total_consumption_m3"):
+            facts.append({
+                "concept": "WaterConsumptionTotal",
+                "value": water["total_consumption_m3"],
+                "unit": "esrs:m3",
+                "decimals": 0,
+            })
+        if water.get("total_discharge_m3"):
+            facts.append({
+                "concept": "WaterDischargeTotal",
+                "value": water["total_discharge_m3"],
+                "unit": "esrs:m3",
+                "decimals": 0,
+            })
+
+        # ── E5: Circular Economy ──
+        ce = p.get("circular_economy", {})
+        if ce.get("waste_total_tonnes"):
+            facts.append({
+                "concept": "WasteGeneratedTotal",
+                "value": ce["waste_total_tonnes"],
+                "unit": "esrs:t",
+                "decimals": 0,
+            })
+        if ce.get("waste_diversion_rate_pct"):
+            facts.append({
+                "concept": "WasteDiversionRate",
+                "value": ce["waste_diversion_rate_pct"] / 100.0,
+                "unit": "xbrli:pure",
+                "decimals": 4,
+            })
+
+        # ── S1: Workforce ──
+        wf = p.get("workforce", {})
+        if wf.get("total_employees"):
+            facts.append({
+                "concept": "TotalEmployees",
+                "value": wf["total_employees"],
+                "unit": "xbrli:pure",
+                "decimals": 0,
+            })
+        if wf.get("injury_rate_per_100k_hours"):
+            facts.append({
+                "concept": "InjuryRateRecordable",
+                "value": wf["injury_rate_per_100k_hours"],
+                "unit": "xbrli:pure",
+                "decimals": 2,
+            })
+        if wf.get("fatalities") is not None:
+            facts.append({
+                "concept": "FatalitiesWorkRelated",
+                "value": wf["fatalities"],
+                "unit": "xbrli:pure",
+                "decimals": 0,
+            })
+        if wf.get("employee_turnover_pct"):
+            facts.append({
+                "concept": "EmployeeTurnoverRate",
+                "value": wf["employee_turnover_pct"] / 100.0,
+                "unit": "xbrli:pure",
+                "decimals": 4,
+            })
+        if wf.get("female_management_pct"):
+            facts.append({
+                "concept": "GenderDiversityManagement",
+                "value": wf["female_management_pct"] / 100.0,
+                "unit": "xbrli:pure",
+                "decimals": 4,
+            })
+        if wf.get("gender_pay_gap_mean_pct"):
+            facts.append({
+                "concept": "GenderPayGapMean",
+                "value": wf["gender_pay_gap_mean_pct"] / 100.0,
+                "unit": "xbrli:pure",
+                "decimals": 4,
+            })
+
+        # ── G1: Business Conduct ──
+        bc = p.get("business_conduct", {})
+        if bc.get("corruption_convictions") is not None:
+            facts.append({
+                "concept": "CorruptionConvictions",
+                "value": bc["corruption_convictions"],
+                "unit": "xbrli:pure",
+                "decimals": 0,
+            })
+        if bc.get("corruption_fines_eur"):
+            facts.append({
+                "concept": "CorruptionFines",
+                "value": bc["corruption_fines_eur"],
+                "unit": "iso4217:EUR",
+                "decimals": 2,
+            })
+        if bc.get("lobbying_expenditure_eur"):
+            facts.append({
+                "concept": "LobbyingExpenditure",
+                "value": bc["lobbying_expenditure_eur"],
+                "unit": "iso4217:EUR",
+                "decimals": 2,
+            })
+        if bc.get("average_payment_days"):
+            facts.append({
+                "concept": "AveragePaymentDays",
+                "value": bc["average_payment_days"],
+                "unit": "xbrli:pure",
+                "decimals": 0,
+            })
+
+        return facts
+
+    def _build_html_body(self, facts: list[dict]) -> str:
+        """Build the iXBRL HTML body with tagged facts."""
+        lines = [
+            "<body>",
+            f"  <h1>CSRD Sustainability Report — {self.client_name} (FY{self.report_year})</h1>",
+            "",
+        ]
+
+        # ── Header section ──
+        lines.extend([
+            "  <h2>Entity Information</h2>",
+            "  <table>",
+            f"    <tr><td>Entity</td><td>{self.client_name}</td></tr>",
+            f"    <tr><td>Reporting period</td><td>{self.period_start} to {self.period_end}</td></tr>",
+            f"    <tr><td>Entity identifier</td><td>{self.entity_identifier}</td></tr>",
+            "  </table>",
+            "",
+        ])
+
+        # ── Group facts by standard ──
+        std_labels = {
+            "GHG": "E1 — Climate Change",
+            "NOx": "E2 — Pollution",
+            "SOx": "E2 — Pollution",
+            "Particulate": "E2 — Pollution",
+            "Hazardous": "E2 — Pollution",
+            "Water": "E3 — Water & Marine Resources",
+            "Waste": "E5 — Resource Use & Circular Economy",
+            "TotalEmployees": "S1 — Own Workforce",
+            "Injury": "S1 — Own Workforce",
+            "Fatalities": "S1 — Own Workforce",
+            "EmployeeTurnover": "S1 — Own Workforce",
+            "Gender": "S1 — Own Workforce",
+            "Corruption": "G1 — Business Conduct",
+            "Lobbying": "G1 — Business Conduct",
+            "AveragePayment": "G1 — Business Conduct",
+            "InternalCarbon": "E1 — Climate Change",
+            "GHGReduction": "E1 — Climate Change",
+            "Energy": "E1 — Climate Change",
+            "Transition": "E1 — Climate Change",
+        }
+
+        def _concept_std(concept: str) -> str:
+            for prefix, label in std_labels.items():
+                if concept.startswith(prefix):
+                    return label
+            return "Other"
+
+        # Group and emit
+        grouped = {}
+        for fact in facts:
+            std = _concept_std(fact["concept"])
+            if std not in grouped:
+                grouped[std] = []
+            grouped[std].append(fact)
+
+        for std_name in sorted(grouped.keys()):
+            std_facts = grouped[std_name]
+            lines.append(f"  <h2>{std_name}</h2>")
+            lines.append("  <table border='1'>")
+            lines.append("    <tr><th>Concept</th><th>Value</th><th>Unit</th></tr>")
+
+            for fact in std_facts:
+                concept_def = get_concept(fact["concept"])
+                if concept_def:
+                    concept_name = concept_def.get("name", fact["concept"])
+                    label = concept_def.get("label", fact["concept"])
+                else:
+                    concept_name = fact["concept"]
+                    label = fact["concept"]
+
+                value_str = str(fact["value"])
+                unit_str = fact["unit"].split(":")[-1] if ":" in fact["unit"] else fact["unit"]
+
+                # iXBRL tag
+                ix_tag = (
+                    f'<ix:nonNumeric name="esrs:{concept_name}" '
+                    f'contextRef="FY{self.report_year}">'
+                    f'{value_str}'
+                    f'</ix:nonNumeric>'
+                )
+                if fact.get("unit") in ("iso4217:EUR",):
+                    # Monetary: use nonFraction
+                    ix_tag = (
+                        f'<ix:nonFraction name="esrs:{concept_name}" '
+                        f'contextRef="FY{self.report_year}" '
+                        f'unitRef="u_{fact["unit"]}" '
+                        f'decimals="{fact.get("decimals", 2)}" '
+                        f'format="ixt:numdotdecimal">'
+                        f'{value_str}'
+                        f'</ix:nonFraction>'
+                    )
+                elif unit_str not in ("pure",):
+                    ix_tag = (
+                        f'<ix:nonFraction name="esrs:{concept_name}" '
+                        f'contextRef="FY{self.report_year}" '
+                        f'unitRef="u_{fact["unit"]}" '
+                        f'decimals="{fact.get("decimals", 0)}">'
+                        f'{value_str}'
+                        f'</ix:nonFraction>'
+                    )
+
+                lines.append(f"    <tr><td>{label}</td><td>{ix_tag}</td><td>{unit_str}</td></tr>")
+
+            lines.append("  </table>")
+            lines.append("")
+
+        lines.append("</body>")
+        return "\n".join(lines)
+
+    def _build_contexts(self) -> list[tuple[str, str, str]]:
+        """Build XBRL context definitions (id, start_date, end_date)."""
+        return [
+            (f"FY{self.report_year}", self.period_start, self.period_end),
+            (f"FY{self.report_year}_Instant", self.period_end, self.period_end),
+        ]
+
+    def _build_units(self, facts: list[dict]) -> dict:
+        """Build unique unit references from facts."""
+        units = {}
+        for fact in facts:
+            u = fact["unit"]
+            if u in units:
+                continue
+            if u == "iso4217:EUR":
+                units[u] = (
+                    f'<unit id="u_{u}">'
+                    f'<measure>iso4217:EUR</measure>'
+                    f'</unit>'
+                )
+            elif u.startswith("esrs:"):
+                units[u] = (
+                    f'<unit id="u_{u}">'
+                    f'<measure>{u}</measure>'
+                    f'</unit>'
+                )
+            else:
+                units[u] = (
+                    f'<unit id="u_{u}">'
+                    f'<measure>xbrli:pure</measure>'
+                    f'</unit>'
+                )
+        return units
+
+    def generate_ixbrl(self) -> str:
+        """Generate complete Inline XBRL HTML document."""
+        facts = self._map_profile_to_facts()
+
+        # Build contexts
+        contexts_xml = ""
+        for ctx_id, start, end in self._build_contexts():
+            if start == end:
+                contexts_xml += (
+                    f'<xbrli:context id="{ctx_id}">'
+                    f'<xbrli:entity><xbrli:identifier scheme="http://www.lei.org">{self.entity_identifier}</xbrli:identifier></xbrli:entity>'
+                    f'<xbrli:period><xbrli:instant>{end}</xbrli:instant></xbrli:period>'
+                    f'</xbrli:context>\n    '
+                )
+            else:
+                contexts_xml += (
+                    f'<xbrli:context id="{ctx_id}">'
+                    f'<xbrli:entity><xbrli:identifier scheme="http://www.lei.org">{self.entity_identifier}</xbrli:identifier></xbrli:entity>'
+                    f'<xbrli:period><xbrli:startDate>{start}</xbrli:startDate><xbrli:endDate>{end}</xbrli:endDate></xbrli:period>'
+                    f'</xbrli:context>\n    '
+                )
+
+        # Build units
+        units_dict = self._build_units(facts)
+        units_xml = "".join(units_dict.values())
+
+        # Build body
+        body_html = self._build_html_body(facts)
+
+        # Assemble full iXBRL document
+        ixbrl = f'''<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="{XHTML_NS}"
+      xmlns:ix="{IX_NS}"
+      xmlns:esrs="{ESRS_NS['esrs']}"
+      xmlns:xbrli="{ESRS_NS['xbrli']}"
+      xmlns:iso4217="{ESRS_NS['iso4217']}"
+      xmlns:xlink="{ESRS_NS['xlink']}"
+      xmlns:ixt="http://www.xbrl.org/inlineXBRL/transformation/2020-02-12">
+  <head>
+    <title>CSRD Sustainability Report — {self.client_name} (FY{self.report_year})</title>
+  </head>
+  <ix:hidden>
+    <xbrli:xbrl>
+      {contexts_xml}
+      {units_xml}
+    </xbrli:xbrl>
+  </ix:hidden>
+{body_html}
+</html>
+'''
+        return ixbrl
+
+    def generate_instance(self) -> str:
+        """Generate standalone XBRL instance document."""
+        facts = self._map_profile_to_facts()
+
+        contexts_xml = ""
+        for ctx_id, start, end in self._build_contexts():
+            if start == end:
+                contexts_xml += (
+                    f'<context id="{ctx_id}">'
+                    f'<entity><identifier scheme="http://www.lei.org">{self.entity_identifier}</identifier></entity>'
+                    f'<period><instant>{end}</instant></period>'
+                    f'</context>\n  '
+                )
+            else:
+                contexts_xml += (
+                    f'<context id="{ctx_id}">'
+                    f'<entity><identifier scheme="http://www.lei.org">{self.entity_identifier}</identifier></entity>'
+                    f'<period><startDate>{start}</startDate><endDate>{end}</endDate></period>'
+                    f'</context>\n  '
+                )
+
+        units_dict = self._build_units(facts)
+        units_xml = "".join(units_dict.values())
+
+        facts_xml = ""
+        for fact in facts:
+            concept_def = get_concept(fact["concept"])
+            name = concept_def.get("name", fact["concept"]) if concept_def else fact["concept"]
+            decimals = fact.get("decimals", 0)
+
+            if fact.get("unit") in ("iso4217:EUR", "xbrli:pure"):
+                facts_xml += (
+                    f'  <esrs:{name} contextRef="FY{self.report_year}" '
+                    f'unitRef="u_{fact["unit"]}" decimals="{decimals}">'
+                    f'{fact["value"]}</esrs:{name}>\n'
+                )
+            else:
+                facts_xml += (
+                    f'  <esrs:{name} contextRef="FY{self.report_year}" '
+                    f'unitRef="u_{fact["unit"]}" decimals="{decimals}">'
+                    f'{fact["value"]}</esrs:{name}>\n'
+                )
+
+        instance = f'''<?xml version="1.0" encoding="UTF-8"?>
+<xbrl
+    xmlns="http://www.xbrl.org/2003/instance"
+    xmlns:esrs="{ESRS_NS['esrs']}"
+    xmlns:iso4217="{ESRS_NS['iso4217']}"
+    xmlns:link="http://www.xbrl.org/2003/linkbase"
+    xmlns:xlink="http://www.w3.org/1999/xlink"
+    xmlns:xbrli="http://www.xbrl.org/2003/instance">
+  <link:schemaRef
+    xlink:type="simple"
+    xlink:href="{ESRS_SCHEMA_LOCATION}"/>
+  {contexts_xml}
+  {units_xml}
+{facts_xml}
+</xbrl>
+'''
+        return instance
+
+    def export_to_dir(self, output_dir: str) -> dict[str, Any]:
+        """Generate all iXBRL export files and save to directory."""
+        os.makedirs(output_dir, exist_ok=True)
+
+        ixbrl_content = self.generate_ixbrl()
+        instance_content = self.generate_instance()
+
+        # Write files
+        ixbrl_path = f"{output_dir}/{self.client_name}_{self.report_year}_ixbrl.html"
+        with open(ixbrl_path, "w") as f:
+            f.write(ixbrl_content)
+
+        instance_path = f"{output_dir}/{self.client_name}_{self.report_year}_instance.xml"
+        with open(instance_path, "w") as f:
+            f.write(instance_content)
+
+        fact_count = len(self._map_profile_to_facts())
+
+        return {
+            "ixbrl_path": ixbrl_path,
+            "instance_path": instance_path,
+            "fact_count": fact_count,
+            "summary": (
+                f"Generated iXBRL ({fact_count} tagged facts) and XBRL instance "
+                f"for {self.client_name} FY{self.report_year}"
+            ),
+        }
