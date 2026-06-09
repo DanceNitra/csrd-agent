@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSRD Comply — Automatizovaný iXBRL Reporting podľa ESRS</title>
+<meta name="description" content="iXBRL reporting engine postavený na oficiálnej EFRAG ESRS Set 1 XBRL taxonómii (2023-12-22). Pre firmy v povinnosti podľa CSRD/Omnibus.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>◇</text></svg>">
+</head>
+<body>
+
+<!-- ═══════ HEADER ═══════ -->
+<header class="header">
+  <div class="container header-inner">
+    <a href="#" class="logo">
+      <span class="logo-icon">◇</span>
+      <span class="logo-text">CSRD Comply</span>
+    </a>
+    <nav class="nav" id="mainNav">
+      <a href="#truth" class="nav-link">Stav projektu</a>
+      <a href="#features" class="nav-link">Engine</a>
+      <a href="#standards" class="nav-link">Čo spĺňame</a>
+      <a href="#gaps" class="nav-link">Limity</a>
+      <a href="#demo" class="nav-link">Ukážka</a>
+      <a href="#cta" class="nav-link cta-btn-sm">Kontakt</a>
+    </nav>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ═══════ TRUTH ═══════ -->
+<section class="hero" id="truth">
+  <div class="container">
+    <div class="hero-badge" style="background:#e74c3c;color:#fff">Poctivý stav — žiadne klamstvá</div>
+    <h1 class="hero-title">
+      CSRD Reporting.<br>
+      <span class="gradient-text">Postavený na oficiálnej EFRAG taxonómii.</span>
+    </h1>
+    <p class="hero-subtitle">
+      iXBRL engine používa výhradne element names z oficiálnej EFRAG ESRS Set 1 XBRL Taxonomy (2023-12-22).
+      <strong>5,432 elementov overených. 0 vymyslených.</strong>
+    </p>
+    <div class="truth-cards">
+      <div class="truth-card truth-good">
+        <h3>✅ Čo je hotové</h3>
+        <ul>
+          <li>Oficiálna EFRAG taxonómia stiahnutá a integrovaná</li>
+          <li>33+ EFRAG element names — všetky overené v esrs_cor.xsd</li>
+          <li>Správny namespace: <code>https://xbrl.efrag.org/taxonomy/esrs/2023-12-22</code></li>
+          <li>Správny schemaRef: <code>esrs_all.xsd</code></li>
+          <li>Multi-year kontexty (2025 + 2024)</li>
+          <li>6 firemných reportov s reálnymi dátami</li>
+          <li>SHA-256 audit trail ku každému reportu</li>
+        </ul>
+      </div>
+      <div class="truth-card truth-warn">
+        <h3>⚠️ Čo ešte nie je</h3>
+        <ul>
+          <li>Nie je to certifikovaný ESMA ESEF filing — nemáme ESMA akreditáciu</li>
+          <li>Nie je to limited assurance — chýba audítorský partner</li>
+          <li>Dimenzie (Scope 3 breakdown, country, segment) — rozpracované</li>
+          <li>Hĺbka reportov — reálny ESRS report má 800–3,000 faktov, my máme 25–35</li>
+          <li>Nie je to náhrada za komerčný reporting tool (Workiva, Tagetik)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ ENGINE ═══════ -->
+<section class="features" id="features">
+  <div class="container">
+    <div class="section-label">Engine</div>
+    <h2 class="section-title">Čo CSRD Comply naozaj dokáže</h2>
+    <p class="section-desc">
+      Reálne možnosti — nie marketing.
+    </p>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="feature-icon">◇</div>
+        <h3>Oficiálna EFRAG taxonómia</h3>
+        <p>Používame <code>https://xbrl.efrag.org/taxonomy/esrs/2023-12-22</code> — rovnako ako EFRAG v ukážkových reportoch. 5,432 elementov, 60+ enumerations, linkbasy.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◆</div>
+        <h3>Overené element names</h3>
+        <p>Každý element name, ktorý použijeme, je skontrolovaný proti <code>esrs_cor.xsd</code>. 100% zhoda. Žiadne vymyslené koncepty.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◇</div>
+        <h3>ESRS E1–G1 pokrytie</h3>
+        <p>E1 (klíma), E2 (znečistenie), E3 (voda), E4 (biodiverzita), E5 (obehové hospodárstvo), S1 (zamestnanci), G1 (business conduct).</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◆</div>
+        <h3>Multi-year kontexty</h3>
+        <p>Report generuje kontexty pre aktuálny aj predchádzajúci rok. Pripravené pre porovnávacie reportingy.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◇</div>
+        <h3>SHA-256 audit trail</h3>
+        <p>Každý report má kryptografický hash. Zmena čo i len jedného znaku je detekovateľná.</p>
+      </div>
+      <div class="feature-card">
+        <div class="feature-icon">◆</div>
+        <h3>Dimenzie (rozpracované)</h3>
+        <p>Engine podporuje explicitMember a typedMember dimenzie. Scope 3 kategórie, time horizon, country — všetky definované, integrácia do dátových profilov prebieha.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ STANDARDS ═══════ -->
+<section class="standards" id="standards">
+  <div class="container">
+    <div class="section-label">Čo spĺňame</div>
+    <h2 class="section-title">Poctivý súlad s normami</h2>
+    <p class="section-desc">Nič si nenárokujeme, čo nemáme.</p>
+    <div class="standards-list">
+      <div class="standard-item">
+        <div class="standard-check">✓</div>
+        <div class="standard-info">
+          <h3>EFRAG ESRS Set 1 XBRL Taxonomy</h3>
+          <p>Správny namespace, správne element names, správny schemaRef. Overené proti oficiálnemu balíku z EFRAG (30. 8. 2024).</p>
+        </div>
+      </div>
+      <div class="standard-item">
+        <div class="standard-check">✓</div>
+        <div class="standard-info">
+          <h3>Inline XBRL 1.1</h3>
+          <p>Štruktúra ix:header, ix:hidden, ix:resources, ix:nonFraction, ix:nonNumeric podľa XBRL International špecifikácie.</p>
+        </div>
+      </div>
+      <div class="standard-item">
+        <div class="standard-check">✓</div>
+        <div class="standard-info">
+          <h3>XHTML výstup</h3>
+          <p>Validný XHTML súbor s CSS štýlmi, čitateľný v prehliadači aj ako ESEF filing.</p>
+        </div>
+      </div>
+      <div class="standard-item">
+        <div class="standard-check" style="background:#f39c12">±</div>
+        <div class="standard-info">
+          <h3>ESMA ESEF formát</h3>
+          <p>Štruktúra zodpovedá požiadavkám RTS na ESEF, ale <strong>nie sme certifikovaný ESMA validátor</strong>. Pre oficiálny filing je potrebný ESMA-registrovaný nástroj (Arelle, etc.).</p>
+        </div>
+      </div>
+      <div class="standard-item">
+        <div class="standard-check" style="background:#f39c12">±</div>
+        <div class="standard-info">
+          <h3>Limited Assurance ready</h3>
+          <p>Report je pripravený na auditorské overenie — audit trail, dátové zdroje, compliance certifikát. <strong>Samotný limited assurance musí vykonať registrovaný audítor.</strong></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ GAPS ═══════ -->
+<section class="gaps" id="gaps">
+  <div class="container">
+    <div class="section-label">Transparentnosť</div>
+    <h2 class="section-title">Čo nám chýba do plnohodnotného produktu</h2>
+    <p class="section-desc">Pretože klamať zákazníkovi je horšie ako povedať "ešte na tom pracujeme".</p>
+    <div class="gaps-grid">
+      <div class="gap-card">
+        <div class="gap-icon">📊</div>
+        <h3>Hĺbka reportov</h3>
+        <p>Reálny ESRS report má 800–3,000 iXBRL faktov. My máme 25–35. Chýbajú:<br>
+        → Scope 3 breakdown (15 kategórií)<br>
+        → Target trajectories s baseline a milestone<br>
+        → Country breakdown pre S1 (employees per country)<br>
+        → Multi-year porovnanie v tabuľkách</p>
+      </div>
+      <div class="gap-card">
+        <div class="gap-icon">🔗</div>
+        <h3>Dimenzie a linkbasy</h3>
+        <p>EFRAG definuje 150+ linkbas (presentation, definition, calculation, formula). My používame len základné kontexty. Pre plnú kompatibilitu treba linkbasy integrovať.</p>
+      </div>
+      <div class="gap-card">
+        <div class="gap-icon">🔬</div>
+        <h3>Validácia</h3>
+        <p>Nemáme Arelle integrovaný (Python 3.11/3.12 nekompatibilita). Validujeme cez lxml. Oficiálna ESMA ESEF validácia vyžaduje Arelle alebo ekvivalentný nástroj.</p>
+      </div>
+      <div class="gap-card">
+        <div class="gap-icon">🤝</div>
+        <h3>Audítorský partner</h3>
+        <p>Bez limited assurance od BDO, Grant Thornton alebo TPA nemá report právnu váhu. Hľadáme partnera na pilotné overenie.</p>
+      </div>
+      <div class="gap-card">
+        <div class="gap-icon">📐</div>
+        <h3>UI / Workflow</h3>
+        <p>Engine je CLI nástroj. Nie je to webová aplikácia s drag-and-drop. Vyžaduje technické znalosti (Python, YAML, JSON).</p>
+      </div>
+      <div class="gap-card">
+        <div class="gap-icon">📋</div>
+        <h3>ESRS2 narrative</h3>
+        <p>Identifikovali sme správne textové elementy v EFRAG taxonómii, ale mapovanie nie je úplné. Niektoré koncepty (napr. Corporate Culture Policy, Community Engagement) nemajú priamy ekvivalent v Set 1.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ DEMO ═══════ -->
+<section class="demo" id="demo">
+  <div class="container">
+    <div class="section-label">Ukážka</div>
+    <h2 class="section-title">Reálne reporty — reálne dáta</h2>
+    <p class="section-desc">
+      Každý report používa len oficiálne EFRAG element names. Dáta z verejných zdrojov (výročné správy, sustainability reporty, Wikidata).
+    </p>
+    <div class="demo-tabs">
+      <button class="demo-tab active" data-demo="cez">ČEZ Group</button>
+      <button class="demo-tab" data-demo="basf">BASF SE</button>
+      <button class="demo-tab" data-demo="list">Zoznam všetkých</button>
+    </div>
+    <div class="demo-content" id="demoContent">
+      <div class="demo-iframe-container" id="demoFrame">
+        <iframe src="demo/cez-2025-ixbrl.html" title="CEZ iXBRL Report"></iframe>
+      </div>
+      <div class="demo-reference-list" id="demoList" style="display:none">
+        <h3>Generované reporty</h3>
+        <div class="ref-grid">
+          <div class="ref-item"><span class="ref-flag">🇨🇿</span> ČEZ Group — 34 faktov</div>
+          <div class="ref-item"><span class="ref-flag">🇩🇪</span> BASF SE — 23 faktov</div>
+          <div class="ref-item"><span class="ref-flag">🇩🇪</span> SAP SE — 25 faktov</div>
+          <div class="ref-item"><span class="ref-flag">🇸🇰</span> Slovnaft — 33 faktov</div>
+          <div class="ref-item"><span class="ref-flag">🇸🇰</span> ZSE — 27 faktov</div>
+          <div class="ref-item"><span class="ref-flag">🇸🇰</span> ACS Energy — 34 faktov</div>
+        </div>
+        <p class="ref-note">Všetky element names overené proti oficiálnej EFRAG XSD. Dáta z verejne dostupných zdrojov.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ CTA ═══════ -->
+<section class="cta-section" id="cta">
+  <div class="container">
+    <div class="cta-box">
+      <h2 class="cta-title">Máte CSRD povinnosť?</h2>
+      <p class="cta-text">
+        Po Omnibus I ~20 slovenských a ~50 českých firiem musí reportovať podľa ESRS.
+        Náš engine je funkčný, používa oficiálnu EFRAG taxonómiu a je pripravený na ďalší vývoj.
+      </p>
+      <div class="cta-details">
+        <div class="cta-detail">
+          <strong>👤 Kontakt:</strong> Rastislav Drahoš
+        </div>
+        <div class="cta-detail">
+          <strong>📧 Email:</strong> <span id="emailDisplay" class="email-hidden" onclick="toggleEmail()">Zobraziť email</span>
+        </div>
+      </div>
+      <p class="cta-small">
+        <strong>Poctivo:</strong> Nie sme Big Four. Nemáme ESMA certifikáciu. Ale máme funkčný engine na oficiálnej taxonómii a vieme urobiť prvý krok. 
+        Zvyšok je otázka partnerstiev a času.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════ FOOTER ═══════ -->
+<footer class="footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <span class="logo-icon">◇</span>
+      <span class="logo-text">CSRD Comply</span>
+      <p class="footer-tagline">iXBRL Engine — postavený na EFRAG ESRS Set 1 XBRL Taxonomy</p>
+    </div>
+    <div class="footer-links">
+      <a href="#truth">Stav</a>
+      <a href="#features">Engine</a>
+      <a href="#gaps">Limity</a>
+      <a href="#demo">Ukážka</a>
+    </div>
+    <div class="footer-legal">
+      <p>© 2026 CSRD Comply. Všetky práva vyhradené.</p>
+      <p>CSRD/ESRS/ESMA/EFRAG sú registrované ochranné známky príslušných orgánov EÚ.</p>
+      <p><strong>Transparentnosť:</strong> Tento produkt nie je certifikovaný ESMA ani EFRAG. Je to nástroj na generovanie iXBRL reportov s overenými element names. Pre oficiálny filing a limited assurance je potrebný registrovaný audítor a ESMA-kompatibilný validátor.</p>
+    </div>
+  </div>
+</footer>
+
+<script src="qa-bot.js"></script>
+<script src="script.js"></script>
+</body>
+</html>
