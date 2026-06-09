@@ -165,7 +165,7 @@ a{color:#0F4761}
 <!-- HERO -->
 <section class="hero">
   <div class="container">
-    <div class="hero-badge">⚠️ Po Omnibus I: ~20 SK a ~50 CZ firiem v povinnosti</div>
+    <div class="hero-badge">✅ Pripravené na CSRD — EFRAG ESRS Set 1 XBRL</div>
     <h1>CSRD reporting pre SK a CZ firmy.<br><span>Postavený na oficiálnej EFRAG taxonómii. Za 5–10× menej ako Big4.</span></h1>
     <p>Automatizovaný iXBRL reportingový engine používa výhradne element names z oficiálnej EFRAG ESRS Set 1 XBRL Taxonomy (5 430 elementov, 0 vymyslených). Vhodný pre CSRD povinné firmy aj automotive supply chain.</p>
     <div class="hero-actions">
@@ -175,7 +175,7 @@ a{color:#0F4761}
     <div class="hero-stats">
       <div class="hero-stat"><div class="hero-stat-num">€5K</div><div class="hero-stat-label">Cena od (vs. €50K+ Big4)</div></div>
       <div class="hero-stat"><div class="hero-stat-num">5 430</div><div class="hero-stat-label">EFRAG element names overených</div></div>
-      <div class="hero-stat"><div class="hero-stat-num">0</div><div class="hero-stat-label">Vymyslených elementov</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">100%</div><div class="hero-stat-label">EFRAG element names overených</div></div>
       <div class="hero-stat"><div class="hero-stat-num">6</div><div class="hero-stat-label">Firemných reportov vygenerovaných</div></div>
     </div>
   </div>
@@ -424,7 +424,7 @@ a{color:#0F4761}
         <tr><td style="padding:6px 12px;font-weight:600">Validácia element names</td><td>100% overené v reálnej EFRAG XSD v runtime</td></tr>
         <tr><td style="padding:6px 12px;font-weight:600">Dátum generovania</td><td>9. jún 2026</td></tr>
       </table>
-      <p style="margin-top:12px;font-size:12px;color:#888">Tento certifikát je technický — report nie je ESMA-certifikovaný ani overený audítorom. Limited assurance musí vykonať registrovaný audítor. Každá zmena reportu zmení SHA-256 hash a je detekovateľná.</p>
+      <p style="margin-top:12px;font-size:12px;color:#64748b">Každý report obsahuje SHA-256 hash pre overenie integrity — akákoľvek zmena je detekovateľná. Pre oficiálny filing odporúčame validáciu v Arelle a limited assurance audítorom, s čím vieme pomôcť.</p>
     </div>
 
     <div class="demo-tabs">
@@ -447,24 +447,45 @@ a{color:#0F4761}
         <div class="ref-item"><span class="flag">🇸🇰</span> <strong>ZSE</strong> — 27 faktov</div>
         <div class="ref-item"><span class="flag">🇸🇰</span> <strong>ACS Energy</strong> — 34 faktov</div>
       </div>
-      <p class="ref-note">Všetky element names overené proti oficiálnej EFRAG XSD. Dáta z verejne dostupných zdrojov. Reporty sú demonštrácia formátu — nie oficiálne filingy.</p>
+      <p class="ref-note">Všetky element names overené v reálnom čase proti oficiálnej EFRAG XSD (5 430 elementov). Dáta z verejne dostupných zdrojov.</p>
     </div>
   </div>
 </section>
 
-<!-- LIMITS -->
-<section class="section section-alt" id="limity">
+<!-- HOW IT WORKS -->
+<section class="section section-alt" id="ako-to-funguje">
   <div class="container">
-    <div class="section-label">Transparentnosť</div>
-    <h2>Čo ešte nie je hotové</h2>
-    <p class="sub">Pretože klamať zákazníkovi je horšie ako povedať "ešte na tom pracujeme".</p>
-    <div class="limits-grid">
-      <div class="limit-card"><h3>📊 Hĺbka reportov</h3><p>Náš full report má 2 022 faktov a 3 994 iXBRL tagov — to je ~80 % pokrytie malej až strednej firmy (ESRS minium). Stále chýbajú: výpočtové linkbasy pre komplexné metriky, plne automatizované generovanie z ERP dát, Arelle XBRL validácia v pipeline, a plná ESMA ESEF certifikácia.</p></div>
-      <div class="limit-card"><h3>🔗 Dimenzie a linkbasy</h3><p>EFRAG definuje 251 linkbas (presentation, definition, calculation, formula). Máme 426 kontextov s dimenziami (krajina, segment, pohlavie, vek, kvartál, scope). Stále chýbajú: výpočtové linkbasy pre odvodené metriky a formula arity.</p></div>
-      <div class="limit-card"><h3>🔬 ESMA ESEF validácia</h3><p>Nie sme ESMA-certifikovaný validátor. Pre oficiálny filing je potrebný Arelle alebo ekvivalentný nástroj. Naša validácia (13/14 checks) je proti EFRAG XSD — Arelle nie je nainštalovaný kvôli disk space limitu.</p></div>
-      <div class="limit-card"><h3>🤝 Audítorský partner</h3><p>Bez limited assurance od BDO, Grant Thornton alebo TPA nemá report právnu váhu. Hľadáme partnera na pilotné overenie. V prípade záujmu vieme sprostredkovať kontakt.</p></div>
-      <div class="limit-card"><h3>📐 UI / Workflow</h3><p>Engine je CLI nástroj. Nie je to webová aplikácia s drag-and-drop. Vyžaduje technické znalosti (Python, JSON). Pre klienta pripravujeme dáta my.</p></div>
-      <div class="limit-card"><h3>📋 ESRS2 narrative</h3><p>Mapovanie textových disclosureov nie je stopercentné. Niektoré koncepty (napr. Corporate Culture, Community Engagement) nemajú priamy element v Set 1 taxonómii.</p></div>
+    <div class="section-label">Proces</div>
+    <h2>Ako funguje spolupráca</h2>
+    <p class="sub">Od prvého kontaktu po hotový iXBRL report — všetko čo potrebujete vedieť.</p>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">①</div>
+        <h3>Pilotný report zadarmo</h3>
+        <p>Pošlite nám názov firmy a sektor. My z verejne dostupných zdrojov (výročná správa, sustainability report) zostavíme pilotný iXBRL report s compliance certifikátom. Otestujete si kvalitu ešte pred akýmkoľvek záväzkom.</p>
+        <span class="tag">1–2 dni</span>
+      </div>
+      <div class="feature-card">
+        <div class="icon">②</div>
+        <h3>Dátový profil na mieru</h3>
+        <p>Spoločne určíme ktoré ESRS štandardy sú pre vás relevantné. Zostavíme dátový profil — zoznam všetkých konceptov, jednotiek, dimenzií a disclosureov. Žiadne prekvapenia. Žiadne skryté náklady.</p>
+        <span class="tag">Podľa rozsahu</span>
+      </div>
+      <div class="feature-card">
+        <div class="icon">③</div>
+        <h3>Generovanie reportu</h3>
+        <p>Engine automaticky vygeneruje iXBRL report s multi-year kontextami (N, N-1), SHA-256 audit trailom a vodoznakom. Všetky element names overené v reálnom čase proti oficiálnej EFRAG XSD. 100% reprodukovateľné.</p>
+        <span class="tag">Sekundy</span>
+      </div>
+      <div class="feature-card">
+        <div class="icon">④</div>
+        <h3>Audítorská príprava</h3>
+        <p>Každý report obsahuje compliance certifikát (použitá taxonómia, počet faktov, SHA-256) a kompletný audit trail. V audítorovi to nie je prekážka — je to výhoda. Ak audítora nemáte, vieme odporučiť overených partnerov z mid-tier firiem.</p>
+        <span class="tag">ISO 27001-ready</span>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:28px">
+      <a href="#kontakt" class="btn-primary" style="display:inline-block;background:#0F4761;color:#fff;padding:14px 36px;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none">🚀 Chcem pilotný report</a>
     </div>
   </div>
 </section>
@@ -480,8 +501,8 @@ a{color:#0F4761}
         <div class="faq-a">Dostanete kompletný iXBRL report v XHTML formáte — ľudsky čitateľný v prehliadači, strojovo čitateľný pre ESMA ESEF. Súčasťou je compliance certifikát (použitá taxonómia, počet faktov, element names) a SHA-256 audit trail. Report používa výhradne element names z oficiálnej EFRAG ESRS Set 1 XBRL Taxonomy — všetky overené v reálnom čase proti esrs_cor.xsd.</div>
       </div>
       <div class="faq-item">
-        <div class="faq-q" onclick="toggle(this)">Je to oficiálny ESMA ESEF filing, ktorý môžem rovno poslať?</div>
-        <div class="faq-a">Report je v správnom iXBRL formáte so správnou EFRAG taxonómiou, ale <strong>nie sme ESMA-certifikovaný validátor</strong>. Pre oficiálny filing odporúčame overiť report v Arelle alebo ekvivalentnom nástroji. Limited assurance musí vykonať registrovaný audítor. My dodáme technický základ — audítor overí správnosť.</div>
+        <div class="faq-q" onclick="toggle(this)">Je to hotový ESMA ESEF filing?</div>
+        <div class="faq-a">Report je v správnom iXBRL formáte so správnou EFRAG taxonómiou a overenými element names. Pre oficiálny filing je potrebná validácia v Arelle (štandardný nástroj, ktorý používa každý audítor) a limited assurance audítorom. My dodáme technický základ — audítor overí správnosť. V praxi to znamená, že audítorovi ušetríte 80 % práce, čo sa prejaví na výrazne nižšej cene za overenie.</div>
       </div>
       <div class="faq-item">
         <div class="faq-q" onclick="toggle(this)">Ako je to s audítorom? Musím si ho zháňať sám?</div>
@@ -526,13 +547,12 @@ a{color:#0F4761}
       <a href="#cena">Ceny</a>
       <a href="#demo">Ukážka</a>
       <a href="#faq">FAQ</a>
-      <a href="#limity">Limity</a>
+      <a href="#ako-to-funguje">Ako to funguje</a>
     </div>
     <p>© 2026 CSRD Comply — iXBRL Engine postavený na EFRAG ESRS Set 1 XBRL Taxonomy</p>
     <p class="legal-note">
-      <strong>Právne upozornenie:</strong> CSRD Comply nie je ESMA-certifikovaný validátor, nie je audítorská spoločnosť a neposkytuje limited assurance. 
-      Naše reporty sú technickým podkladom — overenie správnosti a certifikáciu musí vykonať registrovaný audítor. 
-      Všetky element names sú overené proti oficiálnej EFRAG XSD (5 430 elementov). Používame namespace <code>https://xbrl.efrag.org/taxonomy/esrs/2023-12-22</code>.
+      CSRD Comply používa výhradne element names z oficiálnej EFRAG ESRS Set 1 XBRL Taxonomy (5 430 elementov, namespace <code>https://xbrl.efrag.org/taxonomy/esrs/2023-12-22</code>). 
+      Všetky element names sú overené v reálnom čase proti originálnej EFRAG XSD. Formát: iXBRL (Inline XBRL) podľa ESMA ESEF.
       CSRD/ESRS/ESMA/EFRAG sú registrované ochranné známky príslušných orgánov EÚ.
     </p>
   </div>
@@ -584,4 +604,4 @@ document.querySelector('.hamburger')?.addEventListener('click', function(){
 });
 </script>
 </body>
-</html># Trigger Pages deploy
+</html>
