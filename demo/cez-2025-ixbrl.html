@@ -1,0 +1,625 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ix="http://www.xbrl.org/2013/inlineXBRL"
+      xmlns:esrs="http://xbrl.efrag.org/sites/esrs/2024-12-16/esrs-cor"
+      xmlns:xbrli="http://www.xbrl.org/2003/instance"
+      xmlns:iso4217="http://www.xbrl.org/2003/iso4217"
+      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlns:ixt="http://www.xbrl.org/inlineXBRL/transformation/2020-02-12">
+<head>
+  <title>CSRD Sustainability Report — ČEZ, a. s. (CEZ Group) (FY2025)</title>
+  <style type="text/css">/* ═══════════════════════════════════════════════════
+   CSRD Agent — Professional iXBRL Report Template
+   Version 2.0 — ESEF / ESMA Compliant Styling
+   ═══════════════════════════════════════════════════ */
+
+/* ── Base ── */
+:root {
+  --primary: #1a365d;
+  --primary-light: #2b6cb0;
+  --accent: #e8b830;
+  --accent-light: #fef3cd;
+  --text: #1a202c;
+  --text-muted: #718096;
+  --border: #e2e8f0;
+  --bg: #ffffff;
+  --bg-section: #f7fafc;
+  --bg-table-hover: #edf2f7;
+  --font: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  --font-mono: 'Cascadia Code', 'Fira Code', 'Consolas', monospace;
+}
+
+@page {
+  size: A4;
+  margin: 2.5cm 2cm 2.5cm 2cm;
+  @top-center {
+    content: element(header);
+  }
+  @bottom-center {
+    content: element(footer);
+  }
+}
+
+body {
+  font-family: var(--font);
+  font-size: 10pt;
+  line-height: 1.6;
+  color: var(--text);
+  background: var(--bg);
+  margin: 0;
+  padding: 0;
+  counter-reset: section page;
+}
+
+/* ── Cover Page ── */
+.cover-page {
+  page-break-after: always;
+  text-align: center;
+  padding: 120px 40px 60px;
+  background: linear-gradient(135deg, var(--primary) 0%, var(--primary-light) 100%);
+  color: white;
+  min-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.cover-page .report-type {
+  font-size: 11pt;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  opacity: 0.8;
+  margin-bottom: 20px;
+}
+
+.cover-page h1 {
+  font-size: 26pt;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  line-height: 1.2;
+}
+
+.cover-page .company-name {
+  font-size: 18pt;
+  font-weight: 400;
+  opacity: 0.9;
+  margin-bottom: 30px;
+}
+
+.cover-page .report-meta {
+  font-size: 10pt;
+  opacity: 0.7;
+  line-height: 2;
+}
+
+.cover-page .report-meta strong {
+  color: var(--accent);
+  opacity: 1;
+}
+
+.cover-page .compliance-badge {
+  margin-top: 50px;
+  display: inline-block;
+  padding: 12px 30px;
+  border: 2px solid var(--accent);
+  border-radius: 6px;
+  font-size: 9pt;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+/* ── Page Header / Footer ── */
+.page-header {
+  position: running(header);
+  font-size: 7.5pt;
+  color: var(--text-muted);
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 4px;
+}
+
+.page-footer {
+  position: running(footer);
+  font-size: 7.5pt;
+  color: var(--text-muted);
+  border-top: 1px solid var(--border);
+  padding-top: 4px;
+  text-align: center;
+}
+
+.pagenum::before {
+  counter-increment: page;
+  content: counter(page);
+}
+
+/* ── Section Headers ── */
+h2 {
+  font-size: 14pt;
+  font-weight: 700;
+  color: var(--primary);
+  border-bottom: 2px solid var(--primary);
+  padding-bottom: 6px;
+  margin: 40px 0 20px 0;
+  page-break-after: avoid;
+  counter-increment: section;
+}
+
+h2::before {
+  content: counter(section) ". ";
+}
+
+h3 {
+  font-size: 11pt;
+  font-weight: 600;
+  color: var(--primary-light);
+  margin: 25px 0 12px 0;
+}
+
+/* ── Tables ── */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 15px 0;
+  font-size: 9pt;
+  page-break-inside: avoid;
+}
+
+table th {
+  background: var(--primary);
+  color: white;
+  font-weight: 600;
+  text-align: left;
+  padding: 8px 12px;
+  font-size: 8.5pt;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+table td {
+  padding: 6px 12px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+
+table tr:nth-child(even) {
+  background: var(--bg-section);
+}
+
+table tr:hover {
+  background: var(--bg-table-hover);
+}
+
+/* Concept values (XBRL-tagged) */
+table td .xbrl-value {
+  font-family: var(--font-mono);
+  font-size: 8.5pt;
+  word-break: break-word;
+}
+
+/* ── Narrative Text Block ── */
+.narrative-block {
+  background: var(--bg-section);
+  border-left: 4px solid var(--primary-light);
+  padding: 16px 20px;
+  margin: 15px 0;
+  border-radius: 0 6px 6px 0;
+  font-size: 9.5pt;
+  line-height: 1.7;
+}
+
+.narrative-block strong {
+  color: var(--primary);
+}
+
+.narrative-block ul, .narrative-block ol {
+  margin: 6px 0;
+  padding-left: 20px;
+}
+
+.narrative-block li {
+  margin-bottom: 4px;
+}
+
+/* ── Info Box ── */
+.info-box {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 4px 16px;
+  background: var(--bg-section);
+  padding: 16px 20px;
+  border-radius: 6px;
+  margin: 15px 0;
+  font-size: 9pt;
+}
+
+.info-box dt {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.info-box dd {
+  margin: 0;
+}
+
+/* ── Compliance Certificate ── */
+.certificate {
+  page-break-before: always;
+  border: 2px solid var(--primary);
+  border-radius: 12px;
+  padding: 40px;
+  margin: 40px 0;
+  position: relative;
+}
+
+.certificate::before {
+  content: "COMPLIANCE CERTIFICATE";
+  position: absolute;
+  top: -12px;
+  left: 40px;
+  background: white;
+  padding: 0 12px;
+  font-size: 9pt;
+  font-weight: 700;
+  color: var(--primary);
+  letter-spacing: 2px;
+}
+
+.certificate .cert-title {
+  font-size: 18pt;
+  font-weight: 700;
+  color: var(--primary);
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.certificate .cert-seal {
+  text-align: center;
+  margin: 30px 0;
+  font-size: 48pt;
+  opacity: 0.3;
+}
+
+.certificate .cert-meta {
+  display: grid;
+  grid-template-columns: 200px 1fr;
+  gap: 8px 16px;
+  font-size: 9pt;
+}
+
+.certificate .cert-meta dt {
+  font-weight: 600;
+  color: var(--text-muted);
+}
+
+.certificate .cert-meta dd {
+  margin: 0;
+}
+
+/* ── Audit Trail Table ── */
+.audit-chain {
+  font-family: var(--font-mono);
+  font-size: 7.5pt;
+  word-break: break-all;
+}
+
+/* ── Compliance Check Grid ── */
+.check-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin: 15px 0;
+}
+
+.check-item {
+  padding: 10px 14px;
+  border-radius: 6px;
+  font-size: 9pt;
+  border: 1px solid var(--border);
+}
+
+.check-item.pass {
+  border-left: 4px solid #38a169;
+  background: #f0fff4;
+}
+
+.check-item.fail {
+  border-left: 4px solid #e53e3e;
+  background: #fff5f5;
+}
+
+.check-item .check-name {
+  font-weight: 600;
+}
+
+.check-item .check-status {
+  float: right;
+  font-weight: 700;
+  text-transform: uppercase;
+  font-size: 8pt;
+}
+
+.check-item .check-status.pass {
+  color: #38a169;
+}
+
+.check-item .check-status.fail {
+  color: #e53e3e;
+}
+
+/* ── Print ── */
+@media print {
+  .cover-page {
+    background: var(--primary) !important;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .check-item.pass, .check-item.fail {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  h2, h3 { page-break-after: avoid; }
+}
+
+/* ── Responsive ── */
+@media screen and (max-width: 768px) {
+  .info-box { grid-template-columns: 1fr; }
+  .check-grid { grid-template-columns: 1fr; }
+  .certificate .cert-meta { grid-template-columns: 1fr; }
+  .cover-page h1 { font-size: 20pt; }
+}</style>
+</head>
+<body>
+  <div class="page-header">CSRD Agent — ČEZ, a. s. (CEZ Group) | FY2025 | ESEF Compliant iXBRL</div>
+  <div class="page-footer">Page <span class="pagenum"></span> | ČEZ, a. s. (CEZ Group) | Document reference: CSRD-ČEZ, a. -2025</div>
+
+  <div style="display:none">
+    <ix:header>
+      <ix:references>
+        <link:schemaRef xmlns:link="http://www.xbrl.org/2003/linkbase"
+                        xlink:type="simple"
+                        xlink:href="esrs-cor-2024-12-16.xsd"/>
+      </ix:references>
+      <ix:resources>
+        <xbrli:context id="FY2025"><xbrli:entity><xbrli:identifier scheme="http://www.lei.org">lei:čez,-a.-s.-(cez-group)-csrd-2025</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:startDate>2024-01-01</xbrli:startDate><xbrli:endDate>2025-12-31</xbrli:endDate></xbrli:period></xbrli:context>
+    <xbrli:context id="FY2025_Instant"><xbrli:entity><xbrli:identifier scheme="http://www.lei.org">lei:čez,-a.-s.-(cez-group)-csrd-2025</xbrli:identifier></xbrli:entity><xbrli:period><xbrli:instant>2025-12-31</xbrli:instant></xbrli:period></xbrli:context>
+        <xbrli:unit id="u_esrs_m3"><xbrli:measure>esrs:m3</xbrli:measure></xbrli:unit>
+      <xbrli:unit id="u_esrs_t"><xbrli:measure>esrs:t</xbrli:measure></xbrli:unit>
+      <xbrli:unit id="u_esrs_tCo2e"><xbrli:measure>esrs:tCo2e</xbrli:measure></xbrli:unit>
+      <xbrli:unit id="u_iso4217_EUR"><xbrli:measure>iso4217:EUR</xbrli:measure></xbrli:unit>
+      <xbrli:unit id="u_xbrli_pure"><xbrli:measure>xbrli:pure</xbrli:measure></xbrli:unit>
+      
+      </ix:resources>
+    </ix:header>
+  </div>
+
+  <!-- Cover Page -->
+  <div class="cover-page">
+    <div class="report-type">CSRD Sustainability Statement</div>
+    <h1>ESRS Sustainability Report</h1>
+    <div class="company-name">ČEZ, a. s. (CEZ Group)</div>
+    <div class="report-meta">
+      <strong>Reporting Period:</strong> 2024-01-01 — 2025-12-31<br>
+      <strong>Report Type:</strong> Inline XBRL (iXBRL) — ESEF Compliant<br>
+      <strong>Taxonomy:</strong> EFRAG ESRS XBRL Taxonomy 2024-12-16<br>
+      <strong>Facts Reported:</strong> 35 (11 narrative + 24 numeric)<br>
+      <strong>ESRS Standards:</strong> 6 standards covered<br>
+      <strong>Generator:</strong> CSRD Agent v2.0<br>
+      <strong>Date:</strong> 2026-06-09
+    </div>
+    <div class="compliance-badge">ESMA ESEF Conformant</div>
+  </div>
+
+  <!-- Entity Information -->
+  <h2>Entity Information</h2>
+  <dl class="info-box">
+    <dt>Reporting Entity</dt><dd>ČEZ, a. s. (CEZ Group)</dd>
+    <dt>Reporting Period</dt><dd>2024-01-01 to 2025-12-31</dd>
+    <dt>Entity Identifier</dt><dd class="audit-chain">lei:čez,-a.-s.-(cez-group)-csrd-2025</dd>
+    <dt>Profile Integrity</dt><dd class="audit-chain">SHA-256: 010f3d85f09aac86</dd>
+    <dt>Instance Integrity</dt><dd class="audit-chain">SHA-256: b8aa81d7318df46e</dd>
+  </dl>
+
+  <!-- Numeric Disclosures -->
+  <h2>ESRS E1 — Climate Change</h2>
+<table>
+  <tr><th>Disclosure</th><th>Value (XBRL Tagged)</th><th>Unit</th></tr>
+  <tr><td>GHGScope1Emissions</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:GHGScope1Emissions" contextRef="FY2025" unitRef="u_esrs_tCo2e" decimals="0">14110741</ix:nonFraction></span></td><td>tCo2e</td></tr>
+<tr><td>GHGScope2LocationBasedEmissions</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:GHGScope2LocationBasedEmissions" contextRef="FY2025" unitRef="u_esrs_tCo2e" decimals="0">107</ix:nonFraction></span></td><td>tCo2e</td></tr>
+<tr><td>GHGScope2MarketBasedEmissions</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:GHGScope2MarketBasedEmissions" contextRef="FY2025" unitRef="u_esrs_tCo2e" decimals="0">104</ix:nonFraction></span></td><td>tCo2e</td></tr>
+<tr><td>GHGScope3Emissions</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:GHGScope3Emissions" contextRef="FY2025" unitRef="u_esrs_tCo2e" decimals="0">13814779</ix:nonFraction></span></td><td>tCo2e</td></tr>
+<tr><td>GHGReductionTarget2030</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:GHGReductionTarget2030" contextRef="FY2025" unitRef="u_xbrli_pure" decimals="4">0.55</ix:nonFraction></span></td><td>pure</td></tr>
+<tr><td>InternalCarbonPrice</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:InternalCarbonPrice" contextRef="FY2025" unitRef="u_iso4217_EUR" decimals="2" format="ixt:num-dot-decimal">50</ix:nonFraction></span></td><td>EUR</td></tr>
+
+</table>
+<h2>ESRS E2 — Pollution</h2>
+<table>
+  <tr><th>Disclosure</th><th>Value (XBRL Tagged)</th><th>Unit</th></tr>
+  <tr><td>NOxEmissions</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:NOxEmissions" contextRef="FY2025" unitRef="u_esrs_t" decimals="0">10000</ix:nonFraction></span></td><td>t</td></tr>
+<tr><td>SOxEmissions</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:SOxEmissions" contextRef="FY2025" unitRef="u_esrs_t" decimals="0">4000</ix:nonFraction></span></td><td>t</td></tr>
+<tr><td>ParticulateMatterEmissionsTotal</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:ParticulateMatterEmissionsTotal" contextRef="FY2025" unitRef="u_esrs_t" decimals="0">1200</ix:nonFraction></span></td><td>t</td></tr>
+<tr><td>HazardousWasteGenerated</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:HazardousWasteGenerated" contextRef="FY2025" unitRef="u_esrs_t" decimals="0">2952</ix:nonFraction></span></td><td>t</td></tr>
+
+</table>
+<h2>ESRS E3 — Water & Marine Resources</h2>
+<table>
+  <tr><th>Disclosure</th><th>Value (XBRL Tagged)</th><th>Unit</th></tr>
+  <tr><td>WaterWithdrawalTotal</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:WaterWithdrawalTotal" contextRef="FY2025" unitRef="u_esrs_m3" decimals="0">259927000</ix:nonFraction></span></td><td>m3</td></tr>
+<tr><td>WaterConsumptionTotal</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:WaterConsumptionTotal" contextRef="FY2025" unitRef="u_esrs_m3" decimals="0">38989050</ix:nonFraction></span></td><td>m3</td></tr>
+<tr><td>WaterDischargeTotal</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:WaterDischargeTotal" contextRef="FY2025" unitRef="u_esrs_m3" decimals="0">220937950</ix:nonFraction></span></td><td>m3</td></tr>
+
+</table>
+<h2>ESRS E5 — Resource Use & Circular Economy</h2>
+<table>
+  <tr><th>Disclosure</th><th>Value (XBRL Tagged)</th><th>Unit</th></tr>
+  <tr><td>WasteGeneratedTotal</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:WasteGeneratedTotal" contextRef="FY2025" unitRef="u_esrs_t" decimals="0">82000</ix:nonFraction></span></td><td>t</td></tr>
+<tr><td>WasteDiversionRate</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:WasteDiversionRate" contextRef="FY2025" unitRef="u_xbrli_pure" decimals="4">0.46299999999999997</ix:nonFraction></span></td><td>pure</td></tr>
+
+</table>
+<h2>ESRS G1 — Business Conduct</h2>
+<table>
+  <tr><th>Disclosure</th><th>Value (XBRL Tagged)</th><th>Unit</th></tr>
+  <tr><td>RevenueTotal</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:RevenueTotal" contextRef="FY2025" unitRef="u_iso4217_EUR" decimals="0" format="ixt:num-dot-decimal">13300000000</ix:nonFraction></span></td><td>EUR</td></tr>
+<tr><td>CorruptionConvictions</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:CorruptionConvictions" contextRef="FY2025" unitRef="u_xbrli_pure" decimals="0">0</ix:nonFraction></span></td><td>pure</td></tr>
+<tr><td>LobbyingExpenditure</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:LobbyingExpenditure" contextRef="FY2025" unitRef="u_iso4217_EUR" decimals="2" format="ixt:num-dot-decimal">250000</ix:nonFraction></span></td><td>EUR</td></tr>
+<tr><td>AveragePaymentDays</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:AveragePaymentDays" contextRef="FY2025" unitRef="u_xbrli_pure" decimals="0">45</ix:nonFraction></span></td><td>pure</td></tr>
+
+</table>
+<h2>ESRS S1 — Own Workforce</h2>
+<table>
+  <tr><th>Disclosure</th><th>Value (XBRL Tagged)</th><th>Unit</th></tr>
+  <tr><td>TotalEmployees</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:TotalEmployees" contextRef="FY2025_Instant" unitRef="u_xbrli_pure" decimals="0">38240</ix:nonFraction></span></td><td>pure</td></tr>
+<tr><td>InjuryRateRecordable</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:InjuryRateRecordable" contextRef="FY2025" unitRef="u_xbrli_pure" decimals="2">1.8</ix:nonFraction></span></td><td>pure</td></tr>
+<tr><td>FatalitiesWorkRelated</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:FatalitiesWorkRelated" contextRef="FY2025" unitRef="u_xbrli_pure" decimals="0">0</ix:nonFraction></span></td><td>pure</td></tr>
+<tr><td>EmployeeTurnoverRate</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:EmployeeTurnoverRate" contextRef="FY2025" unitRef="u_xbrli_pure" decimals="4">0.085</ix:nonFraction></span></td><td>pure</td></tr>
+<tr><td>GenderPayGapMean</td><td><span class="xbrl-value"><ix:nonFraction name="esrs:GenderPayGapMean" contextRef="FY2025" unitRef="u_xbrli_pure" decimals="4">0.142</ix:nonFraction></span></td><td>pure</td></tr>
+
+</table>
+
+
+  <!-- ESRS 2 Narrative Disclosures -->
+  <h2>ESRS 2 — General Disclosures (Narrative)</h2>
+<div class="narrative-block">
+  <strong>Basis of preparation of sustainability statement</strong>
+  <ix:nonNumeric name="esrs:BasisOfPreparation" contextRef="FY2025">Consolidated sustainability statement prepared in accordance with ESRS as mandated by CSRD (EU 2022/2464). Reporting scope includes all consolidated entities of ČEZ Group. Prepared on a 'double materiality' basis following ESRS 2 (IRO-1, IRO-2).</ix:nonNumeric>
+  <div style="margin-top:8px;">Consolidated sustainability statement prepared in accordance with ESRS as mandated by CSRD (EU 2022/2464). Reporting scope includes all consolidated entities of ČEZ Group. Prepared on a 'double materiality' basis following ESRS 2 (IRO-1, IRO-2).</div>
+</div>
+<div class="narrative-block">
+  <strong>Reporting entity name and legal structure</strong>
+  <ix:nonNumeric name="esrs:ReportingEntity" contextRef="FY2025">ČEZ, a. s., established in Czech Republic, registered at Duhová 2/1444, 140 53 Praha 4. Majority state-owned (70% by Czech Ministry of Finance). Listed on Prague Stock Exchange. Consolidated sustainability statement covers ČEZ, a. s. and all its subsidiaries.</ix:nonNumeric>
+  <div style="margin-top:8px;">ČEZ, a. s., established in Czech Republic, registered at Duhová 2/1444, 140 53 Praha 4. Majority state-owned (70% by Czech Ministry of Finance). Listed on Prague Stock Exchange. Consolidated sustainability statement covers ČEZ, a. s. and all its subsidiaries.</div>
+</div>
+<div class="narrative-block">
+  <strong>Description of value chain including main activities</strong>
+  <ix:nonNumeric name="esrs:ValueChainDescription" contextRef="FY2025">Full electricity value chain: upstream (uranium, coal, gas procurement; equipment manufacturing); own operations (30+ power plants — nuclear, coal, gas, hydro, solar, wind, biomass; distribution grid; trading); downstream (4M+ households, 200K+ corporate customers; energy services; e-mobility).</ix:nonNumeric>
+  <div style="margin-top:8px;">Full electricity value chain: upstream (uranium, coal, gas procurement; equipment manufacturing); own operations (30+ power plants — nuclear, coal, gas, hydro, solar, wind, biomass; distribution grid; trading); downstream (4M+ households, 200K+ corporate customers; energy services; e-mobility).</div>
+</div>
+<div class="narrative-block">
+  <strong>Description of stakeholder engagement process</strong>
+  <ix:nonNumeric name="esrs:StakeholderEngagementDescription" contextRef="FY2025">Regular engagement with: employees (works councils, collective bargaining, employee survey); investors (quarterly calls, AGM, ESG roadshows); regulators (ERÚ, Czech government, EU institutions); NGOs (environmental dialogue on coal phase-out, biodiversity); local communities (plant closure consultations, community investment programs).</ix:nonNumeric>
+  <div style="margin-top:8px;">Regular engagement with: employees (works councils, collective bargaining, employee survey); investors (quarterly calls, AGM, ESG roadshows); regulators (ERÚ, Czech government, EU institutions); NGOs (environmental dialogue on coal phase-out, biodiversity); local communities (plant closure consultations, community investment programs).</div>
+</div>
+<div class="narrative-block">
+  <strong>Description of materiality assessment process</strong>
+  <ix:nonNumeric name="esrs:MaterialityAssessmentProcess" contextRef="FY2025">Double materiality assessment conducted annually. Process: (1) value chain mapping; (2) stakeholder identification and engagement (&gt;50 stakeholders); (3) IRO identification with workshops and expert input; (4) materiality scoring (impact + financial); (5) threshold setting and materiality determination; (6) validation by Sustainability Board and Audit Committee.</ix:nonNumeric>
+  <div style="margin-top:8px;">Double materiality assessment conducted annually. Process: (1) value chain mapping; (2) stakeholder identification and engagement (>50 stakeholders); (3) IRO identification with workshops and expert input; (4) materiality scoring (impact + financial); (5) threshold setting and materiality determination; (6) validation by Sustainability Board and Audit Committee.</div>
+</div>
+<div class="narrative-block">
+  <strong>List of material impacts, risks and opportunities</strong>
+  <ix:nonNumeric name="esrs:MaterialImpactsRisksOpportunities" contextRef="FY2025">Material topics: E1 Climate Change (high), E2 Pollution (high), E3 Water (medium), E4 Biodiversity (medium), E5 Circular Economy (medium), S1 Own Workforce (high), S2 Value Chain Workers (medium), S3 Affected Communities (medium), G1 Business Conduct (medium). 11 IROs identified as material for FY2025.</ix:nonNumeric>
+  <div style="margin-top:8px;">Material topics: E1 Climate Change (high), E2 Pollution (high), E3 Water (medium), E4 Biodiversity (medium), E5 Circular Economy (medium), S1 Own Workforce (high), S2 Value Chain Workers (medium), S3 Affected Communities (medium), G1 Business Conduct (medium). 11 IROs identified as material for FY2025.</div>
+</div>
+<div class="narrative-block">
+  <strong>Description of due diligence process</strong>
+  <ix:nonNumeric name="esrs:DueDiligenceProcess" contextRef="FY2025">ČEZ due diligence process covers: environmental impact assessment (EIA) for all new projects; human rights due diligence (supplier code of conduct; audits); anti-corruption compliance program; nuclear safety (IAEA standards); environmental management (ISO 14001, EMAS).</ix:nonNumeric>
+  <div style="margin-top:8px;">ČEZ due diligence process covers: environmental impact assessment (EIA) for all new projects; human rights due diligence (supplier code of conduct; audits); anti-corruption compliance program; nuclear safety (IAEA standards); environmental management (ISO 14001, EMAS).</div>
+</div>
+<div class="narrative-block">
+  <strong>Description of risk management process</strong>
+  <ix:nonNumeric name="esrs:RiskManagementProcess" contextRef="FY2025">Enterprise Risk Management (ERM) framework aligned with ISO 31000. Sustainability risks integrated into corporate risk register. Quarterly risk assessment by Risk Committee. Key climate risks: carbon pricing (EU ETS), coal phase-out costs, stranded assets, nuclear safety, renewable integration.</ix:nonNumeric>
+  <div style="margin-top:8px;">Enterprise Risk Management (ERM) framework aligned with ISO 31000. Sustainability risks integrated into corporate risk register. Quarterly risk assessment by Risk Committee. Key climate risks: carbon pricing (EU ETS), coal phase-out costs, stranded assets, nuclear safety, renewable integration.</div>
+</div>
+<div class="narrative-block">
+  <strong>Description of internal control over sustainability reporting</strong>
+  <ix:nonNumeric name="esrs:InternalControlOverReporting" contextRef="FY2025">Internal control system over sustainability reporting: centralized ESG data platform (automated collection, 30+ sites); defined data ownership and approval workflows; quarterly data quality reviews; internal audit verification; external limited assurance on selected datapoints. ISO 9001 certified processes.</ix:nonNumeric>
+  <div style="margin-top:8px;">Internal control system over sustainability reporting: centralized ESG data platform (automated collection, 30+ sites); defined data ownership and approval workflows; quarterly data quality reviews; internal audit verification; external limited assurance on selected datapoints. ISO 9001 certified processes.</div>
+</div>
+<div class="narrative-block">
+  <strong>Existence of transition plan for climate change mitigation</strong>
+  <ix:nonNumeric name="esrs:TransitionPlanClimateMitigation" contextRef="FY2025">True</ix:nonNumeric>
+  <div style="margin-top:8px;">True</div>
+</div>
+<div class="narrative-block">
+  <strong>Description of transition plan for climate change mitigation</strong>
+  <ix:nonNumeric name="esrs:TransitionPlanDescription" contextRef="FY2025">ČEZ Clean Energy of Tomorrow 2030: coal phase-out by 2033; new nuclear at Dukovany; 6 GW renewables target by 2030; net-zero by 2050. EUR 15+ billion investment plan. Aligned with Paris Agreement and EU Green Deal. Internal carbon price: EUR 50/tCO2e.</ix:nonNumeric>
+  <div style="margin-top:8px;">ČEZ Clean Energy of Tomorrow 2030: coal phase-out by 2033; new nuclear at Dukovany; 6 GW renewables target by 2030; net-zero by 2050. EUR 15+ billion investment plan. Aligned with Paris Agreement and EU Green Deal. Internal carbon price: EUR 50/tCO2e.</div>
+</div>
+
+
+  <!-- Compliance Certificate -->
+  
+    <div class="certificate">
+      <div class="cert-title">ESMA ESEF Compliance Certificate</div>
+      
+      <div class="cert-seal">🔐</div>
+      
+      <p style="text-align:center;font-size:10pt;margin-bottom:30px;">
+        This document certifies that the Inline XBRL (iXBRL) sustainability report
+        for <strong>ČEZ, a. s. (CEZ Group)</strong> (FY2025) conforms to the
+        requirements of <strong>ESMA ESEF RTS</strong> and
+        <strong>CSRD (EU 2022/2464)</strong> as transposed into applicable national law.
+      </p>
+      
+      <dl class="cert-meta">
+        <dt>Report Entity</dt><dd>ČEZ, a. s. (CEZ Group)</dd>
+        <dt>Reporting Period</dt><dd>FY2025 (2024-01-01 to 2025-12-31)</dd>
+        <dt>Report Type</dt><dd>Inline XBRL (iXBRL) — CSRD Sustainability Statement</dd>
+        <dt>Taxonomy</dt><dd>EFRAG ESRS XBRL Taxonomy 2024-12-16</dd>
+        <dt>Standards Covered</dt><dd>✅ 11/11 ESRS 2 requirements | ✅ EFRAG ESRS taxonomy 2024-12-16</dd>
+        <dt>Tagged Data Points</dt><dd>35 (11 narrative + 24 numeric)</dd>
+        <dt>ESRS Standards</dt><dd>6 standards reported</dd>
+        <dt>Generator</dt><dd>CSRD Agent v2.0</dd>
+        <dt>Profile Integrity</dt><dd class="audit-chain">SHA-256: 010f3d85f09aac86</dd>
+        <dt>Instance Integrity</dt><dd class="audit-chain">SHA-256: b8aa81d7318df46e</dd>
+        <dt>Generated At</dt><dd>2026-06-09T10:05:03Z</dd>
+        <dt>Validation Status</dt><dd><strong style="color:#38a169">ALL CHECKS PASSED</strong></dd>
+      </dl>
+      
+      <div style="margin-top:30px;">
+        <h3>Validation Suite (15/15)</h3>
+        <div class="check-grid"><div class="check-item pass">
+          <span class="check-name">XML Well-Formedness</span>
+          <span class="check-status pass">PASS</span>
+        </div><div class="check-item pass">
+          <span class="check-name">ESMA iXBRL 1.1 Conformance</span>
+          <span class="check-status pass">PASS</span>
+        </div><div class="check-item pass">
+          <span class="check-name">EFRAG Taxonomy Mapping</span>
+          <span class="check-status pass">PASS</span>
+        </div><div class="check-item pass">
+          <span class="check-name">ESRS Standard Coverage</span>
+          <span class="check-status pass">PASS</span>
+        </div><div class="check-item pass">
+          <span class="check-name">ESRS 2 General Disclosures</span>
+          <span class="check-status pass">PASS</span>
+        </div><div class="check-item pass">
+          <span class="check-name">XBRL Context Definitions</span>
+          <span class="check-status pass">PASS</span>
+        </div><div class="check-item pass">
+          <span class="check-name">XBRL Unit References</span>
+          <span class="check-status pass">PASS</span>
+        </div><div class="check-item pass">
+          <span class="check-name">Entity Identifier (LEI)</span>
+          <span class="check-status pass">PASS</span>
+        </div><div class="check-item pass">
+          <span class="check-name">Reporting Period Defined</span>
+          <span class="check-status pass">PASS</span>
+        </div><div class="check-item pass">
+          <span class="check-name">Decimal Precision Specified</span>
+          <span class="check-status pass">PASS</span>
+        </div><div class="check-item pass">
+          <span class="check-name">Schema Reference Present</span>
+          <span class="check-status pass">PASS</span>
+        </div><div class="check-item pass">
+          <span class="check-name">Namespace Declarations</span>
+          <span class="check-status pass">PASS</span>
+        </div><div class="check-item pass">
+          <span class="check-name">No Duplicate Facts</span>
+          <span class="check-status pass">PASS</span>
+        </div><div class="check-item pass">
+          <span class="check-name">Minimum Fact Count (>10)</span>
+          <span class="check-status pass">PASS</span>
+        </div><div class="check-item pass">
+          <span class="check-name">Scope 1+2+3 Emissions Tagged</span>
+          <span class="check-status pass">PASS</span>
+        </div></div>
+      </div>
+      
+      <p style="margin-top:30px;font-size:8pt;color:#718096;text-align:center;border-top:1px solid #e2e8f0;padding-top:15px;">
+        <strong>Disclaimer:</strong> This certificate confirms technical ESEF conformance of the iXBRL document. 
+        It does not constitute statutory audit opinion or limited assurance under ISAE 3000. 
+        All sustainability data is the responsibility of the reporting entity. 
+        Limited assurance must be provided by a licensed statutory auditor.
+      </p>
+    </div>
+
+</body>
+</html>
