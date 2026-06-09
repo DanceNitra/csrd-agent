@@ -11,7 +11,7 @@
     2024,
     2023
   ],
-  "generated_at": "2026-06-09T20:31:08.765738",
+  "generated_at": "2026-06-09T20:36:09.383969",
   "taxonomy": {
     "namespace": "https://xbrl.efrag.org/taxonomy/esrs/2023-12-22",
     "schema": "https://xbrl.efrag.org/taxonomy/esrs/2023-12-22/esrs_all.xsd"
@@ -276,5 +276,5 @@
     "WasteGeneratedDirectedToDisposal",
     "WasteGeneratedDivertedFromDisposal"
   ],
-  "sha256": "92eb1b2b9e5189f4255c253fc68d6b49769d9baabd4401632900f1412975b59d"
+  "sha256": "887c3257da1b2425ea267ba22bbbb98171e800aaa1fa2e6926df51fb949d1277"
 }
