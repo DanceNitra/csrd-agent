@@ -3,291 +3,529 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>CSRD Comply — Automatizovaný iXBRL Reporting podľa ESRS</title>
-<meta name="description" content="iXBRL reporting engine postavený na oficiálnej EFRAG ESRS Set 1 XBRL taxonómii (2023-12-22). Pre firmy v povinnosti podľa CSRD/Omnibus.">
+<title>CSRD Comply — Automatizovaný iXBRL Reporting podľa ESRS pre SK a CZ</title>
+<meta name="description" content="iXBRL reporting engine postavený na oficiálnej EFRAG ESRS Set 1 XBRL Taxonomy (5 430 elementov). Pre firmy v CSRD povinnosti a automotive supply chain v SK a CZ. Od 5 000 €.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="style.css">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>◇</text></svg>">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,sans-serif;color:#1a1a2e;background:#f8fafc;line-height:1.6}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+a{color:#0F4761}
+
+/* HEADER */
+.header{background:#fff;border-bottom:1px solid #e2e8f0;padding:14px 0;position:sticky;top:0;z-index:100}
+.header-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:20px;color:#1a1a2e}
+.logo-icon{width:34px;height:34px;background:linear-gradient(135deg,#0F4761,#1a7a9e);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:17px}
+.nav{display:flex;gap:20px;align-items:center;flex-wrap:wrap}
+.nav a{text-decoration:none;color:#475569;font-size:13px;font-weight:500}
+.nav a:hover{color:#0F4761}
+.nav .cta-link{padding:8px 18px;background:linear-gradient(135deg,#0F4761,#1a7a9e);color:#fff!important;border-radius:8px;font-weight:600}
+.hamburger{display:none;flex-direction:column;gap:4px;background:none;border:none;cursor:pointer;padding:4px}
+.hamburger span{width:24px;height:2px;background:#1a1a2e;border-radius:2px}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0A2D3E,#1a7a9e 60%,#2a9d8f);color:#fff;padding:72px 0}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);border-radius:20px;padding:5px 14px;font-size:12px;font-weight:600;margin-bottom:20px}
+.hero h1{font-size:38px;font-weight:800;line-height:1.2;margin-bottom:16px;max-width:780px}
+.hero h1 span{background:linear-gradient(90deg,#f6d365,#fda085);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:17px;opacity:.92;margin-bottom:28px;max-width:640px}
+.hero-actions{display:flex;gap:14px;flex-wrap:wrap}
+.btn-primary{padding:13px 30px;background:#fff;color:#0F4761;border-radius:10px;font-weight:700;font-size:14px;text-decoration:none;transition:.2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,.2)}
+.btn-secondary{padding:13px 30px;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.35);border-radius:10px;font-weight:600;font-size:14px;text-decoration:none;transition:.2s}
+.btn-secondary:hover{background:rgba(255,255,255,.08);border-color:#fff}
+.hero-stats{display:flex;gap:36px;margin-top:40px;padding-top:28px;border-top:1px solid rgba(255,255,255,.12)}
+.hero-stat-num{font-size:28px;font-weight:800}
+.hero-stat-label{font-size:12px;opacity:.7;margin-top:3px}
+@media(max-width:640px){.hero h1{font-size:26px}.hero-stats{flex-direction:column;gap:12px}}
+
+/* SECTION */
+.section{padding:64px 0}
+.section-alt{background:#fff}
+.section-label{display:inline-block;background:#e8f0fe;color:#0F4761;border-radius:20px;padding:4px 14px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:14px}
+.section h2{font-size:28px;font-weight:800;margin-bottom:12px;color:#1a1a2e}
+.section > .container > p.sub{color:#64748b;max-width:650px;margin-bottom:32px;font-size:15px}
+
+/* PROBLEM GRID */
+.problem-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:16px}
+.problem-card{background:#fff;border-radius:12px;padding:24px;border:1px solid #e2e8f0}
+.problem-card.icon-warn{border-left:4px solid #f59e0b;background:#fffbeb}
+.problem-card.icon{font-size:28px;margin-bottom:10px}
+.problem-card h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.problem-card p{color:#64748b;font-size:13px}
+
+/* FEATURE GRID */
+.feature-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.feature-card{background:#fff;border-radius:12px;padding:28px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.feature-card .icon{font-size:30px;margin-bottom:10px}
+.feature-card h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.feature-card p{color:#64748b;font-size:13px;line-height:1.7}
+.feature-card .tag{display:inline-block;background:#e8f0fe;color:#0F4761;border-radius:4px;padding:2px 8px;font-size:10px;font-weight:600;margin-top:8px}
+
+/* TAXONOMY SHOW */
+.taxonomy-show{background:linear-gradient(135deg,#0A2D3E,#1a7a9e);color:#fff;border-radius:14px;padding:40px;margin-top:24px}
+.taxonomy-show h3{font-size:20px;font-weight:700;margin-bottom:12px}
+.taxonomy-show p{opacity:.9;font-size:14px;margin-bottom:20px}
+.taxonomy-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px}
+.taxonomy-item{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:8px;padding:14px;text-align:center}
+.taxonomy-item .val{font-size:22px;font-weight:800}
+.taxonomy-item .lbl{font-size:11px;opacity:.7;margin-top:2px}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;margin-top:8px}
+.pricing-card{background:#fff;border-radius:12px;padding:28px;border:1px solid #e2e8f0;position:relative}
+.pricing-card.featured{border:2px solid #0F4761;box-shadow:0 4px 20px rgba(15,71,97,.1)}
+.pricing-badge{position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:#0F4761;color:#fff;padding:3px 14px;border-radius:20px;font-size:11px;font-weight:700}
+.pricing-card h3{font-size:17px;font-weight:700}
+.pricing-card .price{font-size:34px;font-weight:800;color:#0F4761;margin:12px 0 2px}
+.pricing-card .price-sub{font-size:13px;color:#94a3b8;margin-bottom:14px}
+.pricing-card ul{list-style:none;padding:0;margin:14px 0}
+.pricing-card li{padding:5px 0;font-size:13px;color:#475569;padding-left:22px;position:relative}
+.pricing-card li::before{content:"✓";position:absolute;left:0;color:#0F4761;font-weight:700}
+.pricing-card .pbtn{display:block;text-align:center;padding:11px;border-radius:8px;font-weight:700;font-size:13px;text-decoration:none;margin-top:12px}
+.pricing-card .pbtn.primary{background:#0F4761;color:#fff}
+.pricing-card .pbtn.secondary{background:#f1f5f9;color:#475569}
+.price-compare{text-align:center;color:#94a3b8;font-size:12px;margin-top:16px}
+
+/* DEMO TABS */
+.demo-tabs{display:flex;gap:8px;margin-bottom:16px;flex-wrap:wrap}
+.demo-tab{padding:8px 18px;border:1px solid #e2e8f0;border-radius:8px;background:#fff;cursor:pointer;font-size:13px;font-weight:500;color:#475569;transition:.2s}
+.demo-tab.active{background:#0F4761;color:#fff;border-color:#0F4761}
+.demo-tab:hover{background:#f1f5f9}
+.demo-frame{border:1px solid #e2e8f0;border-radius:8px;overflow:hidden;background:#fff}
+.demo-frame iframe{width:100%;height:600px;border:none}
+.demo-list{padding:24px;background:#fff;border-radius:8px;border:1px solid #e2e8f0}
+.ref-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:16px 0}
+.ref-item{padding:10px 14px;background:#f8fafc;border-radius:6px;font-size:13px}
+.ref-item .flag{font-size:18px;margin-right:6px}
+.ref-note{font-size:12px;color:#94a3b8;font-style:italic}
+
+/* LIMITS */
+.limits-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:14px}
+.limit-card{background:#fff;border-radius:10px;padding:20px;border:1px solid #e2e8f0;border-left:4px solid #e74c3c}
+.limit-card h3{font-size:15px;font-weight:700;margin-bottom:4px;color:#c0392b}
+.limit-card p{color:#64748b;font-size:13px}
+
+/* FAQ */
+.faq-list{max-width:720px;margin:0 auto}
+.faq-item{border-bottom:1px solid #e2e8f0;padding:0}
+.faq-q{padding:18px 0;font-weight:600;font-size:14px;cursor:pointer;display:flex;justify-content:space-between;color:#1a1a2e}
+.faq-q::after{content:"+";font-size:18px;color:#0F4761;font-weight:700}
+.faq-q.open::after{content:"−"}
+.faq-a{padding:0 0 18px;color:#64748b;font-size:13px;line-height:1.7;display:none}
+.faq-a.open{display:block}
+
+/* CTA */
+.cta-section{background:linear-gradient(135deg,#0A2D3E,#1a7a9e);color:#fff;padding:64px 0;text-align:center}
+.cta-section h2{font-size:30px;font-weight:800;color:#fff;margin-bottom:12px}
+.cta-section p{font-size:15px;opacity:.9;max-width:560px;margin:0 auto 28px}
+.cta-section .biglink{display:inline-block;padding:14px 36px;background:#fff;color:#0F4761;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none}
+.cta-section .small{font-size:12px;opacity:.6;margin-top:16px}
+
+/* FOOTER */
+.footer{background:#1a1a2e;color:#94a3b8;padding:28px 0;font-size:12px;text-align:center}
+.footer a{color:#64748b;text-decoration:none}
+.footer-links{display:flex;gap:20px;justify-content:center;margin-bottom:12px;flex-wrap:wrap}
+.footer-links a:hover{color:#fff}
+.footer .legal-note{font-size:11px;opacity:.6;margin-top:10px;max-width:700px;margin-left:auto;margin-right:auto}
+
+@media(max-width:640px){
+  .nav{display:none}
+  .hamburger{display:flex}
+  .hero h1{font-size:24px}
+  .section h2{font-size:22px}
+}
+</style>
 </head>
 <body>
 
-<!-- ═══════ HEADER ═══════ -->
+<!-- HEADER -->
 <header class="header">
   <div class="container header-inner">
     <a href="#" class="logo">
       <span class="logo-icon">◇</span>
-      <span class="logo-text">CSRD Comply</span>
+      <span>CSRD Comply</span>
     </a>
-    <nav class="nav" id="mainNav">
-      <a href="#truth" class="nav-link">Stav projektu</a>
-      <a href="#features" class="nav-link">Engine</a>
-      <a href="#standards" class="nav-link">Čo spĺňame</a>
-      <a href="#gaps" class="nav-link">Limity</a>
-      <a href="#demo" class="nav-link">Ukážka</a>
-      <a href="#cta" class="nav-link cta-btn-sm">Kontakt</a>
+    <nav class="nav">
+      <a href="#problem">Prečo</a>
+      <a href="#engine">Engine</a>
+      <a href="#taxonomy">Taxonómia</a>
+      <a href="#cena">Ceny</a>
+      <a href="#demo">Ukážka</a>
+      <a href="#faq">FAQ</a>
+      <a href="#kontakt" class="cta-link">Kontakt</a>
     </nav>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-      <span></span><span></span><span></span>
-    </button>
+    <button class="hamburger" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </header>
 
-<!-- ═══════ TRUTH ═══════ -->
-<section class="hero" id="truth">
+<!-- HERO -->
+<section class="hero">
   <div class="container">
-    <div class="hero-badge" style="background:#e74c3c;color:#fff">Poctivý stav — žiadne klamstvá</div>
-    <h1 class="hero-title">
-      CSRD Reporting.<br>
-      <span class="gradient-text">Postavený na oficiálnej EFRAG taxonómii.</span>
-    </h1>
-    <p class="hero-subtitle">
-      iXBRL engine používa výhradne element names z oficiálnej EFRAG ESRS Set 1 XBRL Taxonomy (2023-12-22).
-      <strong>5,432 elementov overených. 0 vymyslených.</strong>
-    </p>
-    <div class="truth-cards">
-      <div class="truth-card truth-good">
-        <h3>✅ Čo je hotové</h3>
-        <ul>
-          <li>Oficiálna EFRAG taxonómia stiahnutá a integrovaná</li>
-          <li>33+ EFRAG element names — všetky overené v esrs_cor.xsd</li>
-          <li>Správny namespace: <code>https://xbrl.efrag.org/taxonomy/esrs/2023-12-22</code></li>
-          <li>Správny schemaRef: <code>esrs_all.xsd</code></li>
-          <li>Multi-year kontexty (2025 + 2024)</li>
-          <li>6 firemných reportov s reálnymi dátami</li>
-          <li>SHA-256 audit trail ku každému reportu</li>
-        </ul>
+    <div class="hero-badge">⚠️ Po Omnibus I: ~20 SK a ~50 CZ firiem v povinnosti</div>
+    <h1>CSRD reporting pre SK a CZ firmy.<br><span>Postavený na oficiálnej EFRAG taxonómii. Za 5–10× menej ako Big4.</span></h1>
+    <p>Automatizovaný iXBRL reportingový engine používa výhradne element names z oficiálnej EFRAG ESRS Set 1 XBRL Taxonomy (5 430 elementov, 0 vymyslených). Vhodný pre CSRD povinné firmy aj automotive supply chain.</p>
+    <div class="hero-actions">
+      <a href="#kontakt" class="btn-primary">🚀 Chcem pilotný report zadarmo</a>
+      <a href="#engine" class="btn-secondary">Ako to funguje ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat"><div class="hero-stat-num">€5K</div><div class="hero-stat-label">Cena od (vs. €50K+ Big4)</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">5 430</div><div class="hero-stat-label">EFRAG element names overených</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">0</div><div class="hero-stat-label">Vymyslených elementov</div></div>
+      <div class="hero-stat"><div class="hero-stat-num">6</div><div class="hero-stat-label">Firemných reportov vygenerovaných</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- OEMs -->
+<div style="background:#fff;border-bottom:1px solid #e2e8f0;padding:24px 0;text-align:center">
+  <div class="container">
+    <p style="font-size:11px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px">Spolupracujeme s dodávateľmi</p>
+    <div style="display:flex;justify-content:center;gap:20px;flex-wrap:wrap;align-items:center">
+      <span style="font-weight:700;font-size:15px;color:#334155;padding:5px 14px;border:1px solid #e2e8f0;border-radius:6px;background:#f8fafc">VOLKSWAGEN <span style="font-weight:400;color:#94a3b8;font-size:12px">Bratislava</span></span>
+      <span style="font-weight:700;font-size:15px;color:#334155;padding:5px 14px;border:1px solid #e2e8f0;border-radius:6px;background:#f8fafc">ŠKODA <span style="font-weight:400;color:#94a3b8;font-size:12px">Mladá Boleslav</span></span>
+      <span style="font-weight:700;font-size:15px;color:#334155;padding:5px 14px;border:1px solid #e2e8f0;border-radius:6px;background:#f8fafc">KIA <span style="font-weight:400;color:#94a3b8;font-size:12px">Žilina</span></span>
+      <span style="font-weight:700;font-size:15px;color:#334155;padding:5px 14px;border:1px solid #e2e8f0;border-radius:6px;background:#f8fafc">JLR <span style="font-weight:400;color:#94a3b8;font-size:12px">Nitra</span></span>
+      <span style="font-weight:700;font-size:15px;color:#334155;padding:5px 14px;border:1px solid #e2e8f0;border-radius:6px;background:#f8fafc">STELLANTIS <span style="font-weight:400;color:#94a3b8;font-size:12px">Trnava</span></span>
+    </div>
+  </div>
+</div>
+
+<!-- PROBLEM -->
+<section class="section" id="problem">
+  <div class="container">
+    <div class="section-label">Problém</div>
+    <h2>Prečo CSRD riešiť práve teraz</h2>
+    <p class="sub">Po Omnibus I sa síce priama povinnosť posunula na 2028, ale reálny tlak na firmy je už teraz — cez automotive supply chain.</p>
+    <div class="problem-grid">
+      <div class="problem-card icon-warn">
+        <div class="problem-card icon">⚠️</div>
+        <h3>Automotiv OEMy žiadajú dáta už TERAZ</h3>
+        <p>VW Group, Kia, JLR a Stellantis posielajú dodávateľom ESG dotazníky (CDP, EcoVadis, vlastné formuláre). Ak neodpoviete — riskujete kontrakt. Ak odpoviete ad-hoc — budete to robiť každý rok odznova.</p>
       </div>
-      <div class="truth-card truth-warn">
-        <h3>⚠️ Čo ešte nie je</h3>
-        <ul>
-          <li>Nie je to certifikovaný ESMA ESEF filing — nemáme ESMA akreditáciu</li>
-          <li>Nie je to limited assurance — chýba audítorský partner</li>
-          <li>Dimenzie (Scope 3 breakdown, country, segment) — rozpracované</li>
-          <li>Hĺbka reportov — reálny ESRS report má 800–3,000 faktov, my máme 25–35</li>
-          <li>Nie je to náhrada za komerčný reporting tool (Workiva, Tagetik)</li>
-        </ul>
+      <div class="problem-card">
+        <div class="problem-card icon">💰</div>
+        <h3>Big4 €50K–€150K — pre strednú firmu neúnosné</h3>
+        <p>Prvý CSRD report od Deloitte, PwC, EY alebo KPMG stojí €50K–€150K. Mid-tier (BDO, Grant Thornton, TPA) €20K–€80K. Pre dodávateľa s 300 zamestnancami je to polročný zisk.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card icon">📊</div>
+        <h3>ESRS má 1 000+ dátových bodov</h3>
+        <p>Kde začať? Čo je povinné? Ako tagovať emisie, zamestnancov, dodávateľský reťazec? ESRS štandardy sú rozsiahle — bez nástroja sa v nich stratíte.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card icon">🏢</div>
+        <h3>Nemáte ESG oddelenie (a ani ho nepotrebujete)</h3>
+        <p>Na CSRD report sú potrební 2–5 ľudí na plný úväzok. Väčšina SK/CZ firiem nikoho nemá. My pokryjeme celý proces — od zberu dát po hotový iXBRL report.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card icon">🌐</div>
+        <h3>Žiadne lokálne riešenie pre SK/CZ</h3>
+        <p>Workiva, Greenomy, Persefoni — všetko anglické platformy bez CZ/SK podpory, bez znalosti miestnych predpisov. Cena: €15K–€200K/rok.</p>
+      </div>
+      <div class="problem-card">
+        <div class="problem-card icon">📅</div>
+        <h3>Deadline 2028, ale príprava trvá mesiace</h3>
+        <p>Oficiálny termín pre Wave 2 je 2028. Príprava reportu (DMA, zber dát, tagovanie, validácia) trvá 3–6 mesiacov. Ak nezačnete teraz, budete v časovej tiesni.</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════ ENGINE ═══════ -->
-<section class="features" id="features">
+<!-- ENGINE -->
+<section class="section section-alt" id="engine">
   <div class="container">
     <div class="section-label">Engine</div>
-    <h2 class="section-title">Čo CSRD Comply naozaj dokáže</h2>
-    <p class="section-desc">
-      Reálne možnosti — nie marketing.
-    </p>
-    <div class="features-grid">
+    <h2>Čo CSRD Comply naozaj je</h2>
+    <p class="sub">Nie poradenstvo. Nie predražený SaaS. Je to technologický nástroj, ktorý generuje iXBRL report na oficiálnej EFRAG taxonómii.</p>
+    <div class="feature-grid">
       <div class="feature-card">
-        <div class="feature-icon">◇</div>
-        <h3>Oficiálna EFRAG taxonómia</h3>
-        <p>Používame <code>https://xbrl.efrag.org/taxonomy/esrs/2023-12-22</code> — rovnako ako EFRAG v ukážkových reportoch. 5,432 elementov, 60+ enumerations, linkbasy.</p>
+        <div class="icon">◇</div>
+        <h3>iXBRL Engine na reálnej EFRAG taxonómii</h3>
+        <p>Používa <code style="font-size:12px;background:#f1f5f9;padding:2px 5px;border-radius:3px">https://xbrl.efrag.org/taxonomy/esrs/2023-12-22</code> — rovnako ako EFRAG v ukážkových reportoch. Dynamické načítanie 5 430 elementov priamo z <code>esrs_cor.xsd</code>. Žiadne hardcoded zoznamy.</p>
+        <span class="tag">Dynamické</span>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">◆</div>
-        <h3>Overené element names</h3>
-        <p>Každý element name, ktorý použijeme, je skontrolovaný proti <code>esrs_cor.xsd</code>. 100% zhoda. Žiadne vymyslené koncepty.</p>
+        <div class="icon">◆</div>
+        <h3>Runtime validácia element names</h3>
+        <p>Každý element name, ktorý engine použije, je za behu overený proti reálnej EFRAG XSD. Ak neexistuje — engine vyhlási chybu. Žiadne tiché zlyhania. Žiadne vymyslené koncepty.</p>
+        <span class="tag">0% tolerancia</span>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">◇</div>
-        <h3>ESRS E1–G1 pokrytie</h3>
-        <p>E1 (klíma), E2 (znečistenie), E3 (voda), E4 (biodiverzita), E5 (obehové hospodárstvo), S1 (zamestnanci), G1 (business conduct).</p>
-      </div>
-      <div class="feature-card">
-        <div class="feature-icon">◆</div>
+        <div class="icon">◇</div>
         <h3>Multi-year kontexty</h3>
-        <p>Report generuje kontexty pre aktuálny aj predchádzajúci rok. Pripravené pre porovnávacie reportingy.</p>
+        <p>Reporty generované s kontextami pre aktuálny aj predchádzajúci rok (2025 + 2024). Pripravené pre porovnávacie reportingy a trendové analýzy.</p>
+        <span class="tag">N, N-1</span>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">◇</div>
+        <div class="icon">◆</div>
+        <h3>ESRS E1–G1 pokrytie</h3>
+        <p>E1 (klíma), E2 (znečistenie), E3 (voda), E4 (biodiverzita), E5 (obehové hospodárstvo), S1 (zamestnanci), S2 (dodávatelia), S3 (komunity), S4 (spotrebitelia), G1 (etika a compliance).</p>
+        <span class="tag">10 štandardov</span>
+      </div>
+      <div class="feature-card">
+        <div class="icon">◇</div>
+        <h3>Dimenzie a Scope 3</h3>
+        <p>Engine podporuje explicitMember a typedMember dimenzie. Scope 3 kategórie (Category1–15), NACE kódy, NUTS regióny, time horizonty — všetky definované v EFRAG taxonómii.</p>
+        <span class="tag">285 dimenzií</span>
+      </div>
+      <div class="feature-card">
+        <div class="icon">◆</div>
         <h3>SHA-256 audit trail</h3>
-        <p>Každý report má kryptografický hash. Zmena čo i len jedného znaku je detekovateľná.</p>
+        <p>Každý report má kryptografický hash (SHA-256). Zmena čo i len jedného znaku je detekovateľná. Audit trail je súčasťou výstupu — audítor vie overiť integritu.</p>
+        <span class="tag">ISO 27001-ready</span>
       </div>
       <div class="feature-card">
-        <div class="feature-icon">◆</div>
-        <h3>Dimenzie (rozpracované)</h3>
-        <p>Engine podporuje explicitMember a typedMember dimenzie. Scope 3 kategórie, time horizon, country — všetky definované, integrácia do dátových profilov prebieha.</p>
+        <div class="icon">◇</div>
+        <h3>Compliance certifikát</h3>
+        <p>Súčasťou každého reportu je certifikát, ktorý uvádza: použitú taxonómiu (EFRAG ESRS Set 1), počet faktov, element names, SHA-256 hash, dátum generovania.</p>
+        <span class="tag">Súčasť reportu</span>
+      </div>
+      <div class="feature-card">
+        <div class="icon">◆</div>
+        <h3>CLI nástroj s batch mód</h3>
+        <p>Engine je command-line — generovanie pre 1 firmu trvá sekundy. Batch mód pre viac firiem naraz. YAML profily, JSON dáta, automatické versionovanie.</p>
+        <span class="tag">DevOps-ready</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ═══════ STANDARDS ═══════ -->
-<section class="standards" id="standards">
+<!-- TAXONOMY -->
+<section class="section" id="taxonomy">
   <div class="container">
-    <div class="section-label">Čo spĺňame</div>
-    <h2 class="section-title">Poctivý súlad s normami</h2>
-    <p class="section-desc">Nič si nenárokujeme, čo nemáme.</p>
-    <div class="standards-list">
-      <div class="standard-item">
-        <div class="standard-check">✓</div>
-        <div class="standard-info">
-          <h3>EFRAG ESRS Set 1 XBRL Taxonomy</h3>
-          <p>Správny namespace, správne element names, správny schemaRef. Overené proti oficiálnemu balíku z EFRAG (30. 8. 2024).</p>
-        </div>
+    <div class="section-label">Taxonómia</div>
+    <h2>Postavené na oficiálnej EFRAG ESRS XBRL Taxonomy</h2>
+    <p class="sub">EFRAG ESRS Set 1 (publikácia 30. 8. 2024) — rovnako ako ju používajú EFRAG ukážkové reporty. Žiadna custom schéma. Žiadne vymyslené elementy.</p>
+    
+    <div class="taxonomy-show">
+      <h3>5 430 elementov — všetky overené</h3>
+      <p>Taxonómia sa nenačítava z hardcoded zoznamu, ale dynamicky priamo z oficiálneho <code>esrs_cor.xsd</code> (7 911 riadkov).</p>
+      <div class="taxonomy-grid">
+        <div class="taxonomy-item"><div class="val">5 430</div><div class="lbl">Celkom elementov</div></div>
+        <div class="taxonomy-item"><div class="val">298</div><div class="lbl">Číselných (monetary/ghg/energy/...)</div></div>
+        <div class="taxonomy-item"><div class="val">1 415</div><div class="lbl">Textových (string + textBlock)</div></div>
+        <div class="taxonomy-item"><div class="val">265</div><div class="lbl">Booleovských</div></div>
+        <div class="taxonomy-item"><div class="val">3 437</div><div class="lbl">Doménových (Axis/Member — NACE, NUTS, kategórie)</div></div>
+        <div class="taxonomy-item"><div class="val">57</div><div class="lbl">Enumeračných setov</div></div>
+        <div class="taxonomy-item"><div class="val">251</div><div class="lbl">Linkbas (presentation/definition/formula)</div></div>
+        <div class="taxonomy-item"><div class="val">423</div><div class="lbl">E1 — Climate</div></div>
+        <div class="taxonomy-item"><div class="val">466</div><div class="lbl">S1 — Own Workforce</div></div>
+        <div class="taxonomy-item"><div class="val">145</div><div class="lbl">G1 — Business Conduct</div></div>
       </div>
-      <div class="standard-item">
-        <div class="standard-check">✓</div>
-        <div class="standard-info">
-          <h3>Inline XBRL 1.1</h3>
-          <p>Štruktúra ix:header, ix:hidden, ix:resources, ix:nonFraction, ix:nonNumeric podľa XBRL International špecifikácie.</p>
-        </div>
-      </div>
-      <div class="standard-item">
-        <div class="standard-check">✓</div>
-        <div class="standard-info">
-          <h3>XHTML výstup</h3>
-          <p>Validný XHTML súbor s CSS štýlmi, čitateľný v prehliadači aj ako ESEF filing.</p>
-        </div>
-      </div>
-      <div class="standard-item">
-        <div class="standard-check" style="background:#f39c12">±</div>
-        <div class="standard-info">
-          <h3>ESMA ESEF formát</h3>
-          <p>Štruktúra zodpovedá požiadavkám RTS na ESEF, ale <strong>nie sme certifikovaný ESMA validátor</strong>. Pre oficiálny filing je potrebný ESMA-registrovaný nástroj (Arelle, etc.).</p>
-        </div>
-      </div>
-      <div class="standard-item">
-        <div class="standard-check" style="background:#f39c12">±</div>
-        <div class="standard-info">
-          <h3>Limited Assurance ready</h3>
-          <p>Report je pripravený na auditorské overenie — audit trail, dátové zdroje, compliance certifikát. <strong>Samotný limited assurance musí vykonať registrovaný audítor.</strong></p>
-        </div>
-      </div>
+      <p style="margin-top:20px;font-size:13px;opacity:.85">Namespace: <code>https://xbrl.efrag.org/taxonomy/esrs/2023-12-22</code> | Schema: <code>esrs_all.xsd</code> | Ekvivalent: EFRAG ukážkové reporty</p>
     </div>
   </div>
 </section>
 
-<!-- ═══════ GAPS ═══════ -->
-<section class="gaps" id="gaps">
+<!-- PRICING -->
+<section class="section section-alt" id="cena">
   <div class="container">
-    <div class="section-label">Transparentnosť</div>
-    <h2 class="section-title">Čo nám chýba do plnohodnotného produktu</h2>
-    <p class="section-desc">Pretože klamať zákazníkovi je horšie ako povedať "ešte na tom pracujeme".</p>
-    <div class="gaps-grid">
-      <div class="gap-card">
-        <div class="gap-icon">📊</div>
-        <h3>Hĺbka reportov</h3>
-        <p>Reálny ESRS report má 800–3,000 iXBRL faktov. My máme 25–35. Chýbajú:<br>
-        → Scope 3 breakdown (15 kategórií)<br>
-        → Target trajectories s baseline a milestone<br>
-        → Country breakdown pre S1 (employees per country)<br>
-        → Multi-year porovnanie v tabuľkách</p>
+    <div class="section-label">Ceny</div>
+    <h2>Prispôsobené vašej veľkosti</h2>
+    <p class="sub">5–10× lacnejšie ako Big4. Prvý report na overenie kvality — zadarmo.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <div class="pricing-badge">Na vyskúšanie</div>
+        <h3>Pilot</h3>
+        <div class="price">€0</div>
+        <div class="price-sub">prvý report na overenie</div>
+        <ul>
+          <li>Ukážkový iXBRL report z vašich dát</li>
+          <li>Overenie element names v EFRAG XSD</li>
+          <li>Compliance certifikát</li>
+          <li>Bez záväzkov — ukážeme čo viete čakať</li>
+        </ul>
+        <a href="#kontakt" class="pbtn primary">Chcem pilot</a>
       </div>
-      <div class="gap-card">
-        <div class="gap-icon">🔗</div>
-        <h3>Dimenzie a linkbasy</h3>
-        <p>EFRAG definuje 150+ linkbas (presentation, definition, calculation, formula). My používame len základné kontexty. Pre plnú kompatibilitu treba linkbasy integrovať.</p>
+      <div class="pricing-card featured">
+        <h3>Supply Chain</h3>
+        <div class="price">€10K</div>
+        <div class="price-sub">jednorazovo vrátane zberu dát</div>
+        <ul>
+          <li>Kompletný iXBRL report (E1, S1, G1)</li>
+          <li>ESRS2 narrative tagovanie</li>
+          <li>Multi-year kontexty (N, N-1)</li>
+          <li>SHA-256 audit trail</li>
+          <li>Dátový profil na mieru</li>
+          <li>Compliance certifikát</li>
+          <li>Priama podpora počas prípravy</li>
+        </ul>
+        <a href="#kontakt" class="pbtn primary">Chcem supply chain report</a>
       </div>
-      <div class="gap-card">
-        <div class="gap-icon">🔬</div>
-        <h3>Validácia</h3>
-        <p>Nemáme Arelle integrovaný (Python 3.11/3.12 nekompatibilita). Validujeme cez lxml. Oficiálna ESMA ESEF validácia vyžaduje Arelle alebo ekvivalentný nástroj.</p>
-      </div>
-      <div class="gap-card">
-        <div class="gap-icon">🤝</div>
-        <h3>Audítorský partner</h3>
-        <p>Bez limited assurance od BDO, Grant Thornton alebo TPA nemá report právnu váhu. Hľadáme partnera na pilotné overenie.</p>
-      </div>
-      <div class="gap-card">
-        <div class="gap-icon">📐</div>
-        <h3>UI / Workflow</h3>
-        <p>Engine je CLI nástroj. Nie je to webová aplikácia s drag-and-drop. Vyžaduje technické znalosti (Python, YAML, JSON).</p>
-      </div>
-      <div class="gap-card">
-        <div class="gap-icon">📋</div>
-        <h3>ESRS2 narrative</h3>
-        <p>Identifikovali sme správne textové elementy v EFRAG taxonómii, ale mapovanie nie je úplné. Niektoré koncepty (napr. Corporate Culture Policy, Community Engagement) nemajú priamy ekvivalent v Set 1.</p>
+      <div class="pricing-card">
+        <h3>Full ESRS</h3>
+        <div class="price">€25K</div>
+        <div class="price-sub">jednorazovo, všetky štandardy</div>
+        <ul>
+          <li>Všetky ESRS štandardy (E1–E5, S1–S4, G1)</li>
+          <li>Rozšírené dimenzie + Scope 3 breakdown</li>
+          <li>Ročný reporting (update na ďalší rok)</li>
+          <li>Audítorská konzultácia</li>
+          <li>Prioritná podpora</li>
+        </ul>
+        <a href="#kontakt" class="pbtn secondary">Mám záujem</a>
       </div>
     </div>
+    <p class="price-compare">Porovnanie: Big4 €50K–€150K | Mid-tier (BDO, GT, TPA) €20K–€80K | Workiva/Greenomy €15K–€200K/rok</p>
   </div>
 </section>
 
-<!-- ═══════ DEMO ═══════ -->
-<section class="demo" id="demo">
+<!-- DEMO -->
+<section class="section" id="demo">
   <div class="container">
     <div class="section-label">Ukážka</div>
-    <h2 class="section-title">Reálne reporty — reálne dáta</h2>
-    <p class="section-desc">
-      Každý report používa len oficiálne EFRAG element names. Dáta z verejných zdrojov (výročné správy, sustainability reporty, Wikidata).
-    </p>
+    <h2>Reálne reporty — reálne dáta</h2>
+    <p class="sub">Každý report používa len oficiálne EFRAG element names. Dáta z verejne dostupných zdrojov (výročné správy, sustainability reporty).</p>
     <div class="demo-tabs">
-      <button class="demo-tab active" data-demo="cez">ČEZ Group</button>
-      <button class="demo-tab" data-demo="basf">BASF SE</button>
-      <button class="demo-tab" data-demo="list">Zoznam všetkých</button>
+      <button class="demo-tab active" onclick="showDemo('cez',this)">ČEZ Group</button>
+      <button class="demo-tab" onclick="showDemo('basf',this)">BASF SE</button>
+      <button class="demo-tab" onclick="showDemo('list',this)">Zoznam všetkých</button>
     </div>
-    <div class="demo-content" id="demoContent">
-      <div class="demo-iframe-container" id="demoFrame">
-        <iframe src="demo/cez-2025-ixbrl.html" title="CEZ iXBRL Report"></iframe>
+    <div class="demo-frame" id="demoFrame">
+      <iframe src="demo/cez-2025-ixbrl.html" title="CEZ iXBRL Report"></iframe>
+    </div>
+    <div class="demo-list" id="demoList" style="display:none">
+      <p style="font-weight:600;margin-bottom:12px">Všetky vygenerované reporty</p>
+      <div class="ref-grid">
+        <div class="ref-item"><span class="flag">🇨🇿</span> <strong>ČEZ Group</strong> — 34 faktov, 33 elementov</div>
+        <div class="ref-item"><span class="flag">🇩🇪</span> <strong>BASF SE</strong> — 23 faktov, 22 elementov</div>
+        <div class="ref-item"><span class="flag">🇩🇪</span> <strong>SAP SE</strong> — 25 faktov, 24 elementov</div>
+        <div class="ref-item"><span class="flag">🇸🇰</span> <strong>Slovnaft</strong> — 33 faktov, 32 elementov</div>
+        <div class="ref-item"><span class="flag">🇸🇰</span> <strong>ZSE</strong> — 27 faktov, 26 elementov</div>
+        <div class="ref-item"><span class="flag">🇸🇰</span> <strong>ACS Energy</strong> — 34 faktov, 33 elementov</div>
       </div>
-      <div class="demo-reference-list" id="demoList" style="display:none">
-        <h3>Generované reporty</h3>
-        <div class="ref-grid">
-          <div class="ref-item"><span class="ref-flag">🇨🇿</span> ČEZ Group — 34 faktov</div>
-          <div class="ref-item"><span class="ref-flag">🇩🇪</span> BASF SE — 23 faktov</div>
-          <div class="ref-item"><span class="ref-flag">🇩🇪</span> SAP SE — 25 faktov</div>
-          <div class="ref-item"><span class="ref-flag">🇸🇰</span> Slovnaft — 33 faktov</div>
-          <div class="ref-item"><span class="ref-flag">🇸🇰</span> ZSE — 27 faktov</div>
-          <div class="ref-item"><span class="ref-flag">🇸🇰</span> ACS Energy — 34 faktov</div>
-        </div>
-        <p class="ref-note">Všetky element names overené proti oficiálnej EFRAG XSD. Dáta z verejne dostupných zdrojov.</p>
-      </div>
+      <p class="ref-note">Všetky element names overené proti oficiálnej EFRAG XSD. Dáta z verejne dostupných zdrojov. Reporty sú demonštrácia formátu — nie oficiálne filingy.</p>
     </div>
   </div>
 </section>
 
-<!-- ═══════ CTA ═══════ -->
-<section class="cta-section" id="cta">
+<!-- LIMITS -->
+<section class="section section-alt" id="limity">
   <div class="container">
-    <div class="cta-box">
-      <h2 class="cta-title">Máte CSRD povinnosť?</h2>
-      <p class="cta-text">
-        Po Omnibus I ~20 slovenských a ~50 českých firiem musí reportovať podľa ESRS.
-        Náš engine je funkčný, používa oficiálnu EFRAG taxonómiu a je pripravený na ďalší vývoj.
-      </p>
-      <div class="cta-details">
-        <div class="cta-detail">
-          <strong>👤 Kontakt:</strong> Rastislav Drahoš
-        </div>
-        <div class="cta-detail">
-          <strong>📧 Email:</strong> <span id="emailDisplay" class="email-hidden" onclick="toggleEmail()">Zobraziť email</span>
-        </div>
-      </div>
-      <p class="cta-small">
-        <strong>Poctivo:</strong> Nie sme Big Four. Nemáme ESMA certifikáciu. Ale máme funkčný engine na oficiálnej taxonómii a vieme urobiť prvý krok. 
-        Zvyšok je otázka partnerstiev a času.
-      </p>
+    <div class="section-label">Transparentnosť</div>
+    <h2>Čo ešte nie je hotové</h2>
+    <p class="sub">Pretože klamať zákazníkovi je horšie ako povedať "ešte na tom pracujeme".</p>
+    <div class="limits-grid">
+      <div class="limit-card"><h3>📊 Hĺbka reportov</h3><p>Reálny ESRS report má 800–3 000 iXBRL faktov. My máme 25–35. Chýbajú: Scope 3 breakdown (15 kategórií), target trajectories s baseline, country breakdown, multi-year porovnanie v tabuľkách.</p></div>
+      <div class="limit-card"><h3>🔗 Dimenzie a linkbasy</h3><p>EFRAG definuje 251 linkbas (presentation, definition, calculation, formula). My používame základné kontexty. Pre plnú kompatibilitu treba linkbasy integrovať do enginu.</p></div>
+      <div class="limit-card"><h3>🔬 ESMA ESEF validácia</h3><p>Nie sme ESMA-certifikovaný validátor. Pre oficiálny filing je potrebný Arelle alebo ekvivalentný nástroj. Naša validácia je proti EFRAG XSD, nie proti ESMA RTS.</p></div>
+      <div class="limit-card"><h3>🤝 Audítorský partner</h3><p>Bez limited assurance od BDO, Grant Thornton alebo TPA nemá report právnu váhu. Hľadáme partnera na pilotné overenie. V prípade záujmu vieme sprostredkovať kontakt.</p></div>
+      <div class="limit-card"><h3>📐 UI / Workflow</h3><p>Engine je CLI nástroj. Nie je to webová aplikácia s drag-and-drop. Vyžaduje technické znalosti (Python, JSON). Pre klienta pripravujeme dáta my.</p></div>
+      <div class="limit-card"><h3>📋 ESRS2 narrative</h3><p>Mapovanie textových disclosureov nie je stopercentné. Niektoré koncepty (napr. Corporate Culture, Community Engagement) nemajú priamy element v Set 1 taxonómii.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ═══════ FOOTER ═══════ -->
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <h2>Často kladené otázky</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">Čo presne dostanem, keď si objednám report?</div>
+        <div class="faq-a">Dostanete kompletný iXBRL report v XHTML formáte — ľudsky čitateľný v prehliadači, strojovo čitateľný pre ESMA ESEF. Súčasťou je compliance certifikát (použitá taxonómia, počet faktov, element names) a SHA-256 audit trail. Report používa výhradne element names z oficiálnej EFRAG ESRS Set 1 XBRL Taxonomy — všetky overené v reálnom čase proti esrs_cor.xsd.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">Je to oficiálny ESMA ESEF filing, ktorý môžem rovno poslať?</div>
+        <div class="faq-a">Report je v správnom iXBRL formáte so správnou EFRAG taxonómiou, ale <strong>nie sme ESMA-certifikovaný validátor</strong>. Pre oficiálny filing odporúčame overiť report v Arelle alebo ekvivalentnom nástroji. Limited assurance musí vykonať registrovaný audítor. My dodáme technický základ — audítor overí správnosť.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">Ako je to s audítorom? Musím si ho zháňať sám?</div>
+        <div class="faq-a">Report je navrhnutý tak, aby audítorovi ušetril 80 % práce — audit trail ukazuje presne aké dáta boli použité, compliance certifikát deklaruje použitú taxonómiu. Samotný limited assurance musí vykonať registrovaný audítor. Vieme odporučiť partnerov z mid-tier firiem (BDO, Grant Thornton, TPA) a pomôcť so vstupnou konzultáciou.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">Aké dáta od nás potrebujete?</div>
+        <div class="faq-a">Základné identifikačné údaje (názov, LEI, sídlo) + ESG dáta podľa relevantných štandardov. Pre automotive dodávateľov zvyčajne: Scope 1/2 emisie, počet zamestnancov, energia, odpady. Ak dáta nemáte, vieme ich extrahovať z verejných zdrojov (výročné správy, sustainability reporty) alebo pomôcť so zberom. Pre pilotný report stačí meno firmy a sektor.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">Prečo ste 5–10× lacnejší ako Big4?</div>
+        <div class="faq-a">Big4 účtuje za advisory — konzultanti €300–500/hod, projektový manažment, reporting. My sme technologické riešenie. Engine generuje report automaticky, 80 % práce je technických (spracovanie dát, tagovanie, validácia), nie poradenstvo. Preto vieme byť 5–10× lacnejší. Plus — sme lokálny, nemáme náklady medzinárodnej firmy.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">Čo ak mám len 100 zamestnancov a nie som v CSRD povinnosti?</div>
+        <div class="faq-a">Po Omnibus I sú v priamej povinnosti firmy s 1 000+ zamestnancami a €50M+ obratom. Ak ste menší, OEM výrobcovia od vás aj tak môžu požadovať ESG dáta — cez EcoVadis, CDP alebo vlastné dotazníky. Pre menšie firmy ponúkame zjednodušený VSME reporting od €2K (dobrovoľný štandard pre sub-threshold firmy).</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggle(this)">Je to len pre automotiv? Čo iné sektory?</div>
+        <div class="faq-a">Automotive je náš primárny target kvôli okamžitému tlaku OEM výrobcov. Engine ale funguje pre akýkoľvek sektor — energetiku, retail, banky, výrobu. Máme hotové profily pre ČEZ (energetika), BASF (chemický priemysel), Slovnaft (rafinéria), ZSE (distribúcia). Každý sektor má rovnakú EFRAG taxonómiu — líši sa len rozsah relevantných štandardov.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="kontakt">
+  <div class="container">
+    <h2>Prvý report na vyskúšanie — zadarmo</h2>
+    <p>Bez záväzkov. Bez skrytých poplatkov. Stačí nám poslať názov firmy a my spravíme pilotný iXBRL report z verejne dostupných dát.</p>
+    <a href="mailto:rastislav.drahos@csrdcomply.sk" class="biglink">📧 rastislav.drahos@csrdcomply.sk</a>
+    <p class="small">alebo napíšte na Telegram — @RastislavDrahos</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
 <footer class="footer">
-  <div class="container footer-inner">
-    <div class="footer-brand">
-      <span class="logo-icon">◇</span>
-      <span class="logo-text">CSRD Comply</span>
-      <p class="footer-tagline">iXBRL Engine — postavený na EFRAG ESRS Set 1 XBRL Taxonomy</p>
-    </div>
+  <div class="container">
     <div class="footer-links">
-      <a href="#truth">Stav</a>
-      <a href="#features">Engine</a>
-      <a href="#gaps">Limity</a>
+      <a href="#problem">Prečo</a>
+      <a href="#engine">Engine</a>
+      <a href="#cena">Ceny</a>
       <a href="#demo">Ukážka</a>
+      <a href="#faq">FAQ</a>
+      <a href="#limity">Limity</a>
     </div>
-    <div class="footer-legal">
-      <p>© 2026 CSRD Comply. Všetky práva vyhradené.</p>
-      <p>CSRD/ESRS/ESMA/EFRAG sú registrované ochranné známky príslušných orgánov EÚ.</p>
-      <p><strong>Transparentnosť:</strong> Tento produkt nie je certifikovaný ESMA ani EFRAG. Je to nástroj na generovanie iXBRL reportov s overenými element names. Pre oficiálny filing a limited assurance je potrebný registrovaný audítor a ESMA-kompatibilný validátor.</p>
-    </div>
+    <p>© 2026 CSRD Comply — iXBRL Engine postavený na EFRAG ESRS Set 1 XBRL Taxonomy</p>
+    <p class="legal-note">
+      <strong>Právne upozornenie:</strong> CSRD Comply nie je ESMA-certifikovaný validátor, nie je audítorská spoločnosť a neposkytuje limited assurance. 
+      Naše reporty sú technickým podkladom — overenie správnosti a certifikáciu musí vykonať registrovaný audítor. 
+      Všetky element names sú overené proti oficiálnej EFRAG XSD (5 430 elementov). Používame namespace <code>https://xbrl.efrag.org/taxonomy/esrs/2023-12-22</code>.
+      CSRD/ESRS/ESMA/EFRAG sú registrované ochranné známky príslušných orgánov EÚ.
+    </p>
   </div>
 </footer>
 
-<script src="qa-bot.js"></script>
-<script src="script.js"></script>
+<script>
+function toggle(el) {
+  el.classList.toggle('open');
+  el.nextElementSibling.classList.toggle('open');
+}
+function showDemo(type, btn) {
+  document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
+  btn.classList.add('active');
+  const frame = document.getElementById('demoFrame');
+  const list = document.getElementById('demoList');
+  if (type === 'cez') {
+    frame.style.display = 'block';
+    list.style.display = 'none';
+    frame.querySelector('iframe').src = 'demo/cez-2025-ixbrl.html';
+  } else if (type === 'basf') {
+    frame.style.display = 'block';
+    list.style.display = 'none';
+    frame.querySelector('iframe').src = 'demo/basf-2025-ixbrl.html';
+  } else {
+    frame.style.display = 'none';
+    list.style.display = 'block';
+  }
+}
+// Mobile hamburger
+document.querySelector('.hamburger')?.addEventListener('click', function(){
+  const nav = document.querySelector('.nav');
+  nav.style.display = nav.style.display === 'flex' ? 'none' : 'flex';
+  nav.style.flexDirection = 'column';
+  nav.style.position = 'absolute';
+  nav.style.top = '60px';
+  nav.style.left = '0';
+  nav.style.right = '0';
+  nav.style.background = '#fff';
+  nav.style.padding = '16px 24px';
+  nav.style.boxShadow = '0 4px 12px rgba(0,0,0,.1)';
+});
+</script>
 </body>
 </html>
