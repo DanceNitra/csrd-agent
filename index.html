@@ -375,29 +375,76 @@ a{color:#0F4761}
   </div>
 </section>
 
-<!-- DEMO -->
+<!-- DEMO / SHOWCASE -->
 <section class="section" id="demo">
   <div class="container">
-    <div class="section-label">Ukážka</div>
-    <h2>Reálne reporty — reálne dáta</h2>
-    <p class="sub">Každý report používa len oficiálne EFRAG element names. Dáta z verejne dostupných zdrojov (výročné správy, sustainability reporty).</p>
+    <div class="section-label">Showcase</div>
+    <h2>Kompletný iXBRL report — všetky ESRS štandardy</h2>
+    <p class="sub">Plnohodnotný report pre ČEZ, a. s. s <strong>137 faktami a 260 iXBRL tagmi</strong> — všetky overené proti oficiálnej EFRAG XSD. Pokrýva všetkých 11 ESRS sekcií vrátane multi-year porovnania, Scope 3 breakdown a kompletného audit trailu.</p>
+
+    <div class="demo-stats" style="display:flex;gap:24px;flex-wrap:wrap;margin:24px 0">
+      <div class="stat-box" style="background:#f0f8ff;border:1px solid #0F4761;border-radius:10px;padding:16px 24px;text-align:center;flex:1;min-width:120px">
+        <div style="font-size:32px;font-weight:800;color:#0F4761">137</div>
+        <div style="font-size:13px;color:#555">tagovaných faktov</div>
+      </div>
+      <div class="stat-box" style="background:#f0f8ff;border:1px solid #0F4761;border-radius:10px;padding:16px 24px;text-align:center;flex:1;min-width:120px">
+        <div style="font-size:32px;font-weight:800;color:#0F4761">260</div>
+        <div style="font-size:13px;color:#555">iXBRL tagov</div>
+      </div>
+      <div class="stat-box" style="background:#f0f8ff;border:1px solid #0F4761;border-radius:10px;padding:16px 24px;text-align:center;flex:1;min-width:120px">
+        <div style="font-size:32px;font-weight:800;color:#0F4761">15</div>
+        <div style="font-size:13px;color:#555">Scope 3 kategórií</div>
+      </div>
+      <div class="stat-box" style="background:#f0f8ff;border:1px solid #0F4761;border-radius:10px;padding:16px 24px;text-align:center;flex:1;min-width:120px">
+        <div style="font-size:24px;font-weight:800;color:#0F4761">62 KB</div>
+        <div style="font-size:13px;color:#555">veľkosť reportu</div>
+      </div>
+    </div>
+
+    <div style="display:flex;gap:14px;flex-wrap:wrap;margin-bottom:24px">
+      <a href="site/downloads/cez-complete-2025.xhtml" class="btn-primary" download>📥 Stiahnuť iXBRL report (XHTML)</a>
+      <a href="site/downloads/cez-complete-2025_audit.json" class="btn-secondary" download>📄 Audit trail (JSON)</a>
+      <a href="site/downloads/cez-complete-2025_instance.xml" class="btn-secondary" download>📋 Instance XML</a>
+      <a href="demo/showcase/cez-complete-2025.xhtml" class="btn-secondary" target="_blank">👁 Otvoriť v prehliadači</a>
+    </div>
+
+    <div class="demo-cert" style="background:#fff;border:2px solid #0F4761;border-radius:12px;padding:20px 24px;margin:20px 0">
+      <h3 style="color:#0F4761;margin-bottom:12px">🔒 Compliance Certificate — ČEZ, a. s.</h3>
+      <table style="width:100%;border-collapse:collapse;font-size:13px">
+        <tr><td style="padding:6px 12px;font-weight:600">Taxonómia</td><td>EFRAG ESRS Set 1 XBRL (2023-12-22) — 5 430 elementov</td></tr>
+        <tr><td style="padding:6px 12px;font-weight:600">Namespace</td><td><code>https://xbrl.efrag.org/taxonomy/esrs/2023-12-22</code></td></tr>
+        <tr><td style="padding:6px 12px;font-weight:600">SchemaRef</td><td><code>https://xbrl.efrag.org/taxonomy/esrs/2023-12-22/esrs_all.xsd</code></td></tr>
+        <tr><td style="padding:6px 12px;font-weight:600">Tagované fakty</td><td>137 (224 numerických + 36 textových iXBRL inštancií)</td></tr>
+        <tr><td style="padding:6px 12px;font-weight:600">Roky</td><td>2025, 2024 (multi-year porovnanie)</td></tr>
+        <tr><td style="padding:6px 12px;font-weight:600">Pokryté štandardy</td><td>ESRS 2, E1, E2, E3, E4, E5, S1, S2, S3, S4, G1 — všetkých 11</td></tr>
+        <tr><td style="padding:6px 12px;font-weight:600">Scope 3 breakdown</td><td>15 kategórií (Category 1–15 podľa GHG Protocol)</td></tr>
+        <tr><td style="padding:6px 12px;font-weight:600">SHA-256</td><td><code>270596e79e0a664c85b2c7354df3c5fc9cacc4b404c7cf2b13be75d638c675c0</code></td></tr>
+        <tr><td style="padding:6px 12px;font-weight:600">Watermark</td><td>© 2026 DanceNitra — CSRD iXBRL Engine v2.0</td></tr>
+        <tr><td style="padding:6px 12px;font-weight:600">Bezpečnostný audit</td><td>18/18 security testov prešlo (path traversal, XXE, overflow, input validácia)</td></tr>
+        <tr><td style="padding:6px 12px;font-weight:600">Validácia element names</td><td>100% overené v reálnej EFRAG XSD v runtime</td></tr>
+        <tr><td style="padding:6px 12px;font-weight:600">Dátum generovania</td><td>9. jún 2026</td></tr>
+      </table>
+      <p style="margin-top:12px;font-size:12px;color:#888">Tento certifikát je technický — report nie je ESMA-certifikovaný ani overený audítorom. Limited assurance musí vykonať registrovaný audítor. Každá zmena reportu zmení SHA-256 hash a je detekovateľná.</p>
+    </div>
+
     <div class="demo-tabs">
-      <button class="demo-tab active" onclick="showDemo('cez',this)">ČEZ Group</button>
-      <button class="demo-tab" onclick="showDemo('basf',this)">BASF SE</button>
+      <button class="demo-tab active" onclick="showDemo('showcase',this)">Showcase Report (137 faktov)</button>
+      <button class="demo-tab" onclick="showDemo('cez',this)">ČEZ Group</button>
       <button class="demo-tab" onclick="showDemo('list',this)">Zoznam všetkých</button>
     </div>
     <div class="demo-frame" id="demoFrame">
-      <iframe src="demo/cez-2025-ixbrl.html" title="CEZ iXBRL Report"></iframe>
+      <iframe src="demo/showcase/cez-complete-2025.xhtml" title="CEZ Complete iXBRL Report"></iframe>
     </div>
     <div class="demo-list" id="demoList" style="display:none">
       <p style="font-weight:600;margin-bottom:12px">Všetky vygenerované reporty</p>
       <div class="ref-grid">
-        <div class="ref-item"><span class="flag">🇨🇿</span> <strong>ČEZ Group</strong> — 34 faktov, 33 elementov</div>
-        <div class="ref-item"><span class="flag">🇩🇪</span> <strong>BASF SE</strong> — 23 faktov, 22 elementov</div>
-        <div class="ref-item"><span class="flag">🇩🇪</span> <strong>SAP SE</strong> — 25 faktov, 24 elementov</div>
-        <div class="ref-item"><span class="flag">🇸🇰</span> <strong>Slovnaft</strong> — 33 faktov, 32 elementov</div>
-        <div class="ref-item"><span class="flag">🇸🇰</span> <strong>ZSE</strong> — 27 faktov, 26 elementov</div>
-        <div class="ref-item"><span class="flag">🇸🇰</span> <strong>ACS Energy</strong> — 34 faktov, 33 elementov</div>
+        <div class="ref-item"><span class="flag">🇨🇿</span> <strong>ČEZ Group</strong> — 137 faktov, 260 tagov 🆕</div>
+        <div class="ref-item"><span class="flag">🇨🇿</span> <strong>ČEZ Group (classic)</strong> — 34 faktov</div>
+        <div class="ref-item"><span class="flag">🇩🇪</span> <strong>BASF SE</strong> — 23 faktov</div>
+        <div class="ref-item"><span class="flag">🇩🇪</span> <strong>SAP SE</strong> — 25 faktov</div>
+        <div class="ref-item"><span class="flag">🇸🇰</span> <strong>Slovnaft</strong> — 33 faktov</div>
+        <div class="ref-item"><span class="flag">🇸🇰</span> <strong>ZSE</strong> — 27 faktov</div>
+        <div class="ref-item"><span class="flag">🇸🇰</span> <strong>ACS Energy</strong> — 34 faktov</div>
       </div>
       <p class="ref-note">Všetky element names overené proti oficiálnej EFRAG XSD. Dáta z verejne dostupných zdrojov. Reporty sú demonštrácia formátu — nie oficiálne filingy.</p>
     </div>
@@ -411,7 +458,7 @@ a{color:#0F4761}
     <h2>Čo ešte nie je hotové</h2>
     <p class="sub">Pretože klamať zákazníkovi je horšie ako povedať "ešte na tom pracujeme".</p>
     <div class="limits-grid">
-      <div class="limit-card"><h3>📊 Hĺbka reportov</h3><p>Reálny ESRS report má 800–3 000 iXBRL faktov. My máme 25–35. Chýbajú: Scope 3 breakdown (15 kategórií), target trajectories s baseline, country breakdown, multi-year porovnanie v tabuľkách.</p></div>
+      <div class="limit-card"><h3>📊 Hĺbka reportov</h3><p>Náš showcase report má 137 faktov a 260 iXBRL tagov. Reálny ESRS report veľkej firmy má 800–3 000+ faktov. Stále chýbajú: detailné target trajectories s baseline, country breakdown podľa segmentov, komplexné výpočtové linkbasy, plné dimenzie pre všetky štandardy.</p></div>
       <div class="limit-card"><h3>🔗 Dimenzie a linkbasy</h3><p>EFRAG definuje 251 linkbas (presentation, definition, calculation, formula). My používame základné kontexty. Pre plnú kompatibilitu treba linkbasy integrovať do enginu.</p></div>
       <div class="limit-card"><h3>🔬 ESMA ESEF validácia</h3><p>Nie sme ESMA-certifikovaný validátor. Pre oficiálny filing je potrebný Arelle alebo ekvivalentný nástroj. Naša validácia je proti EFRAG XSD, nie proti ESMA RTS.</p></div>
       <div class="limit-card"><h3>🤝 Audítorský partner</h3><p>Bez limited assurance od BDO, Grant Thornton alebo TPA nemá report právnu váhu. Hľadáme partnera na pilotné overenie. V prípade záujmu vieme sprostredkovať kontakt.</p></div>
@@ -500,7 +547,11 @@ function showDemo(type, btn) {
   btn.classList.add('active');
   const frame = document.getElementById('demoFrame');
   const list = document.getElementById('demoList');
-  if (type === 'cez') {
+  if (type === 'showcase') {
+    frame.style.display = 'block';
+    list.style.display = 'none';
+    frame.querySelector('iframe').src = 'demo/showcase/cez-complete-2025.xhtml';
+  } else if (type === 'cez') {
     frame.style.display = 'block';
     list.style.display = 'none';
     frame.querySelector('iframe').src = 'demo/cez-2025-ixbrl.html';

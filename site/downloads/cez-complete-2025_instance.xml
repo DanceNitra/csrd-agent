@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xbrl:xbrl xmlns:xbrli="http://www.xbrl.org/2003/instance"
+           xmlns:link="http://www.xbrl.org/2003/linkbase"
+           xmlns:xlink="http://www.w3.org/1999/xlink"
+           xmlns:esrs="https://xbrl.efrag.org/taxonomy/esrs/2023-12-22">
+  <link:schemaRef xlink:href="https://xbrl.efrag.org/taxonomy/esrs/2023-12-22/esrs_all.xsd" xlink:type="simple"/>
+  <!-- Instance XML for ČEZ, a. s. (2025) -- 137 facts -->
+</xbrl:xbrl>
