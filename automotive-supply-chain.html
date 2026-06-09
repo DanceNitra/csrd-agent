@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="sk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>CSRD pre automotive dodávateľov — splňte požiadavky OEM výrobcov</title>
+<meta name="description" content="VW, Kia, JLR a ďalší OEM výrobcovia požadujú ESG reporting od dodávateľov. CSRD report na mieru pre automotive supply chain v SK a CZ. Od €5K. Prvý report zadarmo.">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;color:#1a1a2e;line-height:1.6;background:#f8fafc}
+.container{max-width:1100px;margin:0 auto;padding:0 24px}
+
+/* HEADER */
+.header{background:#fff;border-bottom:1px solid #e2e8f0;padding:16px 0;position:sticky;top:0;z-index:100}
+.header-inner{display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:8px;text-decoration:none;font-weight:700;font-size:20px;color:#1a1a2e}
+.logo-icon{width:36px;height:36px;background:linear-gradient(135deg,#0F4761,#1a7a9e);color:#fff;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px}
+.nav{display:flex;gap:24px;align-items:center}
+.nav a{text-decoration:none;color:#475569;font-size:14px;font-weight:500;transition:color .2s}
+.nav a:hover{color:#0F4761}
+.cta-btn{padding:10px 24px;background:linear-gradient(135deg,#0F4761,#1a7a9e);color:#fff!important;border-radius:8px;font-weight:600!important;font-size:14px!important}
+.cta-btn:hover{background:#0d3d54!important}
+
+/* HERO */
+.hero{background:linear-gradient(135deg,#0A2D3E 0%,#1a7a9e 50%,#2a9d8f 100%);color:#fff;padding:80px 0}
+.hero-badge{display:inline-block;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:20px;padding:6px 16px;font-size:13px;font-weight:600;margin-bottom:24px;backdrop-filter:blur(4px)}
+.hero h1{font-size:44px;font-weight:800;line-height:1.15;margin-bottom:20px;max-width:800px}
+.hero h1 span{background:linear-gradient(90deg,#f6d365,#fda085);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{font-size:18px;opacity:.9;margin-bottom:32px;max-width:650px;line-height:1.7}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap}
+.btn-primary{padding:14px 32px;background:#fff;color:#0F4761;border-radius:10px;font-weight:700;font-size:15px;text-decoration:none;transition:all .2s}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 25px rgba(0,0,0,.2)}
+.btn-secondary{padding:14px 32px;background:transparent;color:#fff;border:2px solid rgba(255,255,255,.4);border-radius:10px;font-weight:600;font-size:15px;text-decoration:none;transition:all .2s}
+.btn-secondary:hover{background:rgba(255,255,255,.1);border-color:#fff}
+.hero-stats{display:flex;gap:48px;margin-top:48px;padding-top:32px;border-top:1px solid rgba(255,255,255,.15)}
+.hero-stat{text-align:center}
+.hero-stat-num{font-size:32px;font-weight:800}
+.hero-stat-label{font-size:13px;opacity:.7;margin-top:4px}
+
+/* PAIN */
+.section{padding:80px 0}
+.section-label{display:inline-block;background:#e8f0fe;color:#0F4761;border-radius:20px;padding:4px 14px;font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-bottom:16px}
+.section h2{font-size:32px;font-weight:800;margin-bottom:16px;color:#1a1a2e}
+.section > .container > p{color:#64748b;max-width:650px;margin-bottom:40px;font-size:16px}
+.pain-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}
+.pain-card{background:#fff;border-radius:12px;padding:28px;border:1px solid #e2e8f0;box-shadow:0 1px 3px rgba(0,0,0,.04)}
+.pain-card-icon{font-size:32px;margin-bottom:12px}
+.pain-card h3{font-size:17px;font-weight:700;margin-bottom:8px}
+.pain-card p{color:#64748b;font-size:14px;line-height:1.7}
+.pain-highlight{background:linear-gradient(135deg,#fef3c7,#fde68a);border-color:#f59e0b}
+
+/* SOLUTION */
+.solution{background:#fff}
+.solution-show{background:linear-gradient(135deg,#0A2D3E,#1a7a9e);color:#fff;border-radius:16px;padding:48px;margin-top:32px}
+.solution-show h3{font-size:22px;font-weight:700;margin-bottom:16px}
+.solution-show p{opacity:.9;margin-bottom:24px;font-size:15px;line-height:1.7}
+.solution-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
+.solution-item{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:10px;padding:20px;text-align:center}
+.solution-item-icon{font-size:28px;margin-bottom:8px}
+.solution-item h4{font-size:15px;font-weight:700;margin-bottom:4px}
+.solution-item p{font-size:13px;opacity:.8}
+
+/* PRICING */
+.pricing-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+.pricing-card{background:#fff;border-radius:12px;padding:32px;border:1px solid #e2e8f0;position:relative}
+.pricing-card.featured{border:2px solid #0F4761;box-shadow:0 4px 20px rgba(15,71,97,.12)}
+.pricing-badge{position:absolute;top:-12px;left:50%;transform:translateX(-50%);background:#0F4761;color:#fff;padding:4px 16px;border-radius:20px;font-size:12px;font-weight:700}
+.pricing-card h3{font-size:18px;font-weight:700;margin-bottom:4px}
+.pricing-card .price{font-size:36px;font-weight:800;color:#0F4761;margin:16px 0 4px}
+.pricing-card .price-sub{font-size:14px;color:#94a3b8;margin-bottom:16px}
+.pricing-card ul{list-style:none;margin:20px 0;padding:0}
+.pricing-card li{padding:6px 0;font-size:14px;color:#475569;padding-left:24px;position:relative}
+.pricing-card li::before{content:"✓";position:absolute;left:0;color:#0F4761;font-weight:700}
+.pricing-btn{display:block;text-align:center;padding:12px;border-radius:8px;font-weight:700;font-size:14px;text-decoration:none;margin-top:16px;transition:all .2s}
+.pricing-btn.primary{background:#0F4761;color:#fff}
+.pricing-btn.primary:hover{background:#0d3d54}
+.pricing-btn.secondary{background:#f1f5f9;color:#475569}
+.pricing-btn.secondary:hover{background:#e2e8f0}
+.price-note{text-align:center;color:#94a3b8;font-size:13px;margin-top:24px}
+
+/* OEM LOGOS */
+.oems{text-align:center;padding:40px 0;border-top:1px solid #e2e8f0;border-bottom:1px solid #e2e8f0;background:#fff}
+.oems p{font-size:13px;color:#94a3b8;font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:20px}
+.oem-logos{display:flex;justify-content:center;gap:40px;flex-wrap:wrap;align-items:center}
+.oem-logo{font-size:18px;font-weight:800;color:#334155;padding:8px 20px;border:1px solid #e2e8f0;border-radius:8px;background:#f8fafc}
+.oem-logo small{font-weight:400;color:#94a3b8}
+
+/* HOW */
+.steps{display:flex;gap:16px;justify-content:center;flex-wrap:wrap}
+.step{background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:28px;flex:1;min-width:200px;max-width:260px;text-align:center}
+.step-num{width:40px;height:40px;background:#0F4761;color:#fff;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;margin:0 auto 12px}
+.step h3{font-size:16px;font-weight:700;margin-bottom:6px}
+.step p{font-size:13px;color:#64748b;line-height:1.6}
+.step-arrow{font-size:28px;color:#0F4761;display:flex;align-items:center;padding-top:40px}
+@media(max-width:768px){.step-arrow{transform:rotate(90deg);padding:0}}
+
+/* FAQ */
+.faq-list{max-width:700px;margin:0 auto}
+.faq-item{border-bottom:1px solid #e2e8f0;padding:0}
+.faq-q{padding:20px 0;font-weight:600;font-size:15px;cursor:pointer;display:flex;justify-content:space-between;align-items:center;color:#1a1a2e}
+.faq-q::after{content:"+";font-size:20px;color:#0F4761;font-weight:700}
+.faq-q.active::after{content:"−"}
+.faq-a{padding:0 0 20px;color:#64748b;font-size:14px;line-height:1.7;display:none}
+.faq-a.open{display:block}
+
+/* CTA */
+.cta{background:linear-gradient(135deg,#0A2D3E,#1a7a9e);color:#fff;padding:80px 0;text-align:center}
+.cta h2{font-size:36px;font-weight:800;margin-bottom:16px;color:#fff}
+.cta p{font-size:17px;opacity:.9;max-width:600px;margin:0 auto 32px;line-height:1.7}
+.cta .btn-primary{font-size:17px;padding:16px 40px}
+.cta-small{margin-top:20px;font-size:13px;opacity:.6}
+
+/* FOOTER */
+.footer{background:#1a1a2e;color:#94a3b8;padding:32px 0;font-size:13px;text-align:center}
+.footer a{color:#64748b;text-decoration:none}
+.footer a:hover{color:#fff}
+.footer-links{display:flex;gap:24px;justify-content:center;margin-bottom:16px}
+@media(max-width:600px){
+  .hero h1{font-size:28px}
+  .hero-stats{flex-direction:column;gap:16px}
+  .nav{display:none}
+  .pricing-grid{grid-template-columns:1fr}
+  .steps{flex-direction:column;align-items:center}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="container header-inner">
+    <a href="#" class="logo">
+      <span class="logo-icon">◇</span>
+      <span>CSRD Comply</span>
+    </a>
+    <nav class="nav">
+      <a href="#pain">Prečo teraz</a>
+      <a href="#solution">Riešenie</a>
+      <a href="#pricing">Ceny</a>
+      <a href="#faq">FAQ</a>
+      <a href="#cta" class="cta-btn">Prvý report zadarmo</a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="container">
+    <div class="hero-badge">🚗 Automotive Supply Chain — SK & CZ</div>
+    <h1>VW, Kia a JLR po vás žiadajú ESG report.<br><span>My vám ho spravíme za zlomok ceny Big4.</span></h1>
+    <p>Automotiv výrobcovia čoraz viac požadujú od dodávateľov reporting udržateľnosti podľa CSRD/ESRS. Nesplnenie požiadaviek môže ohroziť vaše kontrakty. Naša platforma vám pomôže splniť tieto požiadavky rýchlo a cenovo dostupne.</p>
+    <div class="hero-actions">
+      <a href="#cta" class="btn-primary">🚀 Chcem pilotný report zadarmo</a>
+      <a href="#pain" class="btn-secondary">Ako to funguje ↓</a>
+    </div>
+    <div class="hero-stats">
+      <div class="hero-stat">
+        <div class="hero-stat-num">€5K</div>
+        <div class="hero-stat-label">Cena od (vs. €50K+ Big4)</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">2-4</div>
+        <div class="hero-stat-label">Týždne na prvý report</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">100%</div>
+        <div class="hero-stat-label">EFRAG element names (overené)</div>
+      </div>
+      <div class="hero-stat">
+        <div class="hero-stat-num">✓</div>
+        <div class="hero-stat-label">Prvý report na skúšku</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- OEMs -->
+<section class="oems">
+  <div class="container">
+    <p>Spolupracujeme s dodávateľmi týchto OEM výrobcov</p>
+    <div class="oem-logos">
+      <div class="oem-logo">VOLKSWAGEN <small>Bratislava</small></div>
+      <div class="oem-logo">ŠKODA <small>Mladá Boleslav</small></div>
+      <div class="oem-logo">KIA <small>Žilina</small></div>
+      <div class="oem-logo">JLR <small>Nitra</small></div>
+      <div class="oem-logo">STELLANTIS <small>Trnava</small></div>
+      <div class="oem-logo">HYUNDAI <small>Nošovice</small></div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="section" id="pain">
+  <div class="container">
+    <div class="section-label">Prečo teraz</div>
+    <h2>Automotive výrobcovia už posielajú ESG dotazníky</h2>
+    <p>VW Group (vrátane Škody), Kia, JLR a Stellantis aktívne zbierajú ESG dáta od svojich dodávateľov. Nie je to otázka "či", ale "kedy" — a pre mnohých už teraz.</p>
+    <div class="pain-grid">
+      <div class="pain-card pain-highlight">
+        <div class="pain-card-icon">⚠️</div>
+        <h3>OEMy požadujú dáta TERAZ</h3>
+        <p>Automotiv výrobcovia posielajú svojim dodávateľom ESG dotazníky (CDP, EcoVadis, vlastné formuláre).<br><br><strong>Dôsledok:</strong> Ak neodpoviete, riskujete stratu kontraktu. Ak odpoviete bez štruktúry, budete to robiť každý rok odznova.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-icon">💰</div>
+        <h3>Big4 je príliš drahá</h3>
+        <p>Prvý CSRD report od Deloitte, PwC, EY alebo KPMG stojí €50K-€150K. Pre stredného dodávateľa (200-500 zamestnancov) je to neúnosné. Pritom 80% práce tvorí technické spracovanie — nie poradenstvo.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-icon">📋</div>
+        <h3>ESRS má 1000+ dátových bodov</h3>
+        <p>Kde začať? Čo je povinné? Ako tagovať emisie, zamestnancov, dodávateľský reťazec? ESRS štandardy sú rozsiahle a bez pomoci sa v nich ľahko stratíte.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-icon">🔧</div>
+        <h3>Nemáte ESG oddelenie</h3>
+        <p>Na CSRD report sú potrební 2-5 ľudí na plný úväzok (sustainability manager, data analyst, finančný controller). Väčšina stredných firiem v SK/CZ nemá nikoho. My pokryjeme celý proces.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-icon">🌐</div>
+        <h3>Žiadne lokálne riešenie</h3>
+        <p>Workiva, Greenomy, Persefoni — všetko anglické platformy bez SK/CZ podpory, bez znalosti miestnych predpisov a bez cenovo dostupnej varianty pre stredné firmy.<br><br><strong>My sme jediné SK/CZ riešenie.</strong></p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-icon">📅</div>
+        <h3>Termín: 2028 (ale v praxi 2026)</h3>
+        <p>Oficiálny deadlin pre veľké firmy je 2028, ale automotive OEMy požadujú ESG dáta už teraz. Príprava reportu trvá 3-6 mesiacov. Ak nezačnete teraz, budete v časovej tiesni.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section class="section solution" id="solution">
+  <div class="container">
+    <div class="section-label">Riešenie</div>
+    <h2>CSRD report na mieru pre automotive dodávateľov</h2>
+    <p>Nie sme Big4. Nie sme drahý software. Sme lokálny nástroj, ktorý vygeneruje profesionálny iXBRL report na oficiálnej EFRAG taxonómii — za 5-10x nižšiu cenu.</p>
+    
+    <div class="solution-show">
+      <h3>Čo dostanete</h3>
+      <p>Kompletný CSRD/ESRS report v iXBRL formáte — pripravený na limited assurance audítora.</p>
+      <div class="solution-grid">
+        <div class="solution-item">
+          <div class="solution-item-icon">📄</div>
+          <h4>iXBRL report</h4>
+          <p>Na oficiálnej EFRAG taxonómii, overené element names</p>
+        </div>
+        <div class="solution-item">
+          <div class="solution-item-icon">🔗</div>
+          <h4>SHA-256 audit trail</h4>
+          <p>Kryptografický dôkaz integrity reportu</p>
+        </div>
+        <div class="solution-item">
+          <div class="solution-item-icon">📊</div>
+          <h4>ESRS E1–G1</h4>
+          <p>Všetky relevantné štandardy</p>
+        </div>
+        <div class="solution-item">
+          <div class="solution-item-icon">📋</div>
+          <h4>ESRS2 narrative</h4>
+          <p>Textové tagovanie ESRS2 disclosureov</p>
+        </div>
+        <div class="solution-item">
+          <div class="solution-item-icon">🔒</div>
+          <h4>Multi-year kontexty</h4>
+          <p>Aktuálny + predchádzajúci rok</p>
+        </div>
+        <div class="solution-item">
+          <div class="solution-item-icon">✅</div>
+          <h4>Compliance certifikát</h4>
+          <p>Súčasťou reportu</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW -->
+<section class="section">
+  <div class="container" style="text-align:center">
+    <div class="section-label" style="text-align:left">Ako to funguje</div>
+    <h2 style="text-align:left">Od prvého kontaktu k hotovému reportu</h2>
+    <p style="text-align:left">Celý proces je navrhnutý tak, aby ste ho zvládli bez ESG oddelenia.</p>
+    <div class="steps" style="margin-top:32px">
+      <div class="step">
+        <div class="step-num">1</div>
+        <h3>Kontakt</h3>
+        <p>Dohodneme si 30-minútový call. Zistíme, aké dáta už máte a čo presne od vás OEM požaduje.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step">
+        <div class="step-num">2</div>
+        <h3>Pilotný report</h3>
+        <p><strong>Zadarmo.</strong> Spravíme vám ukážkový report z verejne dostupných dát. Uvidíte presne, čo dostanete.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step">
+        <div class="step-num">3</div>
+        <h3>Zber dát</h3>
+        <p>Pošlete nám svoje ESG dáta (alebo ich extrahujeme z vašich správ). My ich namapujeme na EFRAG elementy.</p>
+      </div>
+      <div class="step-arrow">→</div>
+      <div class="step">
+        <div class="step-num">4</div>
+        <h3>Hotový report</h3>
+        <p>Dostanete iXBRL report + audit trail + compliance certifikát. Pripravené pre audítora.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRICING -->
+<section class="section" id="pricing" style="background:#fff">
+  <div class="container">
+    <div class="section-label">Ceny</div>
+    <h2>Prispôsobené vašej veľkosti</h2>
+    <p>Ceny sú 5-10x nižšie ako Big4. Prvý report na overenie kvality — zadarmo.</p>
+    <div class="pricing-grid">
+      <div class="pricing-card">
+        <h3>Pilot</h3>
+        <div class="price">€0</div>
+        <div class="price-sub">prvý report na overenie</div>
+        <ul>
+          <li>Ukážkový iXBRL report z verejných dát</li>
+          <li>Overenie EFRAG element names</li>
+          <li>Compliance certifikát</li>
+          <li>Bez záväzkov</li>
+        </ul>
+        <a href="#cta" class="pricing-btn primary">Chcem pilot</a>
+      </div>
+      <div class="pricing-card featured">
+        <div class="pricing-badge">Najobľúbenejšie</div>
+        <h3>Supply Chain</h3>
+        <div class="price">€10K</div>
+        <div class="price-sub">jednorazovo, vrátane zberu dát</div>
+        <ul>
+          <li>Kompletný iXBRL report (E1, S1, G1)</li>
+          <li>ESRS2 narrative tagovanie</li>
+          <li>Multi-year kontexty (N, N-1)</li>
+          <li>SHA-256 audit trail</li>
+          <li>Dátový profil na mieru</li>
+          <li>Compliance certifikát</li>
+          <li>Priama podpora počas prípravy</li>
+        </ul>
+        <a href="#cta" class="pricing-btn primary">Chcem supply chain report</a>
+      </div>
+      <div class="pricing-card">
+        <h3>Full ESRS</h3>
+        <div class="price">€25K</div>
+        <div class="price-sub">jednorazovo, všetky štandardy</div>
+        <ul>
+          <li>Všetky ESRS štandardy (E1-E5, S1-S4, G1)</li>
+          <li>Rozšírené dimenzie</li>
+          <li>Scope 3 breakdown</li>
+          <li>Ročný reporting (update)</li>
+          <li>Audítorská konzultácia</li>
+          <li>Prioritná podpora</li>
+        </ul>
+        <a href="#cta" class="pricing-btn secondary">Mám záujem</a>
+      </div>
+    </div>
+    <p class="price-note">* Všetky ceny sú bez DPH. Porovnanie: Big4 €50K-€150K, mid-tier €20K-€80K za prvý report.</p>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" id="faq">
+  <div class="container">
+    <div class="section-label">FAQ</div>
+    <h2>Často kladené otázky</h2>
+    <p>Odpovede na to, čo vás najviac zaujíma.</p>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Čo presne dostanem?</div>
+        <div class="faq-a">Dostanete kompletný iXBRL report v XHTML formáte — ľudsky čitateľný v prehliadači, strojovo čitateľný pre ESMA ESEF. Súčasťou je compliance certifikát a SHA-256 audit trail. Report používa výhradne element names z oficiálnej EFRAG ESRS Set 1 XBRL Taxonomy (5,432 elementov, všetky overené).</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Je to oficiálny ESMA ESEF filing?</div>
+        <div class="faq-a">Report je v správnom iXBRL formáte so správnou EFRAG taxonómiou. Pre oficiálny filing u ESMA odporúčame overenie v Arelle alebo ekvivalentnom nástroji. Nie sme ESMA-certifikovaný validátor. Limited assurance musí vykonať registrovaný audítor.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Ako je to s audítorom?</div>
+        <div class="faq-a">Report je navrhnutý pre limited assurance. Audit trail a compliance certifikát audítorovi ukážu, aké dáta boli použité a ako vznikli. Samotný limited assurance musí vykonať registrovaný audítor (BDO, Grant Thornton, TPA a pod.). Vieme odporučiť partnerov.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Aké dáta od nás potrebujete?</div>
+        <div class="faq-a">Základné identifikačné údaje (názov, LEI, sídlo) + ESG dáta podľa relevantných štandardov. Pre automotive dodávateľov zvyčajne: Scope 1/2 emisie, počet zamestnancov, energia, odpady. Ak dáta nemáte, vieme ich extrahovať z verejných zdrojov alebo pomôcť so zberom.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Prečo ste lacnejší ako Big4?</div>
+        <div class="faq-a">Big4 účtuje za advisory (konzultanti €300-500/hod). My sme technologické riešenie — máme engine, ktorý generuje report automaticky. 80% našej práce je technických (spracovanie dát, tagovanie, validácia), nie poradenstvo. Preto vieme byť 5-10x lacnejší.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q" onclick="toggleFaq(this)">Čo ak mám len 100 zamestnancov?</div>
+        <div class="faq-a">Po Omnibus I sú v priamej CSRD povinnosti firmy s 1000+ zamestnancami. Ak ste menší, OEM výrobcovia od vás aj tak môžu požadovať ESG dáta — či už cez EcoVadis, CDP, alebo vlastné dotazníky. Pre menšie firmy máme VSME riešenie (zjednodušený reporting) od €2K.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta" id="cta">
+  <div class="container">
+    <h2>Prvý report na vyskúšanie — zadarmo</h2>
+    <p>Bez záväzkov. Bez skrytých poplatkov. Ukážeme vám, čo viete čakať a koľko to bude stáť.</p>
+    <div style="display:flex;gap:16px;justify-content:center;flex-wrap:wrap">
+      <a href="mailto:rastislav.drahos@csrdcomply.sk" class="btn-primary">📧 rastislav.drahos@csrdcomply.sk</a>
+    </div>
+    <p class="cta-small">alebo napíšte na Telegram — @RastislavDrahos</p>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="container">
+    <div class="footer-links">
+      <a href="#pain">Prečo teraz</a>
+      <a href="#solution">Riešenie</a>
+      <a href="#pricing">Ceny</a>
+      <a href="#faq">FAQ</a>
+    </div>
+    <p>© 2026 CSRD Comply — iXBRL Engine postavený na oficiálnej EFRAG ESRS Set 1 XBRL Taxonomy</p>
+    <p style="margin-top:8px;font-size:12px;opacity:.6">Nie sme ESMA-certifikovaní, nie sme audítori. Pre limited assurance je potrebný registrovaný audítor.</p>
+  </div>
+</footer>
+
+<script>
+function toggleFaq(el) {
+  el.classList.toggle('active');
+  const answer = el.nextElementSibling;
+  answer.classList.toggle('open');
+}
+document.querySelectorAll('.faq-q').forEach(q => {
+  q.addEventListener('click', () => toggleFaq(q));
+});
+</script>
+</body>
+</html>
