@@ -1,49 +1,28 @@
-# CSRD Agent
+# CSRD Agent — ESRS Sustainability Reporting
 
-Multi-agent CSRD/ESRS compliance report generator.
+[![GitHub Pages](https://img.shields.io/badge/Live-https://dancenitra.github.io/csrd-agent/-blue)](https://dancenitra.github.io/csrd-agent/)
 
-## 🚀 Deploy na Render (Free Tier)
+**Marketing site for CSRD/ESRS iXBRL reporting services.**
 
-1. **Pushni repo** na GitHub (už hotové)
+This repository contains only the public-facing landing page at `site/`. 
+The proprietary CSRD iXBRL reporting engine is in a **private repository**.
 
-2. **Otvor** [dashboard.render.com](https://dashboard.render.com) → **New +** → **Web Service**
+## What's here
 
-3. **Connect GitHub repo** `DanceNitra/csrd-agent`
+| Directory | Content |
+|-----------|---------|
+| `site/` | Landing pages (HTML, CSS, JS) — **MIT licensed** |
+| `demo/` | Demo iXBRL report previews |
 
-4. **Nastav**:
+## License
 
-   | Pole | Hodnota |
-   |------|---------|
-   | **Name** | `csrd-agent` |
-   | **Runtime** | `Python 3` |
-   | **Branch** | `main` |
-   | **Region** | `Frankfurt (EU)` |
-   | **Build Command** | `pip install -r requirements.txt` |
-   | **Start Command** | `uvicorn web.app:app --host 0.0.0.0 --port $PORT` |
-   | **Instance Type** | **Free** ✓ |
-   | **Health Check Path** | `/health` |
+- **`site/`** — MIT License (see [LICENSE](LICENSE))
+- **CSRD iXBRL Engine** — Proprietary, All Rights Reserved
 
-5. **Deploy** → počkaj 3-5 minút
+## Live site
 
-6. **Otvoriť**: `https://csrd-agent.onrender.com`
+👉 [https://dancenitra.github.io/csrd-agent/](https://dancenitra.github.io/csrd-agent/)
 
-7. **Overiť**: `https://csrd-agent.onrender.com/health`
+## Contact
 
-## 🖥️ Lokálne spustenie
-
-```bash
-cd ~/csrd-agent
-pip install -r requirements.txt
-python3 web/app.py
-# otvor http://localhost:8080
-```
-
-## 🏢 Pipeline
-
-```bash
-python3 cli.py --client Enel --full-pipeline --llm
-```
-
-## 📊 Reálni klienti
-
-Enel, Volkswagen Group, Siemens, Iberdrola, TotalEnergies — 59 XBRL faktov.
+**contact@dancenitra.sk**
