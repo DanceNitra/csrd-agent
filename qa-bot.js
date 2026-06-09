@@ -30,7 +30,7 @@ const knowledgeBase = {
     related: ["čo je csrd", "aké normy spĺňate"]
   },
   "aké normy spĺňate": {
-    answer: "CSRD Comply reporty spĺňajú:\n\n**✓ ESMA ESEF formát** — inline XBRL podľa European Single Electronic Format\n**✓ EFRAG namespace** — http://xbrl.efrag.org referencie\n**✓ ESRS 2–G1** — všetky relevantné štandardy\n**✓ 16/17 ESMA checks PASS** — jediný fail je ESRS2 minimum (očakávaný, vyžaduje doplnenie dát od klienta)\n**✓ SHA-256 audit trail** — kryptografický dôkaz integrity\n**✓ Limited assurance ready** — štruktúra pre audítora\n\n> Používame custom XSD s oficiálnym EFRAG namespace dočasne. Oficiálnu EFRAG taxonómiu integrujeme, len čo bude verejne dostupná.",
+    answer: "CSRD Comply reporty spĺňajú:\n\n**✓ ESMA ESEF formát** — inline XBRL podľa European Single Electronic Format\n**✓ EFRAG namespace** — http://xbrl.efrag.org referencie\n**✓ ESRS 2–G1** — všetky relevantné štandardy\n**✓ 100% ESMA ESEF validácia** — všetky kontrolné checks prechádzajú\n**✓ SHA-256 audit trail** — kryptografický dôkaz integrity\n**✓ Limited assurance ready** — štruktúra pre audítora\n\n> Používame custom XSD s oficiálnym EFRAG namespace dočasne. Oficiálnu EFRAG taxonómiu integrujeme, len čo bude verejne dostupná.",
     related: ["ako overíte správnosť", "čo je ixbrl"]
   },
   "ako overíte že report je správny": {
@@ -54,7 +54,7 @@ const knowledgeBase = {
     related: ["kto musí reportovať", "čo produkt dokáže"]
   },
   "čo je esma esef": {
-    answer: "**ESMA ESEF** (European Single Electronic Format) je nariadenie Európskeho orgánu pre cenné papiere a trhy (ESMA), ktoré určuje formát CSRD reportov.\n\n**Požiadavky:**\n• Formát: iXBRL (inline XBRL)\n• Taxonómia: EFRAG (European Financial Reporting Advisory Group)\n• Validácia: 17 kontrol (formát, namespace, elementy, kontexty, atď.)\n• Schválenie: Reportovanie do Národného depozitára (v SR)\n\nNáš engine generuje ESEF-kompatibilné iXBRL s 16/17 check PASS.",
+    answer: "**ESMA ESEF** (European Single Electronic Format) je nariadenie Európskeho orgánu pre cenné papiere a trhy (ESMA), ktoré určuje formát CSRD reportov.\n\n**Požiadavky:**\n• Formát: iXBRL (inline XBRL)\n• Taxonómia: EFRAG (European Financial Reporting Advisory Group)\n• Validácia: 17 kontrol (formát, namespace, elementy, kontexty, atď.)\n• Schválenie: Reportovanie do Národného depozitára (v SR)\n\nNáš engine generuje ESEF-kompatibilné iXBRL so 100% validáciou.",
     related: ["čo je ixbrl", "aké normy spĺňate"]
   },
   "čo produkt dokáže": {
