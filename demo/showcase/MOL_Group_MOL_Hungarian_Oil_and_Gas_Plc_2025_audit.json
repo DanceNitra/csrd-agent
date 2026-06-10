@@ -1,0 +1,349 @@
+{
+  "entity": "MOL Group (MOL Hungarian Oil and Gas Plc)",
+  "lei": "529900B9S3PU1TNFYI43",
+  "reporting_year": 2025,
+  "generated_at": "2026-06-10T11:34:16.132667",
+  "taxonomy": {
+    "namespace": "https://xbrl.efrag.org/taxonomy/esrs/2023-12-22",
+    "schema": "https://xbrl.efrag.org/taxonomy/esrs/2023-12-22/esrs_all.xsd"
+  },
+  "facts": {
+    "numeric": [
+      {
+        "name": "GrossScope1GreenhouseGasEmissions",
+        "value": 6710000,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "GrossLocationBasedScope2GreenhouseGasEmissions",
+        "value": 560000,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "GrossMarketBasedScope2GreenhouseGasEmissions",
+        "value": 560000,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "GrossScope3GreenhouseGasEmissions",
+        "value": 62160000,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "GrossGreenhouseGasEmissions",
+        "value": 68832000,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "NetRevenueUsedToCalculateGHGIntensity",
+        "value": 21674059766,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "EnergyConsumptionRelatedToOwnOperations",
+        "value": 27900000,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "EnergyConsumptionFromFossilSources",
+        "value": 26531472,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "FuelConsumptionFromNaturalGas",
+        "value": 21392822,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "FuelConsumptionFromCrudeOilAndPetroleumProducts",
+        "value": 3292991,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "FuelConsumptionFromOtherFossilSources",
+        "value": 483047,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "PercentageOfRenewableSourcesInTotalEnergyConsumption",
+        "value": 0.018,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "BiogenicEmissionsOfCO2FromCombustionOrBiodegradationOfBiomassNotIncludedInScope1GHGEmissions",
+        "value": 10000,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "BiogenicEmissionsOfCO2FromCombustionOrBiodegradationOfBiomassThatOccurInUpstreamAndDownstreamValueChainNotIncludedInScope3GHGEmissions",
+        "value": 1970000,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "MeasurableTargetPercentage",
+        "value": 0.25,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "CarbonPriceAppliedForEachMetricTonneOfGreenhouseGasEmission",
+        "value": 120,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "PercentageOfScope1GreenhouseGasEmissionsFromRegulatedEmissionTradingSchemes",
+        "value": 90.89,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "AchievedGHGEmissionReductions",
+        "value": 400000,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "ExpectedGHGEmissionReductions",
+        "value": 1000000,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "GHGRemovalsAndStorage",
+        "value": 0,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "PercentageOfRemunerationRecognisedInCurrentPeriodThatIsLinkedToClimateRelatedConsiderations",
+        "value": 0.05,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "RevenueFromFossilFuelCoalOilAndGasSector",
+        "value": 21674059766,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "PercentageOfFossilSourcesInTotalEnergyConsumption",
+        "value": 0.9515,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "EnergyConsumptionFromNuclearSources",
+        "value": 837000,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "EnergyConsumptionFromRenewableSources",
+        "value": 502200,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "PercentageOfApproximateGrossScope1GreenhouseGasEmissionsCoveredByInternalCarbonPricingScheme",
+        "value": 90.89,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "RevenueFromActivitiesInHighClimateImpactSectors",
+        "value": 21674059766,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "FinancialResourcesAllocatedToActionPlanOpEx",
+        "value": 0.143,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "FinancialResourcesAllocatedToActionPlanCapEx",
+        "value": 0.129,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "AbsoluteValueOfTotalGreenhouseGasEmissionsReduction",
+        "value": 1907500,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "NumberOfEmployeesHeadcountAtEndOfPeriod",
+        "value": 28743,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "BoardsGenderDiversityRatio",
+        "value": 0.15,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "PercentageOfEmployeeTurnover",
+        "value": 0.124,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "NumberOfEmployeesWhoHaveLeftUndertakingDuringPeriod",
+        "value": 3299,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "PercentageOfEmployeesUnder30YearsOld",
+        "value": 0.139,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "PercentageOfEmployeesBetween30And50YearsOld",
+        "value": 0.541,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "PercentageOfEmployeesOver50YearsOld",
+        "value": 0.32,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "NumberOfEmployeesHeadCountAtTopManagementLevelAtEndOfPeriod",
+        "value": 52,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "PercentageOfEmployeesAtTopManagementLevel",
+        "value": 0.077,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "GenderPayGap",
+        "value": 0.0,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "NumberOfRecordableWorkrelatedAccidents",
+        "value": 135,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "NumberOfFatalitiesInOwnWorkforceAsResultOfWorkrelatedInjuries",
+        "value": 0,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "NumberOfFatalitiesInOwnWorkforceAsResultOfWorkrelatedIllHealth",
+        "value": 0,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "NumberOfCasesOfRecordableWorkrelatedIllHealth",
+        "value": 0,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "RateOfRecordableWorkrelatedAccidents",
+        "value": 1.4,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "PercentageOfTotalEmployeesCoveredByCollectiveBargainingAgreements",
+        "value": 0.861,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "AverageNumberOfTrainingHoursPerEmployeeAndOrNonemployee",
+        "value": 36.5,
+        "unit": "utr:h"
+      },
+      {
+        "name": "PercentageOfEmployeesAndOrNonemployeesThatParticipatedInRegularPerformanceAndCareerDevelopmentReviews",
+        "value": 0.72,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "PercentageOfOwnWorkersCoveredByHealthAndSafetyManagementSystemBasedOnLegalRequirementsAndOrRecognisedStandardsOrGuidelinesAndWhichHasBeenInternallyAuditedAndOrAuditedOrCertifiedByExternalParty",
+        "value": 0.516,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "NumberOfSevereHumanRightsIncidentsConnectedToOwnWorkforce",
+        "value": 0,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "NumberOfConvictionsForViolationOfAnticorruptionAndAntibriberyLaws",
+        "value": 0,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "NumberOfConfirmedIncidentsOfCorruptionOrBribery",
+        "value": 0,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "NumberOfConfirmedIncidentsInWhichOwnWorkersWereDismissedOrDisciplinedForCorruptionOrBriberyrelatedIncidents",
+        "value": 0,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "NumberOfConfirmedIncidentsRelatingToContractsWithBusinessPartnersThatWereTerminatedOrNotRenewedDueToViolationsRelatedToCorruptionOrBribery",
+        "value": 0,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "AmountOfFinesForViolationOfAnticorruptionAndAntibriberyLaws",
+        "value": 0,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "PercentageOfFunctionsatriskCoveredByAnticorruptionAndAntibriberyTrainingProgrammes",
+        "value": 0.95,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "AmountOfInternalAndExternalLobbyingExpenses",
+        "value": 500000,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "FinancialAndInKindPoliticalContributionsMade",
+        "value": 0,
+        "unit": "xbrli:pure"
+      },
+      {
+        "name": "AverageNumberOfDaysToPayInvoiceFromDateWhenContractualOrStatutoryTermOfPaymentStartsToBeCalculated",
+        "value": 38,
+        "unit": "utr:d"
+      },
+      {
+        "name": "PercentageOfPaymentsAlignedWithStandardPaymentTerms",
+        "value": 0.94,
+        "unit": "xbrli:pure"
+      }
+    ],
+    "text": [
+      {
+        "name": "BasisForPreparationOfSustainabilityStatement"
+      },
+      {
+        "name": "DescriptionOfBusinessModelAndValueChainExplanatory"
+      },
+      {
+        "name": "DescriptionOfCategoryOfStakeholderForWhichEngagementOccursExplanatory"
+      },
+      {
+        "name": "DescriptionOfHowConnectionsOfImpactsAndDependenciesWithRisksAndOpportunitiesThatMayAriseFromThoseImpactsAndDependenciesHaveBeenConsideredExplanatory"
+      },
+      {
+        "name": "DescriptionOfActionsTakenToIdentifyMonitorPreventMitigateRemediateOrBringToEndActualOrPotentialAdverseImpactsRelatedToSustainabilityMattersAssessedToBeMaterialPhaseinAndResultOfSuchActionsExplanatory"
+      },
+      {
+        "name": "DescriptionOfHowFindingsOfRiskAssessmentAndInternalControlsAsRegardsSustainabilityReportingProcessHaveBeenIntegratedIntoRelevantInternalFunctionsAndProcessesExplanatory"
+      },
+      {
+        "name": "DescriptionOfExtentToWhichAndHowProcessToIdentifyAssessAndManageImpactsAndRisksIsIntegratedIntoOverallRiskManagementProcessAndUsedToEvaluateOverallRiskProfileAndRiskManagementProcessesExplanatory"
+      },
+      {
+        "name": "DedicatedControlsAndProceduresAreAppliedToManagementOfImpactsRisksAndOpportunities"
+      },
+      {
+        "name": "DescriptionOfHowAdministrativeManagementAndSupervisoryBodiesAreInformedAboutViewsAndInterestsOfAffectedStakeholdersWithRegardToSustainabilityrelatedImpactsExplanatory"
+      },
+      {
+        "name": "EmissionsToAir"
+      }
+    ],
+    "boolean": []
+  },
+  "total_facts": 70,
+  "sha256": "c6686077d30818cd6bb20c5de6dee5719a15e652bfa97141bdebd6b12997e8bb"
+}

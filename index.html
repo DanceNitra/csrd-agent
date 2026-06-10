@@ -428,22 +428,29 @@ a{color:#0F4761}
     </div>
 
     <div class="demo-tabs">
-      <button class="demo-tab active" onclick="showDemo('showcase',this)">V2 — Full (5 753 faktov)</button>
-      <button class="demo-tab" onclick="showDemo('showcase_v1',this)">V1 — Showcase (137 faktov)</button>
-      <button class="demo-tab" onclick="showDemo('cez',this)">ČEZ Group</button>
+      <button class="demo-tab active" onclick="showDemo('cez',this)">🇨🇿 ČEZ Group</button>
+      <button class="demo-tab" onclick="showDemo('mol',this)">🇭🇺 MOL Group</button>
+      <button class="demo-tab" onclick="showDemo('slovnaft',this)">🇸🇰 Slovnaft</button>
       <button class="demo-tab" onclick="showDemo('list',this)">Zoznam všetkých</button>
     </div>
     <div class="demo-frame" id="demoFrame">
-      <iframe src="demo/showcase_v3/EZ__a._s_2030.xhtml" title="CEZ Complete iXBRL Report v2"></iframe>
+      <iframe src="demo/showcase/cez-complete-2025.xhtml" title="CEZ iXBRL Report"></iframe>
+    </div>
+    <div class="demo-frame" id="demoFrameMol" style="display:none">
+      <iframe src="demo/showcase/MOL_Group_MOL_Hungarian_Oil_and_Gas_Plc_2025.xhtml" title="MOL iXBRL Report"></iframe>
+    </div>
+    <div class="demo-frame" id="demoFrameSlovnaft" style="display:none">
+      <iframe src="demo/showcase/Slovnaft_a.s._2025.xhtml" title="Slovnaft iXBRL Report"></iframe>
     </div>
     <div class="demo-list" id="demoList" style="display:none">
       <p style="font-weight:600;margin-bottom:12px">Všetky vygenerované reporty</p>
       <div class="ref-grid">
-        <div class="ref-item"><span class="flag">🇨🇿</span> <strong>ČEZ Group (v2 — full)</strong> — 5 753 faktov, 5 727 tagov 🆕</div>
-        <div class="ref-item"><span class="flag">🇨🇿</span> <strong>ČEZ Group (v1 — showcase)</strong> — 137 faktov, 260 tagov</div>
+        <div class="ref-item"><span class="flag">🇨🇿</span> <strong>ČEZ Group</strong> — 5 753 faktov, 13/14 validácia ✅</div>
+        <div class="ref-item"><span class="flag">🇭🇺</span> <strong>MOL Group</strong> — 70 faktov, 13/14 validácia ✅ 🆕</div>
+        <div class="ref-item"><span class="flag">🇸🇰</span> <strong>Slovnaft, a.s.</strong> — 55 faktov, 13/14 validácia ✅ 🆕</div>
+        <div class="ref-item"><span class="flag">🇨🇿</span> <strong>ČEZ Group (v1)</strong> — 137 faktov</div>
         <div class="ref-item"><span class="flag">🇩🇪</span> <strong>BASF SE</strong> — 23 faktov</div>
         <div class="ref-item"><span class="flag">🇩🇪</span> <strong>SAP SE</strong> — 25 faktov</div>
-        <div class="ref-item"><span class="flag">🇸🇰</span> <strong>Slovnaft</strong> — 33 faktov</div>
         <div class="ref-item"><span class="flag">🇸🇰</span> <strong>ZSE</strong> — 27 faktov</div>
         <div class="ref-item"><span class="flag">🇸🇰</span> <strong>ACS Energy</strong> — 34 faktov</div>
       </div>
@@ -566,26 +573,24 @@ function toggle(el) {
 function showDemo(type, btn) {
   document.querySelectorAll('.demo-tab').forEach(t => t.classList.remove('active'));
   btn.classList.add('active');
-  const frame = document.getElementById('demoFrame');
+  const cezFrame = document.getElementById('demoFrame');
+  const molFrame = document.getElementById('demoFrameMol');
+  const slovnaftFrame = document.getElementById('demoFrameSlovnaft');
   const list = document.getElementById('demoList');
-  if (type === 'showcase') {
-    frame.style.display = 'block';
-    list.style.display = 'none';
-    frame.querySelector('iframe').src = 'demo/showcase_v3/EZ__a._s_2030.xhtml';
-  } else if (type === 'showcase_v1') {
-    frame.style.display = 'block';
-    list.style.display = 'none';
-    frame.querySelector('iframe').src = 'demo/showcase/cez-complete-2025.xhtml';
-  } else if (type === 'cez') {
-    frame.style.display = 'block';
-    list.style.display = 'none';
-    frame.querySelector('iframe').src = 'demo/cez-2025-ixbrl.html';
-  } else if (type === 'basf') {
-    frame.style.display = 'block';
-    list.style.display = 'none';
-    frame.querySelector('iframe').src = 'demo/basf-2025-ixbrl.html';
+  cezFrame.style.display = 'none';
+  molFrame.style.display = 'none';
+  slovnaftFrame.style.display = 'none';
+  list.style.display = 'none';
+  if (type === 'cez') {
+    cezFrame.style.display = 'block';
+    cezFrame.querySelector('iframe').src = 'demo/showcase/cez-complete-2025.xhtml';
+  } else if (type === 'mol') {
+    molFrame.style.display = 'block';
+    molFrame.querySelector('iframe').src = 'demo/showcase/MOL_Group_MOL_Hungarian_Oil_and_Gas_Plc_2025.xhtml';
+  } else if (type === 'slovnaft') {
+    slovnaftFrame.style.display = 'block';
+    slovnaftFrame.querySelector('iframe').src = 'demo/showcase/Slovnaft_a.s._2025.xhtml';
   } else {
-    frame.style.display = 'none';
     list.style.display = 'block';
   }
 }
