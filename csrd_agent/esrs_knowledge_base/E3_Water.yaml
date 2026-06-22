@@ -1,0 +1,66 @@
+# E3 — Water and Marine Resources
+# ≈40 datapoints
+standard: ESRS E3
+title: Water and Marine Resources
+category: environmental
+mandatory: false
+
+datapoints:
+  - id: E3-01
+    disclosure: E3-1 — Policies related to water and marine resources
+    description: Policies for water management and marine resource protection
+    type: narrative
+    required: true
+    xbrl_tag: esrs:E3_01PoliciesTextBlock
+
+  - id: E3-02
+    disclosure: E3-2 — Targets related to water and marine resources
+    description: Targets for water consumption, discharge, and marine impact
+    type: metrics
+    required: true
+    xbrl_tag: esrs:E3_02TargetsTextBlock
+    metrics:
+      - name: water_reduction_target
+        unit: "%"
+        type: float
+        base_year: "2025"
+      - name: water_intensity_target
+        unit: m³/€M
+        type: float
+
+  - id: E3-03
+    disclosure: E3-3 — Water consumption
+    description: Total water consumption and intensity in water-stressed areas
+    type: metrics
+    required: true
+    xbrl_tag: esrs:E3_03WaterConsumptionTextBlock
+    metrics:
+      - name: total_water_withdrawal
+        unit: m³
+        type: float
+      - name: total_water_consumption
+        unit: m³
+        type: float
+      - name: water_consumption_stressed_areas
+        unit: m³
+        type: float
+      - name: water_intensity
+        unit: m³/€M
+        type: float
+      - name: water_recycled
+        unit: m³
+        type: float
+
+  - id: E3-04
+    disclosure: E3-4 — Water discharge
+    description: Water discharged to water bodies, including quality parameters
+    type: metrics
+    required: false
+    xbrl_tag: esrs:E3_04WaterDischargeTextBlock
+    metrics:
+      - name: total_water_discharge
+        unit: m³
+        type: float
+      - name: discharge_quality_compliant
+        unit: "%"
+        type: float

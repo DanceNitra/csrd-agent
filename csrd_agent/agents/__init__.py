@@ -1,0 +1,1 @@
+"""Agent definitions — CSRD-specific multi-agent roles."""

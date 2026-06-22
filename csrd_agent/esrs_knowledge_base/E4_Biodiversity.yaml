@@ -1,0 +1,59 @@
+# E4 — Biodiversity and Ecosystems
+# ≈50 datapoints
+standard: ESRS E4
+title: Biodiversity and Ecosystems
+category: environmental
+mandatory: false
+
+datapoints:
+  - id: E4-01
+    disclosure: E4-1 — Policies related to biodiversity and ecosystems
+    description: Biodiversity policies, including deforestation and ecosystem restoration
+    type: narrative
+    required: true
+    xbrl_tag: esrs:E4_01PoliciesTextBlock
+
+  - id: E4-02
+    disclosure: E4-2 — Targets related to biodiversity and ecosystems
+    description: Biodiversity and ecosystem restoration targets
+    type: metrics
+    required: true
+    xbrl_tag: esrs:E4_02TargetsTextBlock
+    metrics:
+      - name: biodiversity_restoration_target
+        unit: hectares
+        type: float
+      - name: deforestation_free_target
+        unit: "%"
+        type: float
+      - name: land_use_change_target
+        unit: hectares
+        type: float
+
+  - id: E4-03
+    disclosure: E4-3 — Impact on biodiversity and ecosystems
+    description: Direct and indirect drivers of biodiversity loss
+    type: narrative
+    required: true
+    xbrl_tag: esrs:E4_03ImpactTextBlock
+    sub_fields:
+      - name: drivers_of_biodiversity_loss
+        type: table
+        columns: [Driver, Scale, Location, Mitigation]
+      - name: sites_near_biodiversity_sensitive_areas
+        type: table
+        columns: [Site, Protected_Area_Type, Distance, Operational_Impact]
+
+  - id: E4-04
+    disclosure: E4-4 — Dependency on biodiversity and ecosystems
+    description: Business dependencies on ecosystem services
+    type: narrative
+    required: false
+    xbrl_tag: esrs:E4_04DependencyTextBlock
+
+  - id: E4-05
+    disclosure: E4-5 — Anticipated financial effects from material biodiversity risks
+    description: Financial impact of biodiversity-related risks and opportunities
+    type: narrative
+    required: false
+    xbrl_tag: esrs:E4_05FinancialEffectsTextBlock

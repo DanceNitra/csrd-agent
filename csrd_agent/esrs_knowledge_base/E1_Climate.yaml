@@ -1,0 +1,156 @@
+# E1 — Climate Change
+# ≈130 datapoints — MOST material across all sectors
+standard: ESRS E1
+title: Climate Change
+category: environmental
+mandatory: false
+
+datapoints:
+  - id: E1-01
+    disclosure: E1-1 — Transition plan for climate change mitigation
+    description: Transition plan aligned with 1.5°C pathway under Paris Agreement
+    type: narrative
+    required: true  # always required if E1 is material
+    xbrl_tag: esrs:E1_01TransitionPlanTextBlock
+    evidence_required: true
+    sub_fields:
+      - name: transition_plan
+        description: Full transition plan document
+        type: text
+      - name: paris_alignment
+        description: 1.5°C alignment confirmation and methodology
+        type: text
+      - name: locked_in_emissions
+        description: CapEx and OpEx locked into carbon-intensive activities
+        type: metrics
+        metrics: [locked_in_CapEx_eur, locked_in_OpEx_eur, proportion_locked_in_pct]
+
+  - id: E1-02
+    disclosure: E1-2 — Policies related to climate change mitigation and adaptation
+    description: Climate policies covering mitigation, adaptation, and energy efficiency
+    type: narrative
+    required: true
+    xbrl_tag: esrs:E1_02ClimatePoliciesTextBlock
+
+  - id: E1-03
+    disclosure: E1-3 — Targets related to climate change mitigation and adaptation
+    description: GHG reduction targets, including interim milestones
+    type: metrics
+    required: true
+    xbrl_tag: esrs:E1_03TargetsTextBlock
+    metrics:
+      - name: ghg_reduction_target_2030
+        unit: "%"
+        base_year: "2025"
+        type: float
+      - name: ghg_reduction_target_2050
+        unit: "%"
+        base_year: "2025"
+        type: float
+      - name: net_zero_year
+        unit: year
+        type: integer
+
+  - id: E1-04
+    disclosure: E1-4 — Energy consumption and mix
+    description: Total energy consumption broken down by source
+    type: metrics
+    required: true
+    xbrl_tag: esrs:E1_04EnergyConsumptionTextBlock
+    metrics:
+      - name: total_energy_consumption
+        unit: MWh
+        type: float
+      - name: fossil_share
+        unit: "%"
+        type: float
+      - name: nuclear_share
+        unit: "%"
+        type: float
+      - name: renewable_share
+        unit: "%"
+        type: float
+      - name: renewable_fuel_production
+        unit: MWh
+        type: float
+      - name: energy_intensity
+        unit: MWh/€M
+        description: Per net revenue
+        type: float
+
+  - id: E1-05
+    disclosure: E1-5 — Gross Scopes 1, 2, 3 and Total GHG emissions
+    description: Complete GHG inventory across all three scopes
+    type: metrics
+    required: true
+    xbrl_tag: esrs:E1_05GHGEmissionsTextBlock
+    metrics:
+      - name: scope_1_emissions
+        unit: tCO2e
+        description: Direct emissions from owned sources
+        type: float
+      - name: scope_2_location_based
+        unit: tCO2e
+        type: float
+      - name: scope_2_market_based
+        unit: tCO2e
+        type: float
+      - name: scope_3_emissions
+        unit: tCO2e
+        description: Value chain emissions
+        type: float
+      - name: ghg_intensity
+        unit: tCO2e/€M
+        description: Per net revenue
+        type: float
+      - name: ghg_reduction_achieved
+        unit: "%"
+        description: vs base year
+        type: float
+
+  - id: E1-06
+    disclosure: E1-6 — GHG removals and GHG mitigation projects financed through carbon credits
+    description: Carbon credits and removal projects
+    type: metrics
+    required: false
+    xbrl_tag: esrs:E1_06CarbonCreditsTextBlock
+    metrics:
+      - name: ghg_removals
+        unit: tCO2e
+        type: float
+      - name: carbon_credits_purchased
+        unit: tCO2e
+        type: float
+      - name: carbon_credit_quality
+        description: Verification standard used
+        type: text
+
+  - id: E1-07
+    disclosure: E1-7 — Internal carbon pricing
+    description: Internal carbon pricing schemes and shadow prices used
+    type: metrics
+    required: false
+    xbrl_tag: esrs:E1_07CarbonPricingTextBlock
+    metrics:
+      - name: internal_carbon_price
+        unit: €/tCO2e
+        type: float
+      - name: carbon_price_applications
+        type: tags
+      - name: scope_of_internal_price
+        description: Which emissions are priced internally
+        type: text
+
+  - id: E1-08
+    disclosure: E1-8 — Anticipated financial effects from material climate risks
+    description: Financial impact of physical and transition risks
+    type: narrative
+    required: false
+    xbrl_tag: esrs:E1_08FinancialEffectsTextBlock
+    sub_fields:
+      - name: physical_risk_financial_effects
+        type: text
+      - name: transition_risk_financial_effects
+        type: text
+      - name: climate_opportunities
+        type: text

@@ -1,0 +1,35 @@
+# S3 — Affected Communities
+# ≈40 datapoints
+standard: ESRS S3
+title: Affected Communities
+category: social
+mandatory: false
+
+datapoints:
+  - id: S3-01
+    disclosure: S3-1 — Policies related to affected communities
+    description: Policies for community engagement, indigenous rights, land rights
+    type: narrative
+    required: true
+    xbrl_tag: esrs:S3_01PoliciesTextBlock
+
+  - id: S3-02
+    disclosure: S3-2 — Processes for engaging with affected communities
+    description: Free, Prior, and Informed Consent (FPIC) processes
+    type: narrative
+    required: true
+    xbrl_tag: esrs:S3_02EngagementTextBlock
+
+  - id: S3-03
+    disclosure: S3-3 — Community impact metrics
+    description: Community complaints, resettlement, economic impact
+    type: metrics
+    required: true
+    xbrl_tag: esrs:S3_03ImpactTextBlock
+    metrics:
+      - name: community_complaints
+        unit: count
+        type: integer
+      - name: resettlement_cases
+        unit: count
+        type: integer

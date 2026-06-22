@@ -1,0 +1,32 @@
+[project]
+name = "csrd-agent"
+version = "0.1.0"
+description = "Multi-agent AI system for automated CSRD/ESRS compliance report generation"
+authors = [{ name = "Rastislav Drahoš", email = "rastislav@csrdcomply.com" }]
+license = { text = "MIT" }
+requires-python = ">=3.11"
+dependencies = [
+    "typer>=0.12.0",
+    "pyyaml>=6.0",
+    "pydantic>=2.0",
+    "jinja2>=3.0",
+    "rich>=13.0",
+]
+
+[project.scripts]
+csrd = "csrd_agent.cli.main:app"
+
+[build-system]
+requires = ["setuptools>=75.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["csrd_agent*"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+
+[tool.mypy]
+python_version = "3.11"
+strict = false

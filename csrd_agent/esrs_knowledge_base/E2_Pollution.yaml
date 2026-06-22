@@ -1,0 +1,90 @@
+# E2 — Pollution
+# ≈50 datapoints
+standard: ESRS E2
+title: Pollution
+category: environmental
+mandatory: false
+
+datapoints:
+  - id: E2-01
+    disclosure: E2-1 — Policies related to pollution
+    description: Policies for prevention and control of pollution
+    type: narrative
+    required: true
+    xbrl_tag: esrs:E2_01PoliciesTextBlock
+
+  - id: E2-02
+    disclosure: E2-2 — Targets related to pollution
+    description: Targets for pollution reduction across all media
+    type: metrics
+    required: true
+    xbrl_tag: esrs:E2_02TargetsTextBlock
+    metrics:
+      - name: air_pollution_reduction_target
+        unit: "%"
+        base_year: "2025"
+        type: float
+      - name: water_pollution_reduction_target
+        unit: "%"
+        type: float
+      - name: soil_pollution_reduction_target
+        unit: "%"
+        type: float
+
+  - id: E2-03
+    disclosure: E2-3 — Air pollution
+    description: Emissions of air pollutants (NOx, SOx, PM, VOCs, heavy metals)
+    type: metrics
+    required: true
+    xbrl_tag: esrs:E2_03AirPollutionTextBlock
+    metrics:
+      - name: NOx_emissions
+        unit: tonnes
+        type: float
+      - name: SOx_emissions
+        unit: tonnes
+        type: float
+      - name: PM_emissions
+        unit: tonnes
+        type: float
+      - name: VOC_emissions
+        unit: tonnes
+        type: float
+      - name: heavy_metal_emissions
+        unit: kg
+        type: float
+
+  - id: E2-04
+    disclosure: E2-4 — Water pollution
+    description: Water pollutants discharged to water bodies
+    type: metrics
+    required: false
+    xbrl_tag: esrs:E2_04WaterPollutionTextBlock
+    metrics:
+      - name: wastewater_discharge
+        unit: m³
+        type: float
+      - name: pollutant_load
+        unit: tonnes
+        type: float
+
+  - id: E2-05
+    disclosure: E2-5 — Soil pollution
+    description: Soil contamination and remediation
+    type: narrative
+    required: false
+    xbrl_tag: esrs:E2_05SoilPollutionTextBlock
+
+  - id: E2-06
+    disclosure: E2-6 — Substances of concern
+    description: Production, use, and release of substances of concern and very high concern
+    type: metrics
+    required: true
+    xbrl_tag: esrs:E2_06SubstancesOfConcernTextBlock
+    metrics:
+      - name: substances_of_concern
+        unit: tonnes
+        type: float
+      - name: substances_of_very_high_concern
+        unit: tonnes
+        type: float

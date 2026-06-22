@@ -1,0 +1,85 @@
+# G1 — Business Conduct
+# ≈40 datapoints
+standard: ESRS G1
+title: Business Conduct
+category: governance
+mandatory: false
+
+datapoints:
+  - id: G1-01
+    disclosure: G1-1 — Business conduct policies
+    description: Anti-corruption, anti-bribery, whistleblower, and ethics policies
+    type: narrative
+    required: true
+    xbrl_tag: esrs:G1_01PoliciesTextBlock
+    sub_fields:
+      - name: anti_corruption_policy
+        type: text
+      - name: whistleblower_protection
+        type: text
+      - name: code_of_conduct
+        type: text
+      - name: ethics_training
+        type: text
+
+  - id: G1-02
+    disclosure: G1-2 — Supplier relationship management
+    description: Payment practices, supplier selection criteria, supply chain social criteria
+    type: metrics
+    required: true
+    xbrl_tag: esrs:G1_02SupplierMgmtTextBlock
+    metrics:
+      - name: avg_payment_terms
+        unit: days
+        type: integer
+      - name: on_time_payment_rate
+        unit: "%"
+        type: float
+      - name: supplier_audited_for_ethics
+        unit: "%"
+        type: float
+
+  - id: G1-03
+    disclosure: G1-3 — Corruption and bribery
+    description: Convictions, fines, and remediation for corruption/bribery
+    type: metrics
+    required: true
+    xbrl_tag: esrs:G1_03CorruptionTextBlock
+    metrics:
+      - name: corruption_convictions
+        unit: count
+        type: integer
+      - name: corruption_fines
+        unit: EUR
+        type: float
+      - name: employees_trained_anticorruption
+        unit: "%"
+        type: float
+
+  - id: G1-04
+    disclosure: G1-4 — Political engagement and lobbying
+    description: Political contributions, lobbying activities, and membership
+    type: narrative
+    required: true
+    xbrl_tag: esrs:G1_04LobbyingTextBlock
+    metrics:
+      - name: political_contributions
+        unit: EUR
+        type: float
+
+  - id: G1-05
+    disclosure: G1-5 — Payment practices
+    description: Standard payment terms, late payment rates, legal proceedings
+    type: metrics
+    required: true
+    xbrl_tag: esrs:G1_05PaymentPracticesTextBlock
+    metrics:
+      - name: standard_payment_terms
+        unit: days
+        type: integer
+      - name: late_payment_rate
+        unit: "%"
+        type: float
+      - name: payment_proceedings
+        unit: count
+        type: integer

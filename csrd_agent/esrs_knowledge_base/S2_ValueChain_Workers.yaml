@@ -1,0 +1,49 @@
+# S2 — Workers in the Value Chain
+# ≈60 datapoints
+standard: ESRS S2
+title: Workers in the Value Chain
+category: social
+mandatory: false
+
+datapoints:
+  - id: S2-01
+    disclosure: S2-1 — Policies related to value chain workers
+    description: Policies covering human rights in the supply chain
+    type: narrative
+    required: true
+    xbrl_tag: esrs:S2_01PoliciesTextBlock
+
+  - id: S2-02
+    disclosure: S2-2 — Processes for engaging with value chain workers
+    description: How the company engages with suppliers on human rights
+    type: narrative
+    required: true
+    xbrl_tag: esrs:S2_02EngagementTextBlock
+
+  - id: S2-03
+    disclosure: S2-3 — Targets related to value chain workers
+    description: Supply chain due diligence targets
+    type: metrics
+    required: true
+    xbrl_tag: esrs:S2_03TargetsTextBlock
+    metrics:
+      - name: supplier_audit_coverage
+        unit: "%"
+        type: float
+      - name: high_risk_supplier_share
+        unit: "%"
+        type: float
+
+  - id: S2-04
+    disclosure: S2-4 — Supply chain human rights incidents
+    description: Incidents of forced labor, child labor, and other violations
+    type: metrics
+    required: true
+    xbrl_tag: esrs:S2_04IncidentsTextBlock
+    metrics:
+      - name: supply_chain_incidents
+        unit: count
+        type: integer
+      - name: remediated_incidents
+        unit: count
+        type: integer

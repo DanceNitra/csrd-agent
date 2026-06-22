@@ -1,0 +1,12 @@
+Metadata-Version: 2.4
+Name: csrd-agent
+Version: 0.1.0
+Summary: Multi-agent AI system for automated CSRD/ESRS compliance report generation
+Author-email: Rastislav Drahoš <rastislav@csrdcomply.com>
+License: MIT
+Requires-Python: >=3.11
+Requires-Dist: typer>=0.12.0
+Requires-Dist: pyyaml>=6.0
+Requires-Dist: pydantic>=2.0
+Requires-Dist: jinja2>=3.0
+Requires-Dist: rich>=13.0

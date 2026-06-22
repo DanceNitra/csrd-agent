@@ -1,0 +1,2 @@
+[console_scripts]
+csrd = csrd_agent.cli.main:app

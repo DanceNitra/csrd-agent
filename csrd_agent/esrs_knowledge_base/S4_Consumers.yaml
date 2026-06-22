@@ -1,0 +1,48 @@
+# S4 — Consumers and End-Users
+# ≈40 datapoints
+standard: ESRS S4
+title: Consumers and End-Users
+category: social
+mandatory: false
+
+datapoints:
+  - id: S4-01
+    disclosure: S4-1 — Policies related to consumers and end-users
+    description: Policies for product safety, data privacy, and fair marketing
+    type: narrative
+    required: true
+    xbrl_tag: esrs:S4_01PoliciesTextBlock
+
+  - id: S4-02
+    disclosure: S4-2 — Health and safety impacts of products
+    description: Product safety incidents and recalls
+    type: metrics
+    required: true
+    xbrl_tag: esrs:S4_02HealthSafetyTextBlock
+    metrics:
+      - name: product_recalls
+        unit: count
+        type: integer
+      - name: safety_incidents
+        unit: count
+        type: integer
+      - name: affected_customers
+        unit: count
+        type: integer
+
+  - id: S4-03
+    disclosure: S4-3 — Privacy and data protection
+    description: Data breaches and privacy complaints
+    type: metrics
+    required: true
+    xbrl_tag: esrs:S4_03PrivacyTextBlock
+    metrics:
+      - name: data_breaches
+        unit: count
+        type: integer
+      - name: privacy_complaints
+        unit: count
+        type: integer
+      - name: gdpr_fines
+        unit: EUR
+        type: float

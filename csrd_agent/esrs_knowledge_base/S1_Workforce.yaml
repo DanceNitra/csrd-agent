@@ -1,0 +1,190 @@
+# S1 — Own Workforce
+# ≈120 datapoints (largest social standard)
+standard: ESRS S1
+title: Own Workforce
+category: social
+mandatory: false
+
+datapoints:
+  - id: S1-01
+    disclosure: S1-1 — Policies related to own workforce
+    description: Policies covering human rights, diversity, H&S, and equal treatment
+    type: narrative
+    required: true
+    xbrl_tag: esrs:S1_01PoliciesTextBlock
+
+  - id: S1-02
+    disclosure: S1-2 — Processes for engaging with own workforce and workers' representatives
+    description: Stakeholder engagement mechanisms with employees
+    type: narrative
+    required: true
+    xbrl_tag: esrs:S1_02EngagementTextBlock
+
+  - id: S1-03
+    disclosure: S1-3 — Processes to remediate negative impacts
+    description: Grievance mechanisms and remediation processes
+    type: narrative
+    required: true
+    xbrl_tag: esrs:S1_03RemediationTextBlock
+
+  - id: S1-04
+    disclosure: S1-4 — Targets related to own workforce
+    description: Targets for workforce-related material impacts
+    type: metrics
+    required: true
+    xbrl_tag: esrs:S1_04TargetsTextBlock
+    metrics:
+      - name: diversity_target_ratio
+        unit: "%"
+        type: float
+      - name: injury_reduction_target
+        unit: "%"
+        type: float
+      - name: training_hours_target
+        unit: hours/employee
+        type: float
+
+  - id: S1-05
+    disclosure: S1-5 — Characteristics of the undertaking's employees
+    description: Headcount by gender, contract type, geography
+    type: metrics
+    required: true
+    xbrl_tag: esrs:S1_05EmployeeCharacteristicsTextBlock
+    metrics:
+      - name: total_employees
+        unit: headcount
+        type: integer
+      - name: female_share
+        unit: "%"
+        type: float
+      - name: permanent_contract_share
+        unit: "%"
+        type: float
+      - name: full_time_share
+        unit: "%"
+        type: float
+      - name: employee_turnover_rate
+        unit: "%"
+        type: float
+
+  - id: S1-06
+    disclosure: S1-6 — Characteristics of non-employee workers
+    description: Independent contractors, temps, agency workers
+    type: metrics
+    required: false
+    xbrl_tag: esrs:S1_06NonEmployeeWorkersTextBlock
+
+  - id: S1-07
+    disclosure: S1-7 — Collective bargaining coverage
+    description: Share of employees covered by collective bargaining agreements
+    type: metrics
+    required: true
+    xbrl_tag: esrs:S1_07CollectiveBargainingTextBlock
+    metrics:
+      - name: collective_bargaining_coverage
+        unit: "%"
+        type: float
+
+  - id: S1-08
+    disclosure: S1-8 — Diversity metrics
+    description: Gender distribution at management level, age distribution
+    type: metrics
+    required: true
+    xbrl_tag: esrs:S1_08DiversityMetricsTextBlock
+    metrics:
+      - name: women_in_management
+        unit: "%"
+        type: float
+      - name: under_30_share
+        unit: "%"
+        type: float
+      - name: over_50_share
+        unit: "%"
+        type: float
+
+  - id: S1-09
+    disclosure: S1-9 — Adequate wages
+    description: Whether all employees earn above statutory minimum wage benchmarks
+    type: metrics
+    required: true
+    xbrl_tag: esrs:S1_09AdequateWagesTextBlock
+    metrics:
+      - name: employees_below_living_wage
+        unit: "%"
+        type: float
+      - name: living_wage_benchmark
+        unit: €/hr
+        type: float
+
+  - id: S1-10
+    disclosure: S1-10 — Social protection
+    description: Employees covered by social protection through employment
+    type: metrics
+    required: true
+    xbrl_tag: esrs:S1_10SocialProtectionTextBlock
+    metrics:
+      - name: social_protection_coverage
+        unit: "%"
+        type: float
+
+  - id: S1-11
+    disclosure: S1-11 — Health and safety
+    description: Injury rate, fatalities, absenteeism, and occupational disease
+    type: metrics
+    required: true
+    xbrl_tag: esrs:S1_11HealthSafetyTextBlock
+    metrics:
+      - name: lost_time_injury_rate
+        unit: rate
+        type: float
+      - name: fatalities
+        unit: count
+        type: integer
+      - name: absenteeism_rate
+        unit: "%"
+        type: float
+      - name: occupational_disease_cases
+        unit: count
+        type: integer
+
+  - id: S1-12
+    disclosure: S1-12 — Training and skills development
+    description: Training hours per employee and upskilling programs
+    type: metrics
+    required: true
+    xbrl_tag: esrs:S1_12TrainingTextBlock
+    metrics:
+      - name: avg_training_hours
+        unit: hours/employee
+        type: float
+      - name: training_participation_rate
+        unit: "%"
+        type: float
+
+  - id: S1-13
+    disclosure: S1-13 — Work-life balance
+    description: Access to flexible working, parental leave, childcare
+    type: metrics
+    required: true
+    xbrl_tag: esrs:S1_13WorkLifeBalanceTextBlock
+    metrics:
+      - name: parental_leave_takers
+        unit: count
+        type: integer
+      - name: return_to_work_rate
+        unit: "%"
+        type: float
+
+  - id: S1-14
+    disclosure: S1-14 — Human rights impact metrics
+    description: Incidents of discrimination, forced labor, child labor
+    type: metrics
+    required: true
+    xbrl_tag: esrs:S1_14HumanRightsTextBlock
+    metrics:
+      - name: discrimination_incidents
+        unit: count
+        type: integer
+      - name: human_rights_violations
+        unit: count
+        type: integer

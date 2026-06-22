@@ -1,0 +1,75 @@
+# E5 — Circular Economy
+# ≈40 datapoints
+standard: ESRS E5
+title: Circular Economy
+category: environmental
+mandatory: false
+
+datapoints:
+  - id: E5-01
+    disclosure: E5-1 — Policies related to the circular economy
+    description: Policies for resource use, waste prevention, and circular design
+    type: narrative
+    required: true
+    xbrl_tag: esrs:E5_01PoliciesTextBlock
+
+  - id: E5-02
+    disclosure: E5-2 — Targets related to the circular economy
+    description: Targets for waste reduction, recyclability, and circular material use
+    type: metrics
+    required: true
+    xbrl_tag: esrs:E5_02TargetsTextBlock
+    metrics:
+      - name: waste_reduction_target
+        unit: "%"
+        type: float
+        base_year: "2025"
+      - name: circular_material_use_rate_target
+        unit: "%"
+        type: float
+      - name: recyclability_target
+        unit: "%"
+        type: float
+
+  - id: E5-03
+    disclosure: E5-3 — Resource inflows
+    description: Material inflows by type (renewable, non-renewable, recycled)
+    type: metrics
+    required: true
+    xbrl_tag: esrs:E5_03ResourceInflowsTextBlock
+    metrics:
+      - name: total_material_inflow
+        unit: tonnes
+        type: float
+      - name: renewable_material_share
+        unit: "%"
+        type: float
+      - name: recycled_input_material_share
+        unit: "%"
+        type: float
+      - name: critical_raw_materials
+        unit: tonnes
+        type: float
+
+  - id: E5-04
+    disclosure: E5-4 — Resource outflows
+    description: Products, materials, and waste outflows
+    type: metrics
+    required: true
+    xbrl_tag: esrs:E5_04ResourceOutflowsTextBlock
+    metrics:
+      - name: total_waste_generated
+        unit: tonnes
+        type: float
+      - name: hazardous_waste
+        unit: tonnes
+        type: float
+      - name: waste_diverted_from_landfill
+        unit: "%"
+        type: float
+      - name: product_recyclability_rate
+        unit: "%"
+        type: float
+      - name: packaging_waste
+        unit: tonnes
+        type: float

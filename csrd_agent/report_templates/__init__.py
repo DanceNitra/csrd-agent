@@ -1,0 +1,1 @@
+"""Report templates for CSRD disclosure generation."""

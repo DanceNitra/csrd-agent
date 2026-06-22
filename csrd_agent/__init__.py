@@ -1,0 +1,1 @@
+"""CSRD Agent — core package."""

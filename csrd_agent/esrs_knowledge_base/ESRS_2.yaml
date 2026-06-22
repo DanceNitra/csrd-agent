@@ -1,0 +1,126 @@
+# ESRS 2 — General Disclosures (Cross-Cutting)
+# ≈60 mandatory datapoints — ALL companies must report these
+# Regardless of double materiality assessment
+standard: ESRS 2
+title: General Disclosures
+category: cross-cutting
+mandatory: true
+
+datapoints:
+  - id: ESRS2-GOV-01
+    disclosure: GOV-1 — Administrative, management and supervisory bodies
+    description: Composition and diversity of administrative, management and supervisory bodies
+    type: narrative
+    required: true
+    xbrl_tag: esrs:ESRS2GOV1TextBlock
+    evidence_required: true
+    sub_fields:
+      - name: body_composition
+        type: table
+        columns: [Name, Role, Gender, Tenure, Independence, Expertise]
+      - name: diversity_ratios
+        type: metrics
+        metrics: [gender_ratio, independence_ratio, expertise_distribution]
+
+  - id: ESRS2-GOV-02
+    disclosure: GOV-2 — Information provided to and sustainability matters addressed by the undertaking's administrative, management and supervisory bodies
+    description: How sustainability matters are integrated into governance
+    type: narrative
+    required: true
+    xbrl_tag: esrs:ESRS2GOV2TextBlock
+
+  - id: ESRS2-GOV-03
+    disclosure: GOV-3 — Integration of sustainability-related performance in incentive schemes
+    description: Whether sustainability performance is part of remuneration policies
+    type: narrative
+    required: true
+    xbrl_tag: esrs:ESRS2GOV3TextBlock
+    sub_fields:
+      - name: incentive_schemes
+        type: table
+        columns: [Scheme, Sustainability_Target, Weight, Timeframe]
+
+  - id: ESRS2-GOV-04
+    disclosure: GOV-4 — Statement on due diligence
+    description: Due diligence process and compliance with international frameworks
+    type: narrative
+    required: true
+    xbrl_tag: esrs:ESRS2GOV4TextBlock
+
+  - id: ESRS2-SBM-01
+    disclosure: SBM-1 — Strategy, business model and value chain
+    description: Description of business model, strategy, and value chain
+    type: narrative
+    required: true
+    xbrl_tag: esrs:ESRS2SBM1TextBlock
+    sub_fields:
+      - name: business_model
+        type: text
+      - name: value_chain_map
+        type: table
+        columns: [Stage, Description, Geography, Employees]
+      - name: sectors
+        type: tags
+      - name: revenue_breakdown
+        type: table
+        columns: [Segment, Revenue, Pct_Total, NACE_Code]
+
+  - id: ESRS2-SBM-02
+    disclosure: SBM-2 — Interests and views of stakeholders
+    description: How stakeholder interests inform strategy
+    type: narrative
+    required: true
+    xbrl_tag: esrs:ESRS2SBM2TextBlock
+
+  - id: ESRS2-SBM-03
+    disclosure: SBM-3 — Material impacts, risks and opportunities
+    description: Key sustainability-related IROs and their interaction with strategy
+    type: narrative
+    required: true
+    xbrl_tag: esrs:ESRS2SBM3TextBlock
+
+  - id: ESRS2-IRO-01
+    disclosure: IRO-1 — Description of the process to identify and assess material impacts, risks and opportunities
+    description: Methodology for double materiality assessment
+    type: narrative
+    required: true
+    xbrl_tag: esrs:ESRS2IRO1TextBlock
+
+  - id: ESRS2-IRO-02
+    disclosure: IRO-2 — ESRS datapoints covered by the undertaking's sustainability statement
+    description: Checklist of which ESRS datapoints are applicable
+    type: table
+    required: true
+    xbrl_tag: esrs:ESRS2IRO2TableTextBlock
+    sub_fields:
+      - name: datapoint_coverage
+        type: table
+        columns: [Standard, Total_Datapoints, Applicable, Reported, Gap]
+
+  - id: ESRS2-MDR-01
+    disclosure: MDR-P — Policies adopted to manage material sustainability matters
+    description: Policies covering each material sustainability matter
+    type: narrative
+    required: true
+    xbrl_tag: esrs:ESRS2MDRPTextBlock
+
+  - id: ESRS2-MDR-02
+    disclosure: MDR-A — Actions and resources in relation to material sustainability matters
+    description: Action plans, targets, and allocated resources
+    type: narrative
+    required: true
+    xbrl_tag: esrs:ESRS2MDRATextBlock
+
+  - id: ESRS2-MDR-03
+    disclosure: MDR-M — Metrics in relation to material sustainability matters
+    description: Key metrics used to measure performance
+    type: narrative
+    required: true
+    xbrl_tag: esrs:ESRS2MDRMTextBlock
+
+  - id: ESRS2-MDR-04
+    disclosure: MDR-T — Targets in relation to material sustainability matters
+    description: Time-bound targets and progress tracking
+    type: narrative
+    required: true
+    xbrl_tag: esrs:ESRS2MDRTTextBlock
